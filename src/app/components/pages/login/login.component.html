@@ -1,0 +1,14 @@
+<p>login works!</p>
+<div class="login-container">
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Digite seu email" name="email" #email required>
+
+    <label for="Senha"><b>Senha</b></label>
+    <input type="text" placeholder="Digite seu Senha" name="Senha" #senha required>
+
+    <button type="submit" (click)="enviar(senha.value, email.value)">Entrar</button>
+
+    <li *ngFor="let user of users">
+        {{user.email}} -- {{user.senha}}
+    </li>
+</div>
