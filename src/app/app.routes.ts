@@ -6,8 +6,9 @@ import { SidebarComponent } from './components/pages/sidebar/sidebar.component';
 
 export const routes: Routes = [
     {
-        path: '',
-        component: LoginComponent,
+         path: '', redirectTo: '/sideBar', pathMatch: 'full' 
+        // path: '',
+        // component: LoginComponent,
     },
     {
         path: 'login',
@@ -20,6 +21,7 @@ export const routes: Routes = [
     },
     {
         path: 'sideBar',
-        component:HomeComponent
-    }
+        component:SidebarComponent
+    },
+   
 ];

@@ -1,1 +1,41 @@
-<p>sidebar works!</p>
+
+<div class="icon-button">
+    <fa-icon [icon]="faBars"></fa-icon>
+  </div>   
+
+ <hr id="hr">
+    <div class="sidebar">
+        <ul>
+          <li>
+            <fa-icon [icon]="faUser"></fa-icon>
+            <span>Usuário</span>
+          </li>
+          <hr>
+          <li>
+            <fa-icon [icon]="faHouse"></fa-icon>
+            <span>Inicio</span>
+          </li>
+          <hr>
+          <li>
+            <fa-icon [icon]="faFileCirclePlus"></fa-icon>
+            <span>Nova Solicitação</span>
+          </li>
+          <hr>
+          <li>
+            <fa-icon [icon]="faHistory"></fa-icon>
+            <span>Histórico</span>
+          </li>
+          <hr>
+        </ul>
+        <footer>
+            <ul class="box">
+                <hr>
+                <li id="goout">
+                 <fa-icon [icon]="faSignOutAlt"></fa-icon>
+                 <span>Sair</span>
+                 </li>
+               </ul>
+        </footer>
+      </div>
+
+
