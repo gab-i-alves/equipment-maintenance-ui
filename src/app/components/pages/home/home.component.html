@@ -1,0 +1,69 @@
+<div class="page-container d-flex flex-column justify-content-center align-items-center vh-100">
+  <h2 class="title-page mb-4 fw-bold">Suas Solicitações</h2>
+  <section class="sectionTable container">
+    <div class="tableBox p-3 rounded">
+      <table id="tableSolic" class="display">
+        <thead>
+          <tr>
+            <th>Solicitação</th>
+            <th>Data/Hora</th>
+            <th>Descrição do Equipamento</th>
+            <th>Estado</th>
+            <th>Acões Disponíveis</th>
+            <th>Visualizar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Solicitação 1</td>
+            <td>14/09/24  12:30</td>
+            <td class="td-descricao">Trocar HD notebook</td>
+            <td class="td-estado-orcado">Orçada</td>
+            <td>
+              <button class="btn btn-acao btn-aprovar" (click)="approveService()">Aprovar Serviço</button>
+              <button class="btn btn-acao btn-rejeitar" (click)="rejectService()">Rejeitar Serviço</button>
+            </td>
+            <td>
+              <button class="btn btn-primary" (click)="viewService()">Visualizar</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Solicitação 2</td>
+            <td>14/09/24  12:30</td>
+            <td class="td-descricao">Trocar HD notebook</td>
+            <td class="td-estado-aprovada">APROVADA</td>
+            <td>
+            </td>
+            <td>
+              <button class="btn btn-primary" (click)="viewService()">Visualizar</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Solicitação 3</td>
+            <td>14/09/24  12:30</td>
+            <td class="td-descricao ">Trocar HD notebook</td>
+            <td class="td-estado-rejeitada">REJEITADA</td>
+            <td>
+              <button class="btn btn-acao btn-resgatar" (click)="rescueService()">Resgatar</button>
+            </td>
+            <td>
+              <button class="btn btn-primary" (click)="viewService()">Visualizar</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Solicitação 4</td>
+            <td>14/09/24  12:30</td>
+            <td class="td-descricao">Trocar HD notebook</td>
+            <td class="td-estado-arrumada">ARRUMADA</td>
+            <td>
+              <button class="btn btn-acao btn-pagar" (click)="payService()">Pagar</button>
+            </td>
+            <td>
+              <button class="btn btn-primary" (click)="viewService()">Visualizar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
