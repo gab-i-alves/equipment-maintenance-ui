@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-login',
@@ -14,8 +15,13 @@ export class LoginComponent {
   password:string = '';
   submiting:boolean = false;
 
+  constructor(private router: Router) {}
+
   loginAction(){
+
     console.log(this.email + "--" + this.password);
+
     //teste 
+    this.router.navigate(['/home']);
   }
 }

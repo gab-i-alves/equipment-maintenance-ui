@@ -1,0 +1,65 @@
+
+.page-container {
+   font-family: 'Poppins', sans-serif;
+}
+
+.tableBox {
+  background-color: #F4F3F3;
+}
+
+.title-page {
+  color: #005A9B;
+}
+
+#tableSolic thead {
+  background-color: #4682B4;
+  color: white;
+}
+
+.td-descricao {
+  white-space: nowrap;                  
+  overflow: hidden; 
+  text-overflow:  ellipsis;
+  max-width: 4px
+}
+
+.td-estado-orcado, .td-estado-aprovada, 
+.td-estado-rejeitada, .td-estado-arrumada {
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.td-estado-orcado {
+  color: #005A9B;
+}
+
+.td-estado-aprovada, .td-estado-arrumada {
+  color: #06791F;
+}
+
+.td-estado-rejeitada {
+  color: #FF0E0E;
+}
+
+.btn-acao {
+  width: 60%;
+  padding: 0 !important;
+  color: white;
+  font-size: 0.8rem;
+}
+
+.btn-aprovar {
+  background-color: #06791F;
+}
+
+.btn-rejeitar {
+  background-color: #FF0E0E;
+}
+
+.btn-resgatar {
+  background-color: #7028CB;
+}
+
+.btn-pagar {
+  background-color: #FD720D;
+}
