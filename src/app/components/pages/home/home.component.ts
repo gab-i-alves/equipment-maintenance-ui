@@ -3,14 +3,15 @@ import DataTable from 'datatables.net-dt';
 import * as $ from 'jquery';
 import 'datatables.net'; 
 import 'datatables.net-dt'; 
-import 'datatables.net-responsive'; 
+import 'datatables.net-responsive';
+import { SidebarComponent } from "../sidebar/sidebar.component"; 
 
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [SidebarComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
