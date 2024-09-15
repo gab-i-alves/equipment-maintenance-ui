@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faUser, faHistory, faSignOutAlt , faFileCirclePlus, faHouse, faBars} from '@fortawesome/free-solid-svg-icons';
+import { faUser, faHistory, faSignOutAlt , faFileCirclePlus, faHouse, faBars, faBell} from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -16,5 +16,6 @@ export class SidebarComponent {
   faSignOutAlt = faSignOutAlt;
   faFileCirclePlus = faFileCirclePlus;
   faHouse = faHouse;
-  faBars = faBars
+  faBars = faBars;
+  faBell = faBell;
 }

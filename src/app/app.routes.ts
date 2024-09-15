@@ -20,6 +20,6 @@ export const routes: Routes = [
     },
     {
         path: 'sideBar',
-        component:HomeComponent
+        component:SidebarComponent
     }
 ];
