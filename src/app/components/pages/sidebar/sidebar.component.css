@@ -40,9 +40,9 @@
 
   .icon-button {
     display: inline-flex;
-    justify-content: center;
     color: white;
     cursor: pointer; 
+    Justify-content: space-between
     
   }
   
@@ -52,12 +52,32 @@
     color: #4682B4;
     margin-top: 15px;
     margin-left: 34px;
+    padding: 0px;
   }
 #hr{
     width: 100%;
-    margin-top: 4px;
+    margin-top: 1px;
     position: fixed;
 }
 .container{
   position: fixed;
+}
+#h1{
+  color:#4682B4;
+  margin-left: 36px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  margin-top: 15px;
+  font-size: 33px;
+}
+#span{
+  margin-left: 8px;
+}
+.icons{
+  margin-top: 10px;
+  margin-left: 550px;
+}
+#user{
+  margin-left: 77px;
+  margin-right: 0px;
 }
