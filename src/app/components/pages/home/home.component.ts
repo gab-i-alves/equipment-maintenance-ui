@@ -4,7 +4,7 @@ import * as $ from 'jquery';
 import 'datatables.net'; 
 import 'datatables.net-dt'; 
 import 'datatables.net-responsive';
-import { SidebarComponent } from "../sidebar/sidebar.component"; 
+import { SidebarComponent } from "../../sidebar/sidebar.component"; 
 
 
 

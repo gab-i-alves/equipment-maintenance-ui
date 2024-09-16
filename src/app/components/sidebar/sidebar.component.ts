@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faUser, faHistory, faSignOutAlt , faFileCirclePlus, faHouse, faBars, faBell} from '@fortawesome/free-solid-svg-icons';
 
@@ -18,4 +19,11 @@ export class SidebarComponent {
   faHouse = faHouse;
   faBars = faBars;
   faBell = faBell;
+
+  constructor(private router: Router){}
+
+  outAction(){
+    this.router.navigate(['/login']);
+  }
+
 }
