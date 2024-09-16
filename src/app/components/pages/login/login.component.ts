@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SidebarComponent } from "../../sidebar/sidebar.component"; 
+import { LoginService } from '../../../services/account.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, SidebarComponent],
+  imports: [CommonModule, FormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -16,14 +16,22 @@ export class LoginComponent {
   password:string = '';
   submiting:boolean = false;
 
-  constructor(private router: Router) {}
+  loginFail:boolean = false;
+
+  constructor(private router: Router, private loginService: LoginService) {}
 
   loginAction(){
 
-    console.log(this.email + "--" + this.password);
+    if(this.loginService.login(this.email, this.password)){
 
-    //teste 
-    this.router.navigate(['/home']);
+      this.router.navigate(['/home']);
+
+    }else{
+
+      this.loginFail = true;
+
+    };
+    
   }
 
   createAcount(){

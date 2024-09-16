@@ -29,6 +29,11 @@
                 
                     <button [disabled]="submiting" type="submit" class="mt-5 btn btn-primary btn-lg bstyle" (click)="loginAction()">Entrar</button>
                     
+                    <div class="alert alert-danger mt-5" *ngIf="loginFail">
+                        <p class="h6 text-center">Email ou senha incorretos</p>
+                        <p class="mb-0 text-center ">Verifique se seus dados estão corretos</p>
+                    </div>
+
                     <div class="mt-5 text-center">
                         <a class="text-decoration" (click)="createAcount()">Primeiro acesso? Realize seu cadastro!</a>
                     </div>
