@@ -19,12 +19,12 @@
        <span>Usuário</span>
       </li>
        <hr>
-      <li>
+      <li (click)="homeAction()" id="gohome">
        <fa-icon [icon]="faHouse"></fa-icon>
        <span>Inicio</span>
       </li>
        <hr>
-       <li>
+       <li (click)="newRequestAction()" id="newreq">
             <fa-icon [icon]="faFileCirclePlus"></fa-icon>
             <span>Nova Solicitação</span>
           </li>

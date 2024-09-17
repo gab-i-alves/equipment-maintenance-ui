@@ -3,6 +3,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/pages/login/login.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { NewRequestComponent } from './components/pages/new-request/new-request.component';
 
 export const routes: Routes = [
     {
@@ -21,5 +22,9 @@ export const routes: Routes = [
     {
         path: 'sideBar',
         component:SidebarComponent
+    },
+    {
+        path: 'newRequest',
+        component:NewRequestComponent
     }
 ];

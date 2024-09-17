@@ -26,4 +26,12 @@ export class SidebarComponent {
     this.router.navigate(['/login']);
   }
 
+  newRequestAction(){
+    this.router.navigate(['/newRequest']);
+  }
+
+  homeAction(){
+    this.router.navigate(['/home']);
+  }
+
 }
