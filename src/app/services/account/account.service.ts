@@ -9,7 +9,6 @@ export class AccountService {
 
   login(email: string, password:string) : [boolean, boolean]{
     if(email == "emaildeteste@gmail.com" && password == "senhadeteste123"){
-        debugger
         localStorage.setItem('user', 'true');
         return[false, false];    
     }
