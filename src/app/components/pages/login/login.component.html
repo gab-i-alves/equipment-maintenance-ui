@@ -29,9 +29,14 @@
                 
                     <button [disabled]="submiting" type="submit" class="mt-5 btn btn-primary btn-lg bstyle" (click)="loginAction()">Entrar</button>
                     
-                    <div class="alert alert-danger mt-5" *ngIf="loginFail">
+                    <div class="alert alert-danger mt-5" *ngIf="loginConditions[1]">
                         <p class="h6 text-center">Email ou senha incorretos</p>
                         <p class="mb-0 text-center ">Verifique se seus dados estão corretos</p>
+                    </div>
+
+                    <div class="alert alert-danger mt-5" *ngIf="loginConditions[0]">
+                        <p class="h6 text-center">Email ou senha incorretos</p>
+                        <p class="mb-0 text-center ">Preencha corretamente ambos os campos</p>
                     </div>
 
                     <div class="mt-5 text-center">

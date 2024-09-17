@@ -1,3 +1,4 @@
+import { AccountService } from './../../services/account/account.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -20,9 +21,10 @@ export class SidebarComponent {
   faBars = faBars;
   faBell = faBell;
 
-  constructor(private router: Router){}
+  constructor(private router: Router, private AccountService: AccountService){}
 
   outAction(){
+    this.AccountService.logout();
     this.router.navigate(['/login']);
   }
 
