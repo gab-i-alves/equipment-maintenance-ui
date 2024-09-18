@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
+
 export class RegistrationComponent {
   name: string = '';
   email: string = '';
@@ -21,8 +22,10 @@ export class RegistrationComponent {
   number: string = '';
   complement: string = '';
   submiting: boolean = false;
+  estados: string[] = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'];
 
   onSubmit() {
+    this.submiting = true;
     if (this.isFormValid()){
       console.log('Formulário submetido com dados: ', {
         nome: this.name,
@@ -33,22 +36,50 @@ export class RegistrationComponent {
         estado: this.state,
         cidade: this.city,
         logradouro: this.logradouro,
-        número: this.number,
+        numero: this.number,
         complemento: this.complement
       });
     } else {
       console.log('Formulário com erros');
     }
+    this.submiting = false;
+  }
+
+  onCpfInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    let cpf = input.value.replace(/\D/g, '');
+  
+    if (cpf.length > 3) cpf = cpf.slice(0, 3) + '.' + cpf.slice(3);
+    if (cpf.length > 7) cpf = cpf.slice(0, 7) + '.' + cpf.slice(7);
+    if (cpf.length > 11) cpf = cpf.slice(0, 11) + '-' + cpf.slice(11);
+  
+    input.value = cpf;
+    this.cpf = cpf;
+  }
+
+  isEmailValid(): boolean {
+    return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(this.email);
+  }
+
+  isCpfValid(): boolean {
+    return /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/.test(this.cpf);
+  }
+
+  isPhoneValid(): boolean {
+    return /^\(\d{2}\)\s?\d{4,5}\-\d{4}$/.test(this.phone);
+  }
+
+  isCepValid(): boolean {
+    return /^\d{5}\-\d{3}$/.test(this.cep);
   }
 
   isFormValid(): boolean {
     return (
       this.name.trim() !== '' &&
-      this.email.trim() !== '' &&
-      this.email.includes('@') &&
-      this.cpf.trim().length === 14 &&
-      this.phone.trim().length >= 11 &&
-      this.cep.trim().length === 9 &&
+      this.isEmailValid() &&
+      this.isCpfValid() &&
+      this.isPhoneValid() &&
+      this.isCepValid() &&
       this.state.trim() !== '' &&
       this.city.trim() !== '' &&
       this.logradouro.trim() !== '' &&
