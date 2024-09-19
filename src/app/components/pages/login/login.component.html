@@ -24,7 +24,7 @@
                     
                     <div class="row">
                         <label for="password" class="form-label fstyle"><b>Senha: </b></label>
-                        <input type="text" placeholder="Digite seu senha" name="senha" class="form-control" required [(ngModel)]="password">
+                        <input type="password" placeholder="Digite seu senha" name="senha" class="form-control" required [(ngModel)]="password">
                     </div>
                 
                     <button [disabled]="submiting" type="submit" class="mt-5 btn btn-primary btn-lg bstyle" (click)="loginAction()">Entrar</button>
