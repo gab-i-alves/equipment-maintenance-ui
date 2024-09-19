@@ -1,8 +1,10 @@
 import { Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/pages/login/login.component';
+import { RegistrationComponent } from './components/pages/registration/registration.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { authGuard } from './services/guard/auth.guard';
 import { NewRequestComponent } from './components/pages/new-request/new-request.component';
 
 export const routes: Routes = [
@@ -14,10 +16,14 @@ export const routes: Routes = [
         path: 'login',
         component: LoginComponent
     },
-
+    {
+        path: 'registration',
+        component: RegistrationComponent
+    },
     {
         path: 'home',
-        component: HomeComponent
+        component: HomeComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'sideBar',
