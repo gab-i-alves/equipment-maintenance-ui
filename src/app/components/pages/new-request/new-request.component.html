@@ -1,30 +1,38 @@
 <app-sidebar></app-sidebar>
 
-<div class="page-container d-flex flex-column justify-content-center align-items-center vh-100 px-5 pt-4 pb-4">
-    <h2 class="title-page mb-4 fw-bold m-5">Nova Solicitação</h2>
+<div class="page-container d-flex flex-column justify-content-center align-items-center vh-100">
+    
+        <section class="sectionTable container">
+            <div class="tableBox p-3 rounded">
+                <div class="card-body row align-items-center">
 
-        <div class="card-body row align-items-center m-5">
+                <div class="row">
+                    <label for="descEquipamento" class="form-label fstyle"><b>Descrição do Equipamento : </b></label>
+                    <input type="text" placeholder="Digite uma breve descrição do equipamento" name="descEquipamento" class="form-control" required [(ngModel)]="descEquipamento">
+                </div>
+                
+                <div class="row">
+                    <label for="categoria" class="form-label fstyle"><b>Categoria do Equipamento :</b></label>
+                    <select name="categoria" id= "categoriaSelect" class="form-control" required [(ngModel)]="categoria" size="1">
+                        <option value="1">Notebook</option>
+                        <option value="2">Desktop</option>
+                        <option value="3">Impressora</option>
+                        <option value="4">Mouse</option>
+                        <option value="5">Teclado</option>
+                    </select>
+                </div>
+                
 
-            <div class="row">
-                <label for="descEquipamento" class="form-label fstyle"><b>Descrição do Equipamento: </b></label>
-                <input type="text" placeholder="Descreva o Equipamento" name="descEquipamento" class="form-control" required [(ngModel)]="descEquipamento">
-            </div>
+                <div class="row">
+                    <label for="defeito" class="form-label fstyle"><b>Descrição do Defeito :</b></label>
+                    <input type="text" placeholder="Descreva o defeito ou problema que está ocorrendo ... Max 500 caracteres" name="defeito" class="form-control" required [(ngModel)]="defeito">
+                </div>
             
-            <div class="row">
-                <label for="categoria" class="form-label fstyle"><b>Categoria do Equipamento </b></label>
-                <input type="radio" placeholder="Escolha uma categoria" name="categoria" class="form-control" required [(ngModel)]="categoria">
+                <button [disabled]="submiting" type="submit" class="mt-5 btn btn-primary btn-lg bstyle" (click)="newRequestAction()">Registrar Solicitação</button>
+
+                </div>
             </div>
-            
-            <div class="row">
-                <label for="defeito" class="form-label fstyle"><b>Descrição do Defeito </b></label>
-                <input type="text" placeholder="Descreva o defeito" name="defeito" class="form-control" required [(ngModel)]="defeito">
-            </div>
-        
-            <button [disabled]="submiting" type="submit" class="mt-5 btn btn-primary btn-lg bstyle" (click)="loginAction()">Gravar</button>
-
-
-        </div>
-
+        </section>
         
 
 </div>

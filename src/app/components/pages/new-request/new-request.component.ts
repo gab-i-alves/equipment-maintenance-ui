@@ -1,8 +1,6 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { SidebarComponent } from "../../sidebar/sidebar.component";
 import { FormsModule } from '@angular/forms';
-import { timestamp, Timestamp } from 'rxjs';
-
 
 @Component({
   selector: 'app-new-request',
@@ -15,14 +13,13 @@ export class NewRequestComponent {
   descEquipamento:string = '';
   categoria:number = 1;
   defeito:string = '';
+  data:Date = new Date
   submiting:boolean = false;
 
-
-  loginAction(){
-    
-  }
-
-  createAcount(){
-    console.log("PARA O CADASTRO");
+  newRequestAction(){
+    console.log(this.descEquipamento)
+    console.log(this.categoria)
+    console.log(this.defeito)
+    console.log(this.data)
   }
 }
