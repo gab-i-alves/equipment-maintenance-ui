@@ -5,6 +5,7 @@ import { RegistrationComponent } from './components/pages/registration/registrat
 import { HomeComponent } from './components/pages/home/home.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { authGuard } from './services/guard/auth.guard';
+import { NewRequestComponent } from './components/pages/new-request/new-request.component';
 
 export const routes: Routes = [
     {
@@ -27,5 +28,9 @@ export const routes: Routes = [
     {
         path: 'sideBar',
         component:SidebarComponent
+    },
+    {
+        path: 'newRequest',
+        component:NewRequestComponent
     }
 ];
