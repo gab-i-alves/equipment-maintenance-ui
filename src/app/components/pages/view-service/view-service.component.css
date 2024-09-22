@@ -1,13 +1,16 @@
 .container-view-service {
   margin-left: 200px;
   padding-top: 4rem;
+  z-index: -10;
 }
 
 .details-container {
   border-bottom: 1px solid rgb(182, 185, 187);
 }
 
-
+.history-container {
+  position: relative;
+}
 
 .details-container h2,
 .history-container h2 {
@@ -127,7 +130,7 @@
 
 .btn-return-box {
   position: absolute;
-  bottom: 30px;
+  bottom: 10px;
   left: 250px;
 }
 
