@@ -1,0 +1,27 @@
+.page-container {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f9fa; /* light background */
+}
+
+.tableBox {
+  width: 80%; 
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.title-page {
+  color: #005A9B;
+  margin-top: 25px;
+}
+
+.details-section p {
+  font-size: 1.2rem;
+}
+
+.price-section {
+  background-color: #f1f1f1;
+}
+
+.action-buttons {
+  margin-top: 20px;
+}
