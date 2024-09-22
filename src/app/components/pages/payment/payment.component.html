@@ -1,0 +1,57 @@
+<app-sidebar></app-sidebar>
+
+
+<div class="page-container d-flex flex-column  justify-content-center  align-items-center ">
+    <h2 class="title-page mt-5 fw-bold "> Detalhes do Pagamento</h2>
+    <div class="w-100 mt-4">
+        <ul class="  d-flex flex-row gap-3">
+             <p class=" fw-bold ">Data  Hora da Solicitação :</p> 
+             <p>12/09/2024    14:36</p>
+        </ul>
+        <ul class="  d-flex flex-row gap-3">
+            <p class="fw-bold">Descrição do Equipamento :</p> 
+            <p>Máquina de Lavar</p>
+       </ul>
+       <ul class="  d-flex flex-row gap-3">
+            <p class="fw-bold">Categoria do equipamento :</p> 
+            <p>Eletrodoméstico</p>
+       </ul>
+        <ul class="  d-flex flex-row gap-3">
+            <p class="fw-bold">Descrição do Defeito :</p> 
+            <p>Máquina não esta centrifugando corretamente</p>
+        </ul>
+        <ul class="  d-flex flex-row gap-3">
+            <p class="fw-bold">Estado Atual:</p> 
+            <p id="status">Aguardadndo pagamento</p>
+        </ul>   
+        <hr id="line">
+
+        <ul class="  d-flex flex-row gap-5 mt-4 ms-3">
+            <p class="fw-bold ">Valor a Pagar:</p> 
+            <h3 class=" price fw-bold ">R$450,00</h3>
+            <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"class="btn">CONFIRMA PAGAMENTO</button>
+        </ul>   
+        <p class="mt-4 ms-5"> Ao confirmar o pagamento, você receberá uma notificação de confirmação do serviço.</p>
+        <button (click)="returnHome()" class="btn-return-box ms-3 mt-2">VOLTAR</button>
+    </div>
+</div>
+
+
+  
+
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">PAGAMENTO CONFIRMADO !</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>O pagamento do serviço foi registrado com sucesso! Você receberá uma confirmação por e-mail e o serviço será finalizado.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="returnHome()">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
