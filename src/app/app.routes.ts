@@ -6,6 +6,7 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { authGuard } from './services/guard/auth.guard';
 import { NewRequestComponent } from './components/pages/new-request/new-request.component';
+import { BudgetComponent } from './components/pages/budget/budget.component';
 
 export const routes: Routes = [
     {
@@ -23,6 +24,11 @@ export const routes: Routes = [
     {
         path: 'home',
         component: HomeComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'budget',
+        component: BudgetComponent,
         canActivate: [authGuard]
     },
     {
