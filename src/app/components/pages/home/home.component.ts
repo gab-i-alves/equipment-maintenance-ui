@@ -5,7 +5,7 @@ import 'datatables.net';
 import 'datatables.net-dt'; 
 import 'datatables.net-responsive';
 import { SidebarComponent } from "../../sidebar/sidebar.component"; 
-import { Router } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
@@ -13,12 +13,12 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [SidebarComponent, HttpClientModule],
+  imports: [SidebarComponent, RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router) {}
     
   ngAfterViewInit(): void {
     if (!$.fn.dataTable.isDataTable('#tableSolic')) {
@@ -42,6 +42,7 @@ export class HomeComponent {
 
   rejectService() {
     console.log("Rejeitar serviço")
+    this.router.navigate(['/budget']);
   }
 
   viewService() {
@@ -50,6 +51,7 @@ export class HomeComponent {
 
   approveService() {
     console.log("Aprovar serviço")
+    this.router.navigate(['/budget']);
   }
 
   rescueService() {
