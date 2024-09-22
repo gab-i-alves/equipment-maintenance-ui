@@ -1,1 +1,26 @@
-<p>budget works!</p>
+<app-sidebar></app-sidebar>
+
+<div class="page-container d-flex flex-column justify-content-center align-items-center vh-100">
+  <h2 class="title-page mb-4 fw-bold">Detalhes da Solicitação</h2>
+  
+  <section class="sectionTable container page-container d-flex flex-column justify-content-center align-items-center">
+    <div class="tableBox p-3 rounded">
+      <div class="details-section">
+        <p><strong>Descrição do Equipamento:</strong> Máquina de Lavar</p>
+        <p><strong>Categoria do Equipamento:</strong> Eletrodoméstico</p>
+        <p><strong>Descrição do Defeito:</strong> Máquina não esta centrifugando corretamente.</p>
+        <p><strong>Data / Hora da Solicitação:</strong> 12/09/2024  14:36</p>
+      </div>
+
+      <div class="price-section my-4 p-3 bg-light rounded">
+        <h4 class="title-page fw-bold">Preço Orçado:</h4>
+        <p class="text-center display-4 fw-bold text-success">R$ 450,00</p>
+      </div>
+
+      <div class="action-buttons d-flex justify-content-around">
+        <button class="btn btn-success btn-lg" (click)="approveService()">Aprovar Serviço</button>
+        <button class="btn btn-danger btn-lg" (click)="rejectService()">Rejeitar Serviço</button>
+      </div>
+    </div>
+  </section>
+</div>
