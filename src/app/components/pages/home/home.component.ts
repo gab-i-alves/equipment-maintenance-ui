@@ -5,18 +5,20 @@ import 'datatables.net';
 import 'datatables.net-dt'; 
 import 'datatables.net-responsive';
 import { SidebarComponent } from "../../sidebar/sidebar.component"; 
+import { Router } from '@angular/router';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [SidebarComponent],
+  imports: [SidebarComponent, HttpClientModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-
+  constructor(private router: Router, private http: HttpClient) {}
     
   ngAfterViewInit(): void {
     if (!$.fn.dataTable.isDataTable('#tableSolic')) {
@@ -43,7 +45,7 @@ export class HomeComponent {
   }
 
   viewService() {
-    console.log("Visualizar servico")
+    this.router.navigate(['/viewservice']);
   }
 
   approveService() {
