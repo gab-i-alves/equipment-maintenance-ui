@@ -59,6 +59,6 @@ export class HomeComponent {
   }
 
   payService() {
-    console.log("Pagar Serviço")
+    this.router.navigate(['/payment'])
   }
 }
