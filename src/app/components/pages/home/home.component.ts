@@ -6,6 +6,7 @@ import 'datatables.net-dt';
 import 'datatables.net-responsive';
 import { SidebarComponent } from "../../sidebar/sidebar.component"; 
 import { RouterModule, Router } from '@angular/router';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 
@@ -17,7 +18,6 @@ import { RouterModule, Router } from '@angular/router';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-
   constructor(private router: Router) {}
     
   ngAfterViewInit(): void {
@@ -42,14 +42,16 @@ export class HomeComponent {
 
   rejectService() {
     console.log("Rejeitar serviço")
+    this.router.navigate(['/budget']);
   }
 
   viewService() {
-    this.router.navigate(['/budget']);
+    this.router.navigate(['/viewservice']);
   }
 
   approveService() {
     console.log("Aprovar serviço")
+    this.router.navigate(['/budget']);
   }
 
   rescueService() {

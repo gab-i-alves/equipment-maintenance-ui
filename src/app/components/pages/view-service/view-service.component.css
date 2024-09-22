@@ -1,0 +1,145 @@
+.container-view-service {
+  margin-left: 200px;
+  padding-top: 4rem;
+}
+
+.details-container {
+  border-bottom: 1px solid rgb(182, 185, 187);
+}
+
+
+
+.details-container h2,
+.history-container h2 {
+  color: #005a9b;
+}
+
+.details-item p {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.timeline {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  position: relative;
+}
+
+.timeline-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  flex-grow: 1;
+  width: 20%;
+}
+
+.timeline-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.timeline-icon {
+  background-color: #cacaca;
+  color: white;
+  border-radius: 50%;
+  width: 75px;
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.timeline-icon span {
+  font-size: 40px;
+}
+
+.timeline-line {
+  background-color: #cacaca;
+  height: 15px;
+  width: 102%;
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 0;
+  margin-left: -10px;
+  margin-right: -10px;
+  border-left: 2px solid #cacaca;
+    flex-grow: 1;
+}
+
+/* Para o primeiro circulo */
+.timeline-box:first-child .timeline-line {
+  width: 50%;
+  right: 50%;
+  left: 80%;
+}
+
+/* Para o ultimo circulo */
+.timeline-box:last-child .timeline-line {
+  width: 50%;
+  right: 60%;
+  left: 20%;
+}
+
+.timeline-description {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-description p {
+  margin: 0;
+}
+
+.timeline-icon.check,
+.timeline-line.check {
+  background-color: #84c67a;
+  border-left: 2px solid #84c67a;
+}
+
+.timeline-icon.cancel,
+.timeline-line.cancel {
+    background-color: #D45A4A;
+  border-left: 2px solid #D45A4A;
+}
+
+.timeline-description {
+  text-transform: uppercase;
+  font-weight: 400;
+  color: #005A9B;
+}
+
+.etapa-name {
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #005A9B;
+}
+
+.btn-return-box {
+  position: absolute;
+  bottom: 30px;
+  left: 250px;
+}
+
+.btn-return-box button {
+  background-color: #97A0A7;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  padding: 0.4rem 3rem 0.4rem 3rem;
+  font-size: 1.4rem;
+}
+
+.btn-return-box button:hover {
+  background-color: #8c9297;
+}

@@ -7,6 +7,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { authGuard } from './services/guard/auth.guard';
 import { NewRequestComponent } from './components/pages/new-request/new-request.component';
 import { BudgetComponent } from './components/pages/budget/budget.component';
+import { ViewServiceComponent } from './components/pages/view-service/view-service.component';
 
 export const routes: Routes = [
     {
@@ -38,5 +39,9 @@ export const routes: Routes = [
     {
         path: 'newRequest',
         component:NewRequestComponent
+    },
+    {
+        path: 'viewservice',
+        component:ViewServiceComponent
     }
 ];
