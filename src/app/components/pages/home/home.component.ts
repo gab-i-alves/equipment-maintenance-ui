@@ -56,6 +56,7 @@ export class HomeComponent {
 
   rescueService() {
     console.log("Resgatar Serviço")
+    this.router.navigate(['/rescue-service'])
   }
 
   payService() {

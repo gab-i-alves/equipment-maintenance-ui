@@ -6,9 +6,10 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { authGuard } from './services/guard/auth.guard';
 import { NewRequestComponent } from './components/pages/new-request/new-request.component';
-import { BudgetComponent } from './components/pages/budget/budget.component';
-import { ViewServiceComponent } from './components/pages/view-service/view-service.component';
-import { PaymentComponent } from './components/pages/payment/payment.component';
+import { BudgetComponent } from './components/budget/budget.component';
+import { ViewServiceComponent } from './components/view-service/view-service.component';
+import { PaymentComponent } from './components/payment/payment.component';
+import { RescueServiceComponent } from './components/rescue-service/rescue-service.component';
 
 export const routes: Routes = [
     {
@@ -39,14 +40,22 @@ export const routes: Routes = [
     },
     {
         path: 'newRequest',
-        component:NewRequestComponent
+        component:NewRequestComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'viewservice',
-        component:ViewServiceComponent
+        component:ViewServiceComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'payment',
-        component:PaymentComponent
+        component:PaymentComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'rescue-service',
+        component:RescueServiceComponent,
+        canActivate: [authGuard]
     }
 ];
