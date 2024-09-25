@@ -1,5 +1,6 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
-import { SidebarComponent } from "../sidebar/sidebar.component"; 
+import { SidebarComponent } from "../sidebar/sidebar.component";
 
 @Component({
   selector: 'app-budget',
@@ -10,6 +11,8 @@ import { SidebarComponent } from "../sidebar/sidebar.component";
 })
 export class BudgetComponent {
 
+  constructor(private router : Router) { }
+
   // Method to handle service rejection
   rejectService() {
     alert('Serviço rejeitado.');
@@ -18,7 +21,10 @@ export class BudgetComponent {
 
   // Method to handle service approval
   approveService() {
-    alert('Serviço aprovado.');
-    // You can add more logic here to handle the approval
+
+  }
+
+  returnHome(){
+    this.router.navigate(['/home']);
   }
 }
