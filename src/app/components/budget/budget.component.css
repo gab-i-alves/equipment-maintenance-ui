@@ -30,3 +30,12 @@
   background-color: #005A9B;
   color: white;
 }
+
+.btn-return-box  {
+  background-color: #97A0A7;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  padding: 0.3rem 2rem 0.3rem 2rem;
+  font-size: 1.4rem;
+}
