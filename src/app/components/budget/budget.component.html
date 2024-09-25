@@ -2,7 +2,7 @@
 
 <div class="page-container d-flex flex-column justify-content-center align-items-center vh-100">
   <h2 class="title-page mb-4 fw-bold">Detalhes da Solicitação</h2>
-  
+
   <section class="sectionTable container page-container d-flex flex-column justify-content-center align-items-center">
     <div class="tableBox p-3 rounded">
       <div class="details-section">
@@ -18,9 +18,32 @@
       </div>
 
       <div class="action-buttons d-flex justify-content-around">
-        <button class="btn btn-success btn-lg" (click)="approveService()">Aprovar Serviço</button>
         <button class="btn btn-danger btn-lg" (click)="rejectService()">Rejeitar Serviço</button>
+        <!-- Aprovar Serviço -->
+        <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#confirmModal">
+          Aprovar Serviço
+        </button>
       </div>
+
+        <!-- Modal de Confirmação -->
+        <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header custom-modal-header">
+                <h5 class="modal-title" id="confirmModalLabel">Aprovado</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Serviço aprovado no valor de R$450,00
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-success" (click)="returnHome()" data-bs-dismiss="modal">Ok</button>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
+    <button (click)="returnHome()" class="btn-return-box ms-4 mt-2">VOLTAR</button>
   </section>
 </div>
+

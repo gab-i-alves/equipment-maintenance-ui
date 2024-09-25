@@ -4,7 +4,7 @@
 }
 
 .tableBox {
-  width: 80%; 
+  width: 80%;
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -24,4 +24,18 @@
 
 .action-buttons {
   margin-top: 20px;
+}
+
+.custom-modal-header {
+  background-color: #005A9B;
+  color: white;
+}
+
+.btn-return-box  {
+  background-color: #97A0A7;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  padding: 0.3rem 2rem 0.3rem 2rem;
+  font-size: 1.4rem;
 }
