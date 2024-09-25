@@ -18,7 +18,9 @@
       </div>
 
       <div class="action-buttons d-flex justify-content-around">
-        <button class="btn btn-danger btn-lg" (click)="rejectService()">Rejeitar Serviço</button>
+        <button class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#rejectReasonModal">
+          Rejeitar Serviço
+        </button>
         <!-- Aprovar Serviço -->
         <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#confirmModal">
           Aprovar Serviço
@@ -42,7 +44,50 @@
             </div>
           </div>
         </div>
-    </div>
+
+        <div class="modal fade" id="rejectReasonModal" tabindex="-1" aria-labelledby="rejectReasonModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header custom-modal-header">
+                <h5 class="modal-title" id="rejectReasonModalLabel">ATENÇÃO!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <label for="rejectReason" class="form-label fstyle"><b>Descreva o motivo da rejeição: </b></label>
+                  <input type="text" placeholder="Escreva o motivo da rejeição ..." name="rejectReason" class="form-control" required [(ngModel)]="rejectReason">
+              </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  Cancelar
+                </button>
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#rejectConfirmModal" (click)="rejectService()">
+                  Confirmar Rejeição
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" id="rejectConfirmModal" tabindex="-1" aria-labelledby="rejectConfirmModalLabel" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header custom-modal-header">
+                <h5 class="modal-title" id="rejectConfirmModalLabel">Rejeitado</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="returnHome()"></button>
+              </div>
+              <div class="modal-body">
+                Serviço rejeitado
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-success" (click)="returnHome()" data-bs-dismiss="modal">Ok</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     <button (click)="returnHome()" class="btn-return-box ms-4 mt-2">VOLTAR</button>
   </section>
 </div>
