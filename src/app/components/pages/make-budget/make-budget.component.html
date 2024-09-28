@@ -1,0 +1,61 @@
+<app-sidebar></app-sidebar>
+
+<div class="container-view-service">
+
+  <div class="details-container p-5 py-4 d-flex flex-column">
+    <h2>Detalhes da Solicitação - Solicitação 1</h2>
+    <div class="details-infos d-flex flex-column gap-3 mt-4">
+      <div class="row">
+        <div class="details-item col-4 d-flex gap-3">
+          <p class="">Cliente:</p>
+          <span>João da Silva</span>
+        </div>
+        <div class="details-item col-4 d-flex gap-3">
+          <p>Data / Hora da Solicitação</p>
+          <span>12/09/2024 14:36</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="details-item col-4 d-flex gap-3">
+          <p class="">Descrição do Equipamento:</p>
+          <span>Notebook Lenovo</span>
+        </div>
+        <div class="details-item col d-flex gap-3">
+          <p>Estado Atual:</p>
+          <span class="estado aprovada">APROVADA</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="details-item col d-flex gap-3">
+          <p>Categoria do equipamento:</p>
+          <span>Notebook</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="details-item col d-flex gap-3">
+          <p>Descrição do Defeito:</p>
+          <span>Notebook não está ligando</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="make-budget-container p-5 py-4">
+    <h2>Efetuar orçamento</h2>
+    <div class="make-budget-inputs row d-flex gap-5">
+      <form action="" class="row d-flex gap-5">
+        <div class="input-budget-box col-3 d-flex gap-3 justify-content-center align-center">
+            <span>Preço:</span>
+            R$<input type="number" #valorOrcamento class="form-control input-valor" name="" step="0.01" min="0.01" placeholder="0,00">
+        </div>
+        <div class="input-budget-box  col-6 d-flex gap-1">
+            <span>Descrição do Orçamento:</span>
+            <textarea type="text" #descricaoOrcamento class="form-control input-descricao" placeholder="Escreva uma descrição para o orçamento (opcional)"></textarea>
+        </div>
+      </form>
+      <div class="row col-7 justify-content-start d-flex gap-5 flex-row">
+        <button class="col-2 btn-salvar-voltar" (click)="returnHome()">Voltar</button>
+        <button class="col-2 btn-salvar-orcamento" (click)="confirmBudget(valorOrcamento.value, descricaoOrcamento.value)">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
