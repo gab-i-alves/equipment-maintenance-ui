@@ -10,6 +10,7 @@ import { BudgetComponent } from './components/budget/budget.component';
 import { ViewServiceComponent } from './components/view-service/view-service.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { RescueServiceComponent } from './components/rescue-service/rescue-service.component';
+import { MakeBudgetComponent } from './components/pages/make-budget/make-budget.component';
 
 export const routes: Routes = [
     {
@@ -56,6 +57,11 @@ export const routes: Routes = [
     {
         path: 'rescue-service',
         component:RescueServiceComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'makeBudget',
+        component:MakeBudgetComponent,
         canActivate: [authGuard]
     }
 ];
