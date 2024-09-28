@@ -25,6 +25,7 @@ rejectReason: any;
 
   // Method to handle service approval
   approveService() {
+    console.log('Serviço aprovado.');
 
   }
 
