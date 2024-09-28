@@ -68,3 +68,25 @@
 .btn-salvar-voltar:hover {
   background-color: #8c9297;
 }
+.modal-header{
+  background-color: #005A9B;
+ 
+}
+.modal-title{
+  align-items: center;
+  color: white;
+}
+.btn btn-secondary{
+  background-color: #97A0A7;
+}
+.btn btn-primary{
+  background-color: #168E03;
+}
+.modal-body{
+  text-align: center;
+}
+#price{
+  font-weight: bold;
+}
+
+
