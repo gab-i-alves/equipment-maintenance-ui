@@ -54,7 +54,48 @@
       </form>
       <div class="row col-7 justify-content-start d-flex gap-5 flex-row">
         <button class="col-2 btn-salvar-voltar" (click)="returnHome()">Voltar</button>
-        <button class="col-2 btn-salvar-orcamento" (click)="confirmBudget(valorOrcamento.value, descricaoOrcamento.value)">Confirmar</button>
+        <button class="col-2 btn-salvar-orcamento" data-bs-toggle="modal" data-bs-target="#exampleModal"(click)="confirmBudget(valorOrcamento.value, descricaoOrcamento.value)">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">ATENÇÃO</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Você realmente deseja orçar a solicitação no valor de R$ 450,00?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" data-bs-target="#orcado" data-bs-toggle="modal">CONFIRMAR</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="modal fade " id="orcado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content ">
+      <div class="modal-header ">
+        <h5 class="modal-title">ORÇADO!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body ">
+        <p> Serviço  orçado no valor de</p>
+        <p id="price">  R$ 450,00</p>
+      </div>
+      <div class="modal-footer align-items-center">
+     
+        <button type="button" class="btn btn-primary"  data-bs-dismiss="modal">OK</button>
       </div>
     </div>
   </div>
