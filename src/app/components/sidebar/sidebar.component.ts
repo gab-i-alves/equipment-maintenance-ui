@@ -1,5 +1,5 @@
 import { AccountService } from './../../services/account/account.service';
-import { Component } from '@angular/core';
+import { Component, Input  } from '@angular/core';
 import { Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faUser, faHistory, faSignOutAlt , faFileCirclePlus, faHouse, faBars, faBell} from '@fortawesome/free-solid-svg-icons';
@@ -13,6 +13,7 @@ import { faUser, faHistory, faSignOutAlt , faFileCirclePlus, faHouse, faBars, fa
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
+   @Input() title: string = 'Bem-Vindo, User X';  // Tí
   faUser = faUser;
   faHistory = faHistory;
   faSignOutAlt = faSignOutAlt;
