@@ -21,22 +21,43 @@
         <button class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#rejectReasonModal">
           Rejeitar Serviço
         </button>
-        <!-- Aprovar Serviço -->
-        <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#confirmModal">
+        <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#confirmServiceModal">
           Aprovar Serviço
         </button>
       </div>
 
-        <!-- Modal de Confirmação -->
-        <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+        <!-- Modal de Aprovação -->
+        <div class="modal fade" id="confirmServiceModal" tabindex="-1" aria-labelledby="confirmServiceModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header custom-modal-header">
-                <h5 class="modal-title" id="confirmModalLabel">Aprovado</h5>
+                <h5 class="modal-title" id="confirmserviceModalLabel">ATENÇÃO!</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                Serviço aprovado no valor de R$450,00
+                  Você realmente deseja aprovar o serviço no valor de R$450,00?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  Cancelar
+                </button>
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#approveServiceModal" (click)="approveService()">
+                  Confirmar aprovação
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" id="approveServiceModal" tabindex="-1" aria-labelledby="approveServiceModalLabel" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header custom-modal-header">
+                <h5 class="modal-title" id="approveServiceModalLabel">Aprovado</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="returnHome()"></button>
+              </div>
+              <div class="modal-body">
+                Serviço aprovado
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-success" (click)="returnHome()" data-bs-dismiss="modal">Ok</button>
@@ -45,6 +66,7 @@
           </div>
         </div>
 
+        <!-- Modal de Rejeição -->
         <div class="modal fade" id="rejectReasonModal" tabindex="-1" aria-labelledby="rejectReasonModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -86,8 +108,7 @@
             </div>
           </div>
         </div>
-
-      </div>
+    </div>
     <button (click)="returnHome()" class="btn-return-box ms-4 mt-2">VOLTAR</button>
   </section>
 </div>
