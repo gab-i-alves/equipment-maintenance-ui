@@ -1,16 +1,17 @@
 import { Routes } from '@angular/router';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/pages/login/login.component';
-import { RegistrationComponent } from './components/pages/registration/registration.component';
-import { HomeComponent } from './components/pages/home/home.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { SidebarComponent } from './components/customer/sidebar/sidebar.component';
 import { authGuard } from './services/guard/auth.guard';
-import { NewRequestComponent } from './components/pages/new-request/new-request.component';
-import { BudgetComponent } from './components/budget/budget.component';
-import { ViewServiceComponent } from './components/view-service/view-service.component';
-import { PaymentComponent } from './components/payment/payment.component';
-import { RescueServiceComponent } from './components/rescue-service/rescue-service.component';
-import { MakeBudgetComponent } from './components/pages/make-budget/make-budget.component';
+import { LoginComponent } from './components/customer/pages/login/login.component';
+import { BudgetComponent } from './components/customer/budget/budget.component';
+import { MakeBudgetComponent } from './components/customer/pages/make-budget/make-budget.component';
+import { NewRequestComponent } from './components/customer/pages/new-request/new-request.component';
+import { RegistrationComponent } from './components/customer/pages/registration/registration.component';
+import { PaymentComponent } from './components/customer/payment/payment.component';
+import { RescueServiceComponent } from './components/customer/rescue-service/rescue-service.component';
+import { ViewServiceComponent } from './components/customer/view-service/view-service.component';
+import { HomeComponent } from './components/customer/pages/home/home.component';
+import { EmployeeHomeComponent } from './components/employee/pages/employee-home/employee-home.component';
 
 export const routes: Routes = [
     {
@@ -62,6 +63,11 @@ export const routes: Routes = [
     {
         path: 'makeBudget',
         component:MakeBudgetComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'employee-home',
+        component:EmployeeHomeComponent,
         canActivate: [authGuard]
     }
 ];

@@ -1,0 +1,38 @@
+
+<div class="header px-4">
+    <div class="d-flex gap-5 align-items-center">
+        <fa-icon [icon]="faBars" class="icon-header"></fa-icon>
+        <h1 class="title-header">{{ title }}</h1>
+    </div>
+    
+    <div class="icons d-flex gap-4 m">
+      <fa-icon id="user" [icon]="faUser"></fa-icon>
+      <fa-icon [icon]="faBell"></fa-icon>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="sidebar">
+       <ul>
+         <hr>
+        <li (click)="homeAction()" id="gohome">
+         <fa-icon [icon]="faHouse"></fa-icon>
+         <span>Inicio</span>
+        </li>
+         <hr>
+        
+            <hr>
+          </ul>
+          <footer>
+              <ul class="box">
+                  <hr>
+                  <li (click)="outAction()" id="goout">
+                   <fa-icon [icon]="faSignOutAlt"></fa-icon>
+                   <span>Sair</span>
+                   </li>
+                 </ul>
+          </footer>
+        </div>
+  </div>
+  
+  
