@@ -11,7 +11,7 @@ import { PaymentComponent } from './components/customer/payment/payment.componen
 import { RescueServiceComponent } from './components/customer/rescue-service/rescue-service.component';
 import { ViewServiceComponent } from './components/customer/view-service/view-service.component';
 import { HomeComponent } from './components/customer/pages/home/home.component';
-import { EmployeeHomeComponent } from './components/employee/pages/employee-home/employee-home.component';
+import { ViewRequestsComponent } from './components/employee/pages/view-requests/view-requests.component';
 
 export const routes: Routes = [
     {
@@ -66,8 +66,8 @@ export const routes: Routes = [
         canActivate: [authGuard]
     },
     {
-        path: 'employee-home',
-        component:EmployeeHomeComponent,
+        path: 'view-requests',
+        component:ViewRequestsComponent,
         canActivate: [authGuard]
     }
 ];

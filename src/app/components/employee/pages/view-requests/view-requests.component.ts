@@ -9,13 +9,13 @@ import 'datatables.net-dt';
 import 'datatables.net-responsive';
 
 @Component({
-  selector: 'app-employee-home',
+  selector: 'app-view-requests',
   standalone: true,
   imports: [EmployeeSidebarComponent],
-  templateUrl: './employee-home.component.html',
-  styleUrl: './employee-home.component.css'
+  templateUrl: './view-requests.component.html',
+  styleUrl: './view-requests.component.css'
 })
-export class EmployeeHomeComponent {
+export class ViewRequestsComponent {
 
   ngAfterViewInit(): void {
     if (!$.fn.dataTable.isDataTable('#tableSolic')) {
