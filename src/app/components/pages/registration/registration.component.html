@@ -42,7 +42,7 @@
                 <!-- CEP -->
                 <div class="mb-3">
                   <label for="cep" class="form-label">CEP</label>
-                  <input type="text" class="form-control" id="cep" placeholder="12345-000" [(ngModel)]="cep" name="cep" required>
+                  <input type="text" class="form-control" id="cep" placeholder="12345-000" [(ngModel)]="cep" name="cep" (blur)="buscarEndereco()" required>
                   <div *ngIf="!isCepValid() && registrationForm.submitted" class="text-danger">CEP inválido.</div>
                 </div>
 
