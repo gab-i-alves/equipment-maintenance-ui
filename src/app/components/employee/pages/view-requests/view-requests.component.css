@@ -83,3 +83,7 @@
  .btn-finalizar {
    background-color: #078f02;
  }
+
+ .dropdownContainer {
+  justify-content: flex-end;
+ }

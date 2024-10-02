@@ -7,15 +7,18 @@ import * as $ from 'jquery';
 import 'datatables.net'; 
 import 'datatables.net-dt'; 
 import 'datatables.net-responsive';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-view-requests',
   standalone: true,
-  imports: [EmployeeSidebarComponent],
+  imports: [EmployeeSidebarComponent, FormsModule],
   templateUrl: './view-requests.component.html',
   styleUrl: './view-requests.component.css'
 })
 export class ViewRequestsComponent {
+finalDate: any;
+initialDate: any;
 
   ngAfterViewInit(): void {
     if (!$.fn.dataTable.isDataTable('#tableSolic')) {
@@ -49,5 +52,19 @@ export class ViewRequestsComponent {
 
   endMaintence(){
     
+  }
+
+  filterInitialDate() {
+
+  }
+
+  filterFinalDate() {
+
+  }
+
+  filterToday() {
+  }
+
+  removeFilters() {
   }
 }
