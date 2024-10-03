@@ -33,8 +33,6 @@ export class LoginComponent {
   }
 
   createAcount(){
-    
-    console.log("PARA O CADASTRO");
-  
+    this.router.navigate(['/registration']);
   }
 }
