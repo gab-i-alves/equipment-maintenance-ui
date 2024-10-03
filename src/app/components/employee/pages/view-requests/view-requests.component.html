@@ -1,0 +1,118 @@
+<app-employee-sidebar></app-employee-sidebar>
+
+<div class="page-container d-flex flex-column justify-content-center align-items-center vh-100">
+    <h2 class="title-page mb-4 fw-bold">Solicitações</h2>
+    <section class="sectionTable container">
+      <div class="tableBox p-3 rounded">
+
+        <div class="container ">
+          <div class="dropdown dropdownContainer d-flex">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownFilterRequest" data-bs-toggle="dropdown" aria-expanded="false">Filtros
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownFilterRequest">
+              <li><a class="dropdown-item" (click)="filterInitialDate()">Data Inicial
+                <input type="date" name="dateInitialFilter" class="form-control" required [(ngModel)]="initialDate">
+              </a></li>
+              <li><a class="dropdown-item" (click)="filterFinalDate()">Data Final
+                <input type="date" name="dateInitialFilter" class="form-control" required [(ngModel)]="finalDate">
+              </a></li>
+              <li><a class="dropdown-item" (click)="filterToday()">Hoje</a></li>
+              <li><a class="dropdown-item" (click)="removeFilters()">Todas</a></li>
+            </ul>
+          </div>
+        </div>
+        <table id="tableSolic" class="display">
+          <thead>
+            <tr>
+              <th>Data/Hora</th>
+              <th>Cliente</th>
+              <th>Solicitação</th>
+              <th>Descrição do Equipamento</th>
+              <th>Estado</th>
+              <th>Acões Disponíveis</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>14/09/24  12:30</td>
+              <td>Solicitação 1</td>
+              <td>Marcelo Adolfo</td>
+              <td class="td-descricao">Trocar HD notebook</td>
+              <td class="td-estado-aberta">ABERTA</td>
+              <td>
+                <button class="btn btn-acao btn-orcar" (click)="doBudget()">Realizar Orçamento</button>
+              </td>
+            </tr>
+            <tr>
+              <td>14/09/24  18:47</td>
+              <td>Solicitação 2</td>
+              <td>Ana Yewolk</td>
+              <td class="td-descricao">Trocar HD notebook</td>
+              <td class="td-estado-aprovada">APROVADA</td>
+              <td>
+                <button class="btn btn-acao btn-manutencao" (click)="doMaintence()">Realizar Manutenção</button>
+              </td>
+            </tr>
+            <tr>
+              <td>15/09/24  11:30</td>
+              <td>Solicitação 3</td>
+              <td>Gabriela Rech</td>
+              <td class="td-descricao ">Trocar HD notebook</td>
+              <td class="td-estado-paga">PAGA</td>
+              <td>
+                <button class="btn btn-acao btn-finalizar" (click)="endMaintence()">Fechar Manutenção</button>
+              </td>
+            </tr>
+            <tr>
+              <td>16/09/24  19:00</td>
+              <td>Solicitação 4</td>
+              <td>Pedro Neto</td>
+              <td class="td-descricao ">Trocar HD notebook</td>
+              <td class="td-estado-orcada">ORÇADA</td>
+              <td>
+                <button class="btn btn-acao btn-finalizar" (click)="endMaintence()">Fechar Manutenção</button>
+              </td>
+            </tr>
+            <tr>
+              <td>16/09/24  19:50</td>
+              <td>Solicitação 5</td>
+              <td>Lucas Solimoes</td>
+              <td class="td-descricao ">Trocar HD notebook</td>
+              <td class="td-estado-rejeitada">REJEITADA</td>
+              <td>
+                <button class="btn btn-acao btn-orcar" (click)="doBudget()">Realizar Orçamento</button>
+              </td>
+            </tr>
+            <tr>
+              <td>17/09/24  12:30</td>
+              <td>Solicitação 6</td>
+              <td>Ana Beatriz</td>
+              <td class="td-descricao ">Trocar HD notebook</td>
+              <td class="td-estado-redirecionada">REDIRECIONADA</td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td>18/09/24  10:20</td>
+              <td>Solicitação 7</td>
+              <td>Batista Oliveira</td>
+              <td class="td-descricao ">Trocar HD notebook</td>
+              <td class="td-estado-arrumada">ARRUMADA</td>
+              <td>
+                <button class="btn btn-acao btn-finalizar" (click)="endMaintence()">Fechar Manutenção</button>
+              </td>
+            </tr>
+            <tr>
+              <td>18/09/24  18:18</td>
+              <td>Solicitação 8</td>
+              <td>Luana Guila</td>
+              <td class="td-descricao ">Trocar HD notebook</td>
+              <td class="td-estado-finalizada">FINALIZADA</td>
+              <td>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
