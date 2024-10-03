@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ViacepService } from '../../../services/viacep/viacep.service';
 import { Endereco } from '../../../models/viacepResult';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -26,7 +27,7 @@ export class RegistrationComponent {
   submiting: boolean = false;
   estados: string[] = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'];
 
-  constructor(private viacepService: ViacepService) {}
+  constructor(private viacepService: ViacepService, private router : Router) {}
 
   buscarEndereco(): void {
     if(this.cep) {
@@ -108,5 +109,9 @@ export class RegistrationComponent {
       this.logradouro.trim() !== '' &&
       this.number.trim() !== ''
     );
+  }
+
+  returnHome(){
+    this.router.navigate(['/login']);
   }
 }

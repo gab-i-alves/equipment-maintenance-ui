@@ -37,6 +37,8 @@
                 </div>
               </div>
 
+
+
               <div class="col-md-6">
 
                 <!-- CEP -->
@@ -97,9 +99,16 @@
               </div>
             </div>
 
-              <div class="d-grid mt-4">
-                <button type="submit" class="btn btn-primary" [disabled]="submiting">Cadastrar</button>
+              <div class="row mt-4">
+                <div class="col">
+                  <button type="button" (click)="returnHome()" class="btn-return-box w-100">Voltar</button>
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-primary w-100 btn-custom" [disabled]="submiting">Cadastrar</button>
+                </div>
               </div>
+
+
             </form>
           </div>
         </div>
