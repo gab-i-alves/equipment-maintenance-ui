@@ -47,7 +47,7 @@ initialDate: any;
   }
 
   doMaintence(){
-
+    this.router.navigate(['/do-maintence']);
   }
 
   endMaintence(){

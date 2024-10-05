@@ -12,6 +12,7 @@ import { RescueServiceComponent } from './components/customer/rescue-service/res
 import { ViewServiceComponent } from './components/customer/view-service/view-service.component';
 import { HomeComponent } from './components/customer/pages/home/home.component';
 import { ViewRequestsComponent } from './components/employee/pages/view-requests/view-requests.component';
+import { DoMaintenceComponent } from './components/employee/do-maintence/do-maintence.component';
 
 export const routes: Routes = [
     {
@@ -68,6 +69,11 @@ export const routes: Routes = [
     {
         path: 'view-requests',
         component:ViewRequestsComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'do-maintence',
+        component:DoMaintenceComponent,
         canActivate: [authGuard]
     }
 ];
