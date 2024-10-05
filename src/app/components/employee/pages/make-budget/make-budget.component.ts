@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { SidebarComponent } from '../../sidebar/sidebar.component';
 import { Router } from '@angular/router';
+import { EmployeeSidebarComponent } from '../../employee-sidebar/employee-sidebar.component';
 
 @Component({
   selector: 'app-make-budget',
   standalone: true,
-  imports: [SidebarComponent],
+  imports: [EmployeeSidebarComponent],
   templateUrl: './make-budget.component.html',
   styleUrl: './make-budget.component.css'
 })
@@ -24,6 +24,6 @@ export class MakeBudgetComponent {
 
 
     returnHome(){
-      this.router.navigate(['/home']);
+      this.router.navigate(['/view-requests']);
   }
 }

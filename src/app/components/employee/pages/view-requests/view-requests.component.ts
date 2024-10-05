@@ -43,11 +43,11 @@ initialDate: any;
   constructor(private router : Router){ }
 
   doBudget(){
-
+    this.router.navigate(['/make-budget']);
   }
 
   doMaintence(){
-
+    this.router.navigate(['/do-maintence']);
   }
 
   endMaintence(){
