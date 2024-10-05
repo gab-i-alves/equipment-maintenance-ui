@@ -4,7 +4,6 @@ import { SidebarComponent } from './components/customer/sidebar/sidebar.componen
 import { authGuard } from './services/guard/auth.guard';
 import { LoginComponent } from './components/customer/pages/login/login.component';
 import { BudgetComponent } from './components/customer/budget/budget.component';
-import { MakeBudgetComponent } from './components/customer/pages/make-budget/make-budget.component';
 import { NewRequestComponent } from './components/customer/pages/new-request/new-request.component';
 import { RegistrationComponent } from './components/customer/pages/registration/registration.component';
 import { PaymentComponent } from './components/customer/payment/payment.component';
@@ -13,6 +12,7 @@ import { ViewServiceComponent } from './components/customer/view-service/view-se
 import { HomeComponent } from './components/customer/pages/home/home.component';
 import { ViewRequestsComponent } from './components/employee/pages/view-requests/view-requests.component';
 import { DoMaintenceComponent } from './components/employee/do-maintence/do-maintence.component';
+import { MakeBudgetComponent } from './components/employee/pages/make-budget/make-budget.component';
 
 export const routes: Routes = [
     {
@@ -62,7 +62,7 @@ export const routes: Routes = [
         canActivate: [authGuard]
     },
     {
-        path: 'makeBudget',
+        path: 'make-budget',
         component:MakeBudgetComponent,
         canActivate: [authGuard]
     },
