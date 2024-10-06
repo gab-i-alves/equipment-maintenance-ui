@@ -42,7 +42,7 @@
   <div class="make-budget-container p-5 py-4">
     <h2>Manutenção</h2>
     <div class="make-budget-inputs row d-flex gap-5 col-md-12">
-        <button class="col-3 btn btn-success">Efetuar Manutenção</button>
+        <button class="col-3 btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" >Efetuar Manutenção</button>
         <button class="col-3 btn btn-info" style="color: white;">Redirecionar Manutenção</button>
     </div>
 
@@ -51,4 +51,36 @@
     </div>
   </div>
 </div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">EFETUAR MANUTENÇÃO</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="text_desc">
+          <p>Descrição da Manutenção:</p>
+          <input type="text" class="input_" placeholder="Escreva uma descrição para a manutenção realizada."/>
+        </div>
+       
+        <div class="text_desc mt-4">
+          <p>Orientação para o cliente:</p>
+          <input type="text" class="input_" placeholder="Escreva uma orientação para o  cliente"/>
+        </div>
+     
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary me-4 " data-bs-dismiss="modal">CANCELAR</button>
+        <button type="button" class="btn btn-success me-3">CONFIRMAR</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
