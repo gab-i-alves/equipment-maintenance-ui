@@ -45,7 +45,7 @@
       <form action="" class="row d-flex gap-5">
         <div class="input-budget-box col-3 d-flex gap-3 justify-content-center align-center">
             <span>Preço:</span>
-            R$<input type="number" #valorOrcamento class="form-control input-valor" name="" step="0.01" min="0.01" placeholder="0,00">
+            R$<input type="number" class="form-control input-valor" name="valorOrcamento" step="0.01" min="0.01" [(ngModel)]="valorOrcamento">
         </div>
         <div class="input-budget-box  col-6 d-flex gap-1">
             <span>Descrição do Orçamento:</span>
@@ -54,7 +54,7 @@
       </form>
       <div class="row col-7 justify-content-start d-flex gap-5 flex-row">
         <button class="col-2 btn-salvar-voltar" (click)="returnHome()">Voltar</button>
-        <button class="col-2 btn-salvar-orcamento" data-bs-toggle="modal" data-bs-target="#exampleModal"(click)="confirmBudget(valorOrcamento.value, descricaoOrcamento.value)">Confirmar</button>
+        <button class="col-2 btn-salvar-orcamento" data-bs-toggle="modal" data-bs-target="#exampleModal"(click)="confirmBudget(descricaoOrcamento.value)">Confirmar</button>
       </div>
     </div>
   </div>
@@ -69,7 +69,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Você realmente deseja orçar a solicitação no valor de R$ 450,00?</p>
+        <p>Você realmente deseja orçar a solicitação no valor de R$ {{valorOrcamento}}</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -91,7 +91,7 @@
       </div>
       <div class="modal-body ">
         <p> Serviço  orçado no valor de</p>
-        <p id="price">  R$ 450,00</p>
+        <p id="price">  R$ {{valorOrcamento}}</p>
       </div>
       <div class="modal-footer align-items-center">
      
