@@ -33,86 +33,39 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>14/09/24  12:30</td>
-              <td>Solicitação 1</td>
-              <td>Marcelo Adolfo</td>
-              <td class="td-descricao">Trocar HD notebook</td>
-              <td class="td-estado-aberta">ABERTA</td>
-              <td>
-                <button class="btn btn-acao btn-orcar" (click)="doBudget()">Realizar Orçamento</button>
-              </td>
-            </tr>
-            <tr>
-              <td>14/09/24  18:47</td>
-              <td>Solicitação 2</td>
-              <td>Ana Yewolk</td>
-              <td class="td-descricao">Trocar HD notebook</td>
-              <td class="td-estado-aprovada">APROVADA</td>
-              <td>
-                <button class="btn btn-acao btn-manutencao" (click)="doMaintence()">Realizar Manutenção</button>
-              </td>
-            </tr>
-            <tr>
-              <td>15/09/24  11:30</td>
-              <td>Solicitação 3</td>
-              <td>Gabriela Rech</td>
-              <td class="td-descricao ">Trocar HD notebook</td>
-              <td class="td-estado-paga">PAGA</td>
-              <td>
-                <button class="btn btn-acao btn-finalizar" (click)="endMaintence()">Fechar Manutenção</button>
-              </td>
-            </tr>
-            <tr>
-              <td>16/09/24  19:00</td>
-              <td>Solicitação 4</td>
-              <td>Pedro Neto</td>
-              <td class="td-descricao ">Trocar HD notebook</td>
-              <td class="td-estado-orcada">ORÇADA</td>
-              <td>
-                <button class="btn btn-acao btn-finalizar" (click)="endMaintence()">Fechar Manutenção</button>
-              </td>
-            </tr>
-            <tr>
-              <td>16/09/24  19:50</td>
-              <td>Solicitação 5</td>
-              <td>Lucas Solimoes</td>
-              <td class="td-descricao ">Trocar HD notebook</td>
-              <td class="td-estado-rejeitada">REJEITADA</td>
-              <td>
-                <button class="btn btn-acao btn-orcar" (click)="doBudget()">Realizar Orçamento</button>
-              </td>
-            </tr>
-            <tr>
-              <td>17/09/24  12:30</td>
-              <td>Solicitação 6</td>
-              <td>Ana Beatriz</td>
-              <td class="td-descricao ">Trocar HD notebook</td>
-              <td class="td-estado-redirecionada">REDIRECIONADA</td>
-              <td>
-              </td>
-            </tr>
-            <tr>
-              <td>18/09/24  10:20</td>
-              <td>Solicitação 7</td>
-              <td>Batista Oliveira</td>
-              <td class="td-descricao ">Trocar HD notebook</td>
-              <td class="td-estado-arrumada">ARRUMADA</td>
-              <td>
-                <button class="btn btn-acao btn-finalizar" (click)="endMaintence()">Fechar Manutenção</button>
-              </td>
-            </tr>
-            <tr>
-              <td>18/09/24  18:18</td>
-              <td>Solicitação 8</td>
-              <td>Luana Guila</td>
-              <td class="td-descricao ">Trocar HD notebook</td>
-              <td class="td-estado-finalizada">FINALIZADA</td>
-              <td>
+            <tr *ngFor="let request of requests">
+              <td>{{ request.date }}</td>
+              <td>Solicitação {{ request.id }}</td>
+              <td>{{ request.userName }}</td>
+              <td class="td-descricao">{{ request.description }}</td>
+              <td class="td-estado-{{request.status.toLocaleLowerCase()}}">{{ request.status }}</td>
+              <td [ngSwitch]="request.status">
+                <button *ngSwitchCase="'ABERTA'" class="btn btn-acao btn-orcar" (click)="doBudget()">Realizar Orçamento</button>
+                <button *ngSwitchCase="'APROVADA'" class="btn btn-acao btn-manutencao" (click)="doMaintence()">Realizar Manutenção</button>
+                <button *ngSwitchCase="'REJEITADA'" class="btn btn-acao btn-finalizar" data-bs-toggle="modal" data-bs-target="#endMaintence" (click)="endMaintence()">Fechar Manutenção</button>
+                <button *ngSwitchCase="'PAGA'" class="btn btn-acao btn-finalizar" data-bs-toggle="modal" data-bs-target="#endMaintence" (click)="endMaintence()">Fechar Manutenção</button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
     </section>
+  </div>
+
+  <div class="modal fade" id="endMaintence" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">ATENÇÃO</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Você realmente deseja finalizar a manutenção para a solicitação (numero da solicitação)?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" data-bs-target="#orcado" data-bs-toggle="modal">CONFIRMAR</button>
+        </div>
+      </div>
+    </div>
   </div>

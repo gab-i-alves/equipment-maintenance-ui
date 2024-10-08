@@ -25,7 +25,7 @@
    max-width: 4px
  }
  
- .td-estado-aberta, .td-estado-orcada, 
+ .td-estado-aberta, .td-estado-orçada, 
  .td-estado-rejeitada, .td-estado-aprovada,
  .td-estado-redirecionada, .td-estado-arrumada,
  .td-estado-paga, .td-estado-finalizada {
@@ -37,7 +37,7 @@
    color: #424242;
  }
  
- .td-estado-orcada {
+ .td-estado-orçada {
    color: #683513;
  }
  
