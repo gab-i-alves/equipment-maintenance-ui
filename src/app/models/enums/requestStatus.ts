@@ -5,4 +5,6 @@ export enum RequestStatus{
     Rejected = 'REJEITADA', 
     Fixed = 'ARRUMADA',
     Payed = 'PAGA',
+    Redirected = 'REDIRECIONADA',
+    Finished = 'FINALIZADA'
 }

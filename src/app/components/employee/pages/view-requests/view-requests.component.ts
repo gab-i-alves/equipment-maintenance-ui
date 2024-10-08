@@ -11,6 +11,7 @@ import 'datatables.net-dt';
 import 'datatables.net-responsive';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RequestsService } from '../../../../services/requests/requests.service';
 
 @Component({
   selector: 'app-view-requests',
@@ -20,58 +21,15 @@ import { CommonModule } from '@angular/common';
   styleUrl: './view-requests.component.css'
 })
 export class ViewRequestsComponent {
-
-  requests: MaintenceRequest[] = [
-    {
-      status: RequestStatus.Approved,
-      date: new Date().toLocaleDateString('pt-BR'),
-      id: 0,
-      userName: 'João Pereira',
-      description: 'Notebook com defeito'
-    },
-    {
-      status: RequestStatus.Open,
-      date: new Date().toLocaleDateString('pt-BR'),
-      id: 1,
-      userName: 'Ana Banana',
-      description: 'Notebook com defeito'
-    },
-    {
-      status: RequestStatus.Rejected,
-      date: new Date().toLocaleDateString('pt-BR'),
-      id: 2,
-      userName: 'Pedro Guiliver',
-      description: 'Notebook com defeito'
-    },
-    {
-      status: RequestStatus.Budgeted,
-      date: new Date().toLocaleDateString('pt-BR'),
-      id: 3,
-      userName: 'Guilherme Alameda',
-      description: 'Notebook com defeito'
-    },
-    {
-      status: RequestStatus.Fixed,
-      date: new Date().toLocaleDateString('pt-BR'),
-      id: 4,
-      userName: 'Julia Gamer',
-      description: 'Notebook com defeito'
-    },
-    {
-      status: RequestStatus.Payed,
-      date: new Date().toLocaleDateString('pt-BR'),
-      id: 5,
-      userName: 'Heitor Souza',
-      description: 'Notebook com defeito'
-    },
-  ];
-
-
+  
+  requests: MaintenceRequest[] = [];
   finalDate: any;
   initialDate: any;
 
+  constructor(private router : Router, private requestService: RequestsService){ }
+
   ngOnInit(){
-    console.log(this.requests);
+    this.requests = this.requestService.getRequests();
   }
 
   ngAfterViewInit(): void {
@@ -93,8 +51,6 @@ export class ViewRequestsComponent {
       });
     }
   }
-
-  constructor(private router : Router){ }
 
   doBudget(){
     this.router.navigate(['/make-budget']);

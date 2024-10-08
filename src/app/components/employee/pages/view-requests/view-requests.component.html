@@ -4,7 +4,6 @@
     <h2 class="title-page mb-4 fw-bold">Solicitações</h2>
     <section class="sectionTable container">
       <div class="tableBox p-3 rounded">
-
         <div class="container ">
           <div class="dropdown dropdownContainer d-flex">
             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownFilterRequest" data-bs-toggle="dropdown" aria-expanded="false">Filtros
@@ -42,7 +41,7 @@
               <td [ngSwitch]="request.status">
                 <button *ngSwitchCase="'ABERTA'" class="btn btn-acao btn-orcar" (click)="doBudget()">Realizar Orçamento</button>
                 <button *ngSwitchCase="'APROVADA'" class="btn btn-acao btn-manutencao" (click)="doMaintence()">Realizar Manutenção</button>
-                <button *ngSwitchCase="'REJEITADA'" class="btn btn-acao btn-finalizar" data-bs-toggle="modal" data-bs-target="#endMaintence" (click)="endMaintence()">Fechar Manutenção</button>
+                <button *ngSwitchCase="'REDIRECIONADA'" class="btn btn-acao btn-manutencao" (click)="doMaintence()">Realizar Manutenção</button>
                 <button *ngSwitchCase="'PAGA'" class="btn btn-acao btn-finalizar" data-bs-toggle="modal" data-bs-target="#endMaintence" (click)="endMaintence()">Fechar Manutenção</button>
               </td>
             </tr>

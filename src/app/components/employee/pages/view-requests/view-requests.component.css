@@ -34,7 +34,7 @@
  }
  
  .td-estado-aberta {
-   color: #424242;
+   color: #5e5e5e;
  }
  
  .td-estado-orçada {
@@ -46,11 +46,11 @@
  }
 
  .td-estado-aprovada {
-    color: #968702;
+    color: #e4d22f;
   }
 
   .td-estado-redirecionada {
-    color: #6300a5;
+    color: #510981;
   }
 
   .td-estado-arrumada {
