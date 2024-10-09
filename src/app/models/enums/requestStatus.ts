@@ -5,4 +5,7 @@ export enum RequestStatus{
     Rejected, 
     Fixed,
     Payed,
+    Redirected,
+    Finished,
+    WaitingPayment
 }
