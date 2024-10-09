@@ -60,7 +60,7 @@ export class RequestsService {
     {
       status: RequestStatus.Finished,
       date: new Date().toLocaleString('pt-BR', {dateStyle: 'short', timeStyle: 'short'}),
-      id: 6,
+      id: 7,
       userName: 'Thiago Cezar',
       description: 'Notebook com defeito'
     },

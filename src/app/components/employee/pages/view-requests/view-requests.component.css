@@ -2,45 +2,45 @@
 .page-container {
     font-family: 'Poppins', sans-serif;
  }
- 
+
  .tableBox {
    background-color: #F4F3F3;
    margin-left: 115px;
  }
- 
+
  .title-page {
    color: #005A9B;
    margin-top: 25px;
  }
- 
+
  #tableSolic thead {
    background-color: #4682B4;
    color: white;
  }
- 
+
  .td-descricao {
-   white-space: nowrap;                  
-   overflow: hidden; 
+   white-space: nowrap;
+   overflow: hidden;
    text-overflow:  ellipsis;
    max-width: 4px
  }
- 
- .td-estado-aberta, .td-estado-orçada, 
+
+ .td-estado-aberta, .td-estado-orçada,
  .td-estado-rejeitada, .td-estado-aprovada,
  .td-estado-redirecionada, .td-estado-arrumada,
  .td-estado-paga, .td-estado-finalizada {
    text-transform: uppercase;
    font-weight: 700;
  }
- 
+
  .td-estado-aberta {
    color: #5e5e5e;
  }
- 
+
  .td-estado-orçada {
    color: #683513;
  }
- 
+
  .td-estado-rejeitada {
    color: #FF0E0E;
  }
@@ -64,22 +64,22 @@
   .td-estado-finalizada {
     color: #078f02;
   }
- 
+
  .btn-acao {
    width: 60%;
    padding: 0 !important;
    color: white;
    font-size: 0.8rem;
  }
- 
+
  .btn-orcar {
    background-color: #424242;
  }
- 
+
  .btn-manutencao {
    background-color: #968702;
  }
- 
+
  .btn-finalizar {
    background-color: #078f02;
  }
@@ -87,3 +87,8 @@
  .dropdownContainer {
   justify-content: flex-end;
  }
+
+ .custom-modal-header {
+  background-color: #005A9B;
+  color: white;
+}
