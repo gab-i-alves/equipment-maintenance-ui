@@ -1,0 +1,39 @@
+.container {
+max-width: 800px;
+margin-top: 20px;
+}
+
+h1 {
+font-weight: bold;
+font-size: 24px;
+margin-bottom: 20px;
+text-align: center;
+}
+
+.table {
+background-color: #ffffff;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+border-radius: 8px;
+overflow: hidden;
+}
+
+.btn {
+margin-right: 5px;
+}
+
+.btn-info {
+color: #fff;
+background-color: #17a2b8;
+border-color: #17a2b8;
+}
+
+.btn-danger {
+color: #fff;
+background-color: #dc3545;
+border-color: #dc3545;
+}
+
+.btn-primary {
+margin-top: 10px;
+}
+  
