@@ -6,8 +6,8 @@ import { EmployeeSidebarComponent } from "../../employee-sidebar/employee-sideba
 import { Router } from '@angular/router';
 import DataTable from 'datatables.net-dt';
 import * as $ from 'jquery';
-import 'datatables.net'; 
-import 'datatables.net-dt'; 
+import 'datatables.net';
+import 'datatables.net-dt';
 import 'datatables.net-responsive';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -21,7 +21,7 @@ import { RequestsService } from '../../../../services/requests/requests.service'
   styleUrl: './view-requests.component.css'
 })
 export class ViewRequestsComponent {
-  
+
   requests: MaintenceRequest[] = [];
   finalDate: any;
   initialDate: any;
@@ -33,24 +33,27 @@ export class ViewRequestsComponent {
   }
 
   ngAfterViewInit(): void {
-    if (!$.fn.dataTable.isDataTable('#tableSolic')) {
-      new DataTable('#tableSolic', {
-        responsive: true,
-        paging: true,
-        searching: false,
-        info: false,
-        language: {
-          processing: "Processando...",
-          lengthMenu: "Mostrar _MENU_ registros",
-          zeroRecords: "Nenhum registro encontrado",
-          info: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-          infoEmpty: "Mostrando 0 até 0 de 0 registros",
-          infoFiltered: "(filtrado de _MAX_ registros no total)",
-          search: "Buscar:",
-        }
-      });
-    }
+    setTimeout(() => {
+      if (!$.fn.dataTable.isDataTable('#tableSolic')) {
+        new DataTable('#tableSolic', {
+          responsive: true,
+          paging: true,
+          searching: false,
+          info: false,
+          language: {
+            processing: "Processando...",
+            lengthMenu: "Mostrar _MENU_ registros",
+            zeroRecords: "Nenhum registro encontrado",
+            info: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+            infoEmpty: "Mostrando 0 até 0 de 0 registros",
+            infoFiltered: "(filtrado de _MAX_ registros no total)",
+            search: "Buscar:",
+          }
+        });
+      }
+    }, 0);
   }
+
 
   doBudget(){
     this.router.navigate(['/make-budget']);
@@ -61,7 +64,7 @@ export class ViewRequestsComponent {
   }
 
   endMaintence(){
-    
+
   }
 
   filterInitialDate() {
