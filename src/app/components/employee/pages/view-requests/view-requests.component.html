@@ -42,7 +42,7 @@
                 <button *ngSwitchCase="'ABERTA'" class="btn btn-acao btn-orcar" (click)="doBudget()">Realizar Orçamento</button>
                 <button *ngSwitchCase="'APROVADA'" class="btn btn-acao btn-manutencao" (click)="doMaintence()">Realizar Manutenção</button>
                 <button *ngSwitchCase="'REDIRECIONADA'" class="btn btn-acao btn-manutencao" (click)="doMaintence()">Realizar Manutenção</button>
-                <button *ngSwitchCase="'PAGA'" class="btn btn-acao btn-finalizar" data-bs-toggle="modal" data-bs-target="#endMaintence">Finalizar Manutenção</button>
+                <button *ngSwitchCase="'PAGA'" class="btn btn-acao btn-finalizar" data-bs-toggle="modal" data-bs-target="#endMaintence" (click)="openFinalizationModal(request)">Finalizar Manutenção</button>
               </td>
             </tr>
           </tbody>

@@ -23,6 +23,7 @@ import { RequestsService } from '../../../../services/requests/requests.service'
 export class ViewRequestsComponent {
 
   requests: MaintenceRequest[] = [];
+  selectedRequest: MaintenceRequest | null = null;
   finalDate: any;
   initialDate: any;
 
@@ -63,8 +64,17 @@ export class ViewRequestsComponent {
     this.router.navigate(['/do-maintence']);
   }
 
-  endMaintence(){
+  openFinalizationModal(request: MaintenceRequest) {
+    this.selectedRequest = request;
+  }
 
+  endMaintence() {
+    if (this.selectedRequest) {
+      this.selectedRequest.status = RequestStatus.Finished;
+      this.selectedRequest.finalizationDate = new Date().toISOString();
+      this.selectedRequest.finalizedBy = 'Nome do Funcionário';
+      this.selectedRequest = null;
+    }
   }
 
   filterInitialDate() {
