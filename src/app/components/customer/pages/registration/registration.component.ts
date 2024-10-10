@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ViacepService } from '../../../services/viacep/viacep.service';
+import { Endereco } from '../../../models/viacepResult';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -23,6 +26,27 @@ export class RegistrationComponent {
   complement: string = '';
   submiting: boolean = false;
   estados: string[] = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'];
+
+  constructor(private viacepService: ViacepService, private router : Router) {}
+
+  buscarEndereco(): void {
+    if(this.cep) {
+      this.viacepService.buscarCEP(this.cep).subscribe(
+        (dados: Endereco) => {
+          if(!dados.erro) {
+            this.logradouro = dados.logradouro;
+            this.city = dados.localidade;
+            this.state = dados.uf;
+          } else {
+            alert('CEP não encontrado!');
+          }
+        },
+        (error) => {
+          alert('Erro ao buscar o CEP!');
+        }
+      );
+    }
+  }
 
   onSubmit() {
     this.submiting = true;
@@ -48,11 +72,11 @@ export class RegistrationComponent {
   onCpfInput(event: Event): void {
     const input = event.target as HTMLInputElement;
     let cpf = input.value.replace(/\D/g, '');
-  
+
     if (cpf.length > 3) cpf = cpf.slice(0, 3) + '.' + cpf.slice(3);
     if (cpf.length > 7) cpf = cpf.slice(0, 7) + '.' + cpf.slice(7);
     if (cpf.length > 11) cpf = cpf.slice(0, 11) + '-' + cpf.slice(11);
-  
+
     input.value = cpf;
     this.cpf = cpf;
   }
@@ -85,5 +109,9 @@ export class RegistrationComponent {
       this.logradouro.trim() !== '' &&
       this.number.trim() !== ''
     );
+  }
+
+  returnHome(){
+    this.router.navigate(['/login']);
   }
 }

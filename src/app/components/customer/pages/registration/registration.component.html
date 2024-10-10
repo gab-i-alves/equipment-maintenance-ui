@@ -37,12 +37,14 @@
                 </div>
               </div>
 
+
+
               <div class="col-md-6">
 
                 <!-- CEP -->
                 <div class="mb-3">
                   <label for="cep" class="form-label">CEP</label>
-                  <input type="text" class="form-control" id="cep" placeholder="12345-000" [(ngModel)]="cep" name="cep" required>
+                  <input type="text" class="form-control" id="cep" placeholder="12345-000" [(ngModel)]="cep" name="cep" (blur)="buscarEndereco()" required>
                   <div *ngIf="!isCepValid() && registrationForm.submitted" class="text-danger">CEP inválido.</div>
                 </div>
 
@@ -97,9 +99,16 @@
               </div>
             </div>
 
-              <div class="d-grid mt-4">
-                <button type="submit" class="btn btn-primary" [disabled]="submiting">Cadastrar</button>
+              <div class="row mt-4">
+                <div class="col">
+                  <button type="button" (click)="returnHome()" class="btn-return-box w-100">Voltar</button>
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-primary w-100 btn-custom" [disabled]="submiting">Cadastrar</button>
+                </div>
               </div>
+
+
             </form>
           </div>
         </div>
