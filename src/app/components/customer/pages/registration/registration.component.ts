@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ViacepService } from '../../../services/viacep/viacep.service';
-import { Endereco } from '../../../models/viacepResult';
 import { Router } from '@angular/router';
+import { ViacepService } from '../../../../services/viacep/viacep.service';
+import { Endereco } from '../../../../models/viacepResult';
 
 @Component({
   selector: 'app-registration',
