@@ -1,0 +1,30 @@
+.edit-category-container {
+  max-width: 500px;
+  margin-top: 20px;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.btn {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
