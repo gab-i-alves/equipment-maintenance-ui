@@ -4,7 +4,6 @@
     <h2 class="title-page mb-4 fw-bold">Solicitações</h2>
     <section class="sectionTable container">
       <div class="tableBox p-3 rounded">
-
         <div class="container ">
           <div class="dropdown dropdownContainer d-flex">
             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownFilterRequest" data-bs-toggle="dropdown" aria-expanded="false">Filtros
@@ -25,8 +24,8 @@
           <thead>
             <tr>
               <th>Data/Hora</th>
-              <th>Cliente</th>
               <th>Solicitação</th>
+              <th>Cliente</th>
               <th>Descrição do Equipamento</th>
               <th>Estado</th>
               <th>Acões Disponíveis</th>
@@ -42,8 +41,8 @@
               <td [ngSwitch]="request.status">
                 <button *ngSwitchCase="'ABERTA'" class="btn btn-acao btn-orcar" (click)="doBudget()">Realizar Orçamento</button>
                 <button *ngSwitchCase="'APROVADA'" class="btn btn-acao btn-manutencao" (click)="doMaintence()">Realizar Manutenção</button>
-                <button *ngSwitchCase="'REJEITADA'" class="btn btn-acao btn-finalizar" data-bs-toggle="modal" data-bs-target="#endMaintence" (click)="endMaintence()">Fechar Manutenção</button>
-                <button *ngSwitchCase="'PAGA'" class="btn btn-acao btn-finalizar" data-bs-toggle="modal" data-bs-target="#endMaintence" (click)="endMaintence()">Fechar Manutenção</button>
+                <button *ngSwitchCase="'REDIRECIONADA'" class="btn btn-acao btn-manutencao" (click)="doMaintence()">Realizar Manutenção</button>
+                <button *ngSwitchCase="'PAGA'" class="btn btn-acao btn-finalizar" data-bs-toggle="modal" data-bs-target="#endMaintence" (click)="openFinalizationModal(request)">Finalizar Manutenção</button>
               </td>
             </tr>
           </tbody>
@@ -53,18 +52,18 @@
   </div>
 
   <div class="modal fade" id="endMaintence" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">ATENÇÃO</h5>
+        <div class="modal-header custom-modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">ATENÇÃO</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p>Você realmente deseja finalizar a manutenção para a solicitação (numero da solicitação)?</p>
+          <p>Você realmente deseja finalizar essa solicitação?</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary" data-bs-target="#orcado" data-bs-toggle="modal">CONFIRMAR</button>
+          <button type="button" class="btn btn-success" data-bs-toggle="modal" (click)="endMaintence()">Finalizar</button>
         </div>
       </div>
     </div>

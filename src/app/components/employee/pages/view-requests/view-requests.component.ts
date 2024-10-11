@@ -6,11 +6,12 @@ import { EmployeeSidebarComponent } from "../../employee-sidebar/employee-sideba
 import { Router } from '@angular/router';
 import DataTable from 'datatables.net-dt';
 import * as $ from 'jquery';
-import 'datatables.net'; 
-import 'datatables.net-dt'; 
+import 'datatables.net';
+import 'datatables.net-dt';
 import 'datatables.net-responsive';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RequestsService } from '../../../../services/requests/requests.service';
 
 @Component({
   selector: 'app-view-requests',
@@ -21,80 +22,39 @@ import { CommonModule } from '@angular/common';
 })
 export class ViewRequestsComponent {
 
-  requests: MaintenceRequest[] = [
-    {
-      status: RequestStatus.Approved,
-      date: new Date().toLocaleDateString('pt-BR'),
-      id: 0,
-      userName: 'João Pereira',
-      description: 'Notebook com defeito'
-    },
-    {
-      status: RequestStatus.Open,
-      date: new Date().toLocaleDateString('pt-BR'),
-      id: 1,
-      userName: 'Ana Banana',
-      description: 'Notebook com defeito'
-    },
-    {
-      status: RequestStatus.Rejected,
-      date: new Date().toLocaleDateString('pt-BR'),
-      id: 2,
-      userName: 'Pedro Guiliver',
-      description: 'Notebook com defeito'
-    },
-    {
-      status: RequestStatus.Budgeted,
-      date: new Date().toLocaleDateString('pt-BR'),
-      id: 3,
-      userName: 'Guilherme Alameda',
-      description: 'Notebook com defeito'
-    },
-    {
-      status: RequestStatus.Fixed,
-      date: new Date().toLocaleDateString('pt-BR'),
-      id: 4,
-      userName: 'Julia Gamer',
-      description: 'Notebook com defeito'
-    },
-    {
-      status: RequestStatus.Payed,
-      date: new Date().toLocaleDateString('pt-BR'),
-      id: 5,
-      userName: 'Heitor Souza',
-      description: 'Notebook com defeito'
-    },
-  ];
-
-
+  requests: MaintenceRequest[] = [];
+  selectedRequest: MaintenceRequest | null = null;
   finalDate: any;
   initialDate: any;
 
+  constructor(private router : Router, private requestService: RequestsService){ }
+
   ngOnInit(){
-    console.log(this.requests);
+    this.requests = this.requestService.getRequests();
   }
 
   ngAfterViewInit(): void {
-    if (!$.fn.dataTable.isDataTable('#tableSolic')) {
-      new DataTable('#tableSolic', {
-        responsive: true,
-        paging: true,
-        searching: false,
-        info: false,
-        language: {
-          processing: "Processando...",
-          lengthMenu: "Mostrar _MENU_ registros",
-          zeroRecords: "Nenhum registro encontrado",
-          info: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-          infoEmpty: "Mostrando 0 até 0 de 0 registros",
-          infoFiltered: "(filtrado de _MAX_ registros no total)",
-          search: "Buscar:",
-        }
-      });
-    }
+    setTimeout(() => {
+      if (!$.fn.dataTable.isDataTable('#tableSolic')) {
+        new DataTable('#tableSolic', {
+          responsive: true,
+          paging: true,
+          searching: false,
+          info: false,
+          language: {
+            processing: "Processando...",
+            lengthMenu: "Mostrar _MENU_ registros",
+            zeroRecords: "Nenhum registro encontrado",
+            info: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+            infoEmpty: "Mostrando 0 até 0 de 0 registros",
+            infoFiltered: "(filtrado de _MAX_ registros no total)",
+            search: "Buscar:",
+          }
+        });
+      }
+    }, 0);
   }
 
-  constructor(private router : Router){ }
 
   doBudget(){
     this.router.navigate(['/make-budget']);
@@ -104,8 +64,17 @@ export class ViewRequestsComponent {
     this.router.navigate(['/do-maintence']);
   }
 
-  endMaintence(){
-    
+  openFinalizationModal(request: MaintenceRequest) {
+    this.selectedRequest = request;
+  }
+
+  endMaintence() {
+    if (this.selectedRequest) {
+      this.selectedRequest.status = RequestStatus.Finished;
+      this.selectedRequest.finalizationDate = new Date().toISOString();
+      this.selectedRequest.finalizedBy = 'Nome do Funcionário';
+      this.selectedRequest = null;
+    }
   }
 
   filterInitialDate() {
