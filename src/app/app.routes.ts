@@ -13,6 +13,8 @@ import { HomeComponent } from './components/customer/pages/home/home.component';
 import { ViewRequestsComponent } from './components/employee/pages/view-requests/view-requests.component';
 import { DoMaintenceComponent } from './components/employee/do-maintence/do-maintence.component';
 import { MakeBudgetComponent } from './components/employee/pages/make-budget/make-budget.component';
+import { InserirEditarCategoriaComponent } from './components/employee/pages/inserir-editar-categoria/inserir-editar-categoria.component';
+import { ListarCategoriaComponent } from './components/employee/pages/list-categories/list-categories.component';
 import { EmployeeHomeComponent } from './components/employee/pages/employee-home/employee-home.component';
 
 export const routes: Routes = [
@@ -81,5 +83,22 @@ export const routes: Routes = [
         path: 'do-maintence',
         component:DoMaintenceComponent,
         canActivate: [authGuard]
+    },
+    {
+        path: 'categories',
+        component: ListarCategoriaComponent
+    },
+    {
+        path: 'categories/new',
+        component: InserirEditarCategoriaComponent
+    },
+    {
+        path: 'categories/edit/:id',
+        component: InserirEditarCategoriaComponent
+    },
+    {
+        path: '',
+        redirectTo: '/categories',
+        pathMatch: 'full'
     }
 ];

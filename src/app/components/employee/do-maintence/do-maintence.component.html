@@ -43,7 +43,7 @@
     <h2>Manutenção</h2>
     <div class="make-budget-inputs row d-flex gap-5 col-md-12">
         <button class="col-3 btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" >Efetuar Manutenção</button>
-        <button class="col-3 btn btn-info" style="color: white;">Redirecionar Manutenção</button>
+        <button class="col-3 btn btn-info" data-bs-toggle="modal" data-bs-target="#redirectModal"style="color: white;">Redirecionar Manutenção</button>
     </div>
 
     <div class="row col-md-10" style="position: absolute; bottom: 20px;">
@@ -81,6 +81,31 @@
   </div>
 </div>
 
+
+
+<div class="modal fade" id="redirectModal" tabindex="-1" aria-labelledby="redirectModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="redirectModalLabel">REDIRECIONAR MANUTENÇÃO</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="text_desc">
+          <p>Redirecionar para:</p>
+          <select name="categoria" id= "redirectSelect" class="form-control" required [(ngModel)]="redirectTarget" size="1">
+            <option *ngFor="let name of employees">{{name}}</option>
+        </select>        
+      </div>
+     
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary me-4 " data-bs-dismiss="modal">CANCELAR</button>
+        <button type="button"  (click)="redirectRequest()" data-bs-dismiss="modal" class="btn btn-success me-3">CONFIRMAR</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 

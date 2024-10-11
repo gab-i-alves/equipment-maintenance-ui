@@ -1,0 +1,22 @@
+<app-employee-sidebar title="Inserir Categorias"></app-employee-sidebar>
+
+<div class="edit-category-container">
+  <h1>{{ editMode ? 'Editar Categoria' : 'Nova Categoria' }}</h1>
+  
+  <form (ngSubmit)="salvarCategoria()">
+    <div class="form-group">
+      <label for="name">Nome da Categoria</label>
+      <input
+        id="name"
+        type="text"
+        class="form-control"
+        [(ngModel)]="categoria.name"
+        name="name"
+        required
+      />
+    </div>
+    
+    <button type="submit" class="btn btn-success">{{ editMode ? 'Salvar Alterações' : 'Adicionar Categoria' }}</button>
+    <a routerLink="/categorias" class="btn btn-secondary mt-2">Cancelar</a>
+  </form>
+</div>
