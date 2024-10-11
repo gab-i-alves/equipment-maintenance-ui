@@ -16,6 +16,7 @@ import { MakeBudgetComponent } from './components/employee/pages/make-budget/mak
 import { InserirEditarCategoriaComponent } from './components/employee/pages/inserir-editar-categoria/inserir-editar-categoria.component';
 import { ListarCategoriaComponent } from './components/employee/pages/list-categories/list-categories.component';
 import { EmployeeHomeComponent } from './components/employee/pages/employee-home/employee-home.component';
+import { RelatoriosComponent } from './components/employee/pages/relatorios/relatorios.component';
 
 export const routes: Routes = [
     {
@@ -100,5 +101,10 @@ export const routes: Routes = [
         path: '',
         redirectTo: '/categories',
         pathMatch: 'full'
-    }
+    },
+    {
+        path: 'relatorios',
+        component: RelatoriosComponent,
+        canActivate: [authGuard]
+    },
 ];

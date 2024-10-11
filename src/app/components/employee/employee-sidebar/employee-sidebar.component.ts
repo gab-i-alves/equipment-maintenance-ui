@@ -1,6 +1,6 @@
 import { Component, Input} from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faUser, faHistory, faSignOutAlt , faFileCirclePlus, faHouse, faBars, faBell, faBook} from '@fortawesome/free-solid-svg-icons';
+import { faUser, faHistory, faSignOutAlt , faFileCirclePlus, faHouse, faBars, faBell, faBook, faFilePdf} from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 import { AccountService } from '../../../services/account/account.service';
 
@@ -21,6 +21,7 @@ export class EmployeeSidebarComponent {
   faBars = faBars;
   faBell = faBell;
   faBook = faBook;
+  faFilePdf = faFilePdf;
 
   constructor(private router: Router, private AccountService: AccountService){ }
 
@@ -30,6 +31,10 @@ export class EmployeeSidebarComponent {
 
   viewRequests(){
     this.router.navigate(['/view-requests'])
+  }
+
+  relatorios() {
+    this.router.navigate(['/relatorios'])
   }
 
   outAction(){
