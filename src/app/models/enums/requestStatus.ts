@@ -1,11 +1,11 @@
 export enum RequestStatus{
-    Open = 1,
-    Budgeted,
-    Approved,
-    Rejected, 
-    Fixed,
-    Payed,
-    Redirected,
-    Finished,
-    WaitingPayment
+    Open = 'ABERTA',
+    Budgeted = 'ORÇADA',
+    Approved = 'APROVADA',
+    Rejected = 'REJEITADA', 
+    Fixed = 'ARRUMADA',
+    Payed = 'PAGA',
+    Redirected = 'REDIRECIONADA',
+    Finished = 'FINALIZADA',
+    WaitingPayment = 'AGUARDANDO_PAGAMENTO'
 }

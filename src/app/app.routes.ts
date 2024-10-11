@@ -15,6 +15,7 @@ import { DoMaintenceComponent } from './components/employee/do-maintence/do-main
 import { MakeBudgetComponent } from './components/employee/pages/make-budget/make-budget.component';
 import { InserirEditarCategoriaComponent } from './components/employee/pages/inserir-editar-categoria/inserir-editar-categoria.component';
 import { ListarCategoriaComponent } from './components/employee/pages/list-categories/list-categories.component';
+import { EmployeeHomeComponent } from './components/employee/pages/employee-home/employee-home.component';
 
 export const routes: Routes = [
     {
@@ -66,6 +67,11 @@ export const routes: Routes = [
     {
         path: 'make-budget',
         component:MakeBudgetComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'employee-home',
+        component:EmployeeHomeComponent,
         canActivate: [authGuard]
     },
     {
