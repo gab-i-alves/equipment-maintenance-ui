@@ -1,0 +1,42 @@
+.container{
+padding-top: 50px;
+margin-right: 1cm;
+font-family: 'Poppins', sans-serif;
+}
+
+#title{
+    color: #005A9B;
+    font-size: 28px;
+
+}
+#dt_in{
+    margin-right: 185px;
+    font-weight: bold;
+    font-size: 18px;
+
+}
+#dt_fn{
+    font-weight: bold;
+    font-size: 18px;
+
+}
+#ip_ini{
+    margin-right: 140px;
+}
+.form-control{
+    width: 180px;
+    height: 30px;
+    margin-right: 90px;
+    border-color: #4682B4;
+    color: #948F8F;
+    background-color: #F4F3F3;
+}
+.btn-salvar-voltar {
+    background-color: #97A0A7;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 0.3em 2rem 0.4rem 2rem;
+    font-size: 1.4rem;
+    margin-top: 30px;
+  }
