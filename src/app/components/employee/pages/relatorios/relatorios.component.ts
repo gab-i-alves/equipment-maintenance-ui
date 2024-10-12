@@ -4,6 +4,7 @@ import { EmployeeSidebarComponent } from '../../employee-sidebar/employee-sideba
 import { FormsModule } from '@angular/forms';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+import { Route } from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,11 @@ import 'jspdf-autotable';
 export class RelatoriosComponent {
   dataInicial!: string;
   dataFinal!: string;
-
+  
+  constructor(private router: Router) {}
+  returnHome(){
+    this.router.navigate(['/view-requests']);
+}
   // dps tem que pegar os dados do back-end
   vendas = [
       { data: '2024-10-01', valor: 100 },
