@@ -1,13 +1,18 @@
 export class Employee {
 
     constructor(
-        private id : number,
-        private email : string,
-        private password : string,
-        private name : string,
-        private birthDate : Date,
+        public id : number,
+        public email : string,
+        private _password : string,
+        public name : string,
+        public birthDate : string,
     ){}
 
-    
+    get password() : string{
+        return this._password;
+    }
 
+    set password(password){
+        this._password = password;
+    }
 }

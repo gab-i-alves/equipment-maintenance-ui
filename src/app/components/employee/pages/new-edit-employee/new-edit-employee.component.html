@@ -1,0 +1,48 @@
+<app-employee-sidebar title="Funcionários"></app-employee-sidebar>
+
+<div class="page-container d-flex flex-column justify-content-center align-items-center vh-100">
+  <div class="row">
+        <div class="form-group">
+          <label for="name">Nome</label>
+          <input
+            id="name"
+            type="text"
+            class="form-control"
+            [(ngModel)]="employee.name"
+            name="name"
+            required
+          />
+          <label for="email">Email</label>
+          <input
+            id="email"
+            type="text"
+            class="form-control"
+            [(ngModel)]="employee.email"
+            name="email"
+            required
+          />
+          <label for="senha">Senha</label>
+          <input
+            id="senha"
+            type="text"
+            class="form-control"
+            [(ngModel)]="employee.password"
+            name="senha"
+            required
+          />
+          <label for="date">Data de Nascimento</label>
+          <input
+            id="date"
+            type="string"
+            class="form-control"
+            [(ngModel)]="employee.birthDate"
+            name="date"
+            required
+          />
+        </div>
+        
+        <button type="submit" class="btn btn-success" (click)="save()" [routerLink]="['/employees']">Salvar</button>
+        <a [routerLink]="['/employees']" class="btn btn-secondary mt-2">Cancelar</a>
+  </div>
+  
+</div>

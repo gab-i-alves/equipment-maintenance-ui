@@ -18,7 +18,8 @@ import { InserirEditarCategoriaComponent } from './components/employee/pages/ins
 import { ListarCategoriaComponent } from './components/employee/pages/list-categories/list-categories.component';
 import { EmployeeHomeComponent } from './components/employee/pages/employee-home/employee-home.component';
 import { RelatoriosComponent } from './components/employee/pages/relatorios/relatorios.component';
-import { ViewEmployeesComponent } from './components/employee/pages/employees/employees.component';
+import { EmployeesComponent } from './components/employee/pages/employees/employees.component';
+import { NewEditEmployeeComponent } from './components/employee/pages/new-edit-employee/new-edit-employee.component';
 
 export const routes: Routes = [
     {
@@ -111,17 +112,17 @@ export const routes: Routes = [
     },
     {
         path: 'employees',
-        component: ViewEmployeesComponent,
+        component: EmployeesComponent,
         canActivate: [authGuard]
     },
     {
         path: 'employees/new',
-        component: ViewEmployeesComponent,
+        component: NewEditEmployeeComponent,
         canActivate: [authGuard]
     },
     {
-        path: 'employees/edit/:id',
-        component: ViewEmployeesComponent,
+        path: 'employees/new/:id',
+        component: NewEditEmployeeComponent,
         canActivate: [authGuard]
     },
 ];
