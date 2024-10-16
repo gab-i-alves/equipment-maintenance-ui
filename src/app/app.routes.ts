@@ -1,3 +1,4 @@
+import { Component } from '@angular/core';
 import { Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './components/customer/sidebar/sidebar.component';
@@ -17,6 +18,7 @@ import { InserirEditarCategoriaComponent } from './components/employee/pages/ins
 import { ListarCategoriaComponent } from './components/employee/pages/list-categories/list-categories.component';
 import { EmployeeHomeComponent } from './components/employee/pages/employee-home/employee-home.component';
 import { RelatoriosComponent } from './components/employee/pages/relatorios/relatorios.component';
+import { ViewEmployeesComponent } from './components/employee/pages/employees/employees.component';
 
 export const routes: Routes = [
     {
@@ -105,6 +107,21 @@ export const routes: Routes = [
     {
         path: 'relatorios',
         component: RelatoriosComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'employees',
+        component: ViewEmployeesComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'employees/new',
+        component: ViewEmployeesComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'employees/edit/:id',
+        component: ViewEmployeesComponent,
         canActivate: [authGuard]
     },
 ];
