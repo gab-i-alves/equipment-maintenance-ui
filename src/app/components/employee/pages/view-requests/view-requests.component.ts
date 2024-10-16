@@ -55,9 +55,8 @@ export class ViewRequestsComponent {
     }, 0);
   }
 
-
-  doBudget(){
-    this.router.navigate(['/make-budget']);
+  doBudget(request: MaintenceRequest) {
+    this.router.navigate(['/make-budget'], { state: { request: request} });
   }
 
   doMaintence(){
