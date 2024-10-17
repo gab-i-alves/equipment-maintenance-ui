@@ -19,29 +19,51 @@
 }
 
 .td-descricao {
-  white-space: nowrap;                  
-  overflow: hidden; 
+  white-space: nowrap;
+  overflow: hidden;
   text-overflow:  ellipsis;
   max-width: 4px
 }
 
-.td-estado-orcado, .td-estado-aprovada, 
-.td-estado-rejeitada, .td-estado-arrumada {
-  text-transform: uppercase;
-  font-weight: 700;
+.td-estado-aberta, .td-estado-orçada,
+.td-estado-rejeitada, .td-estado-aprovada,
+.td-estado-redirecionada, .td-estado-arrumada,
+.td-estado-paga, .td-estado-finalizada, .td-estado-aguardando_pagamento {
+   text-transform: uppercase;
+   font-weight: 700;
 }
 
-.td-estado-orcado {
-  color: #005A9B;
+.td-estado-aberta {
+  color: #5e5e5e;
 }
 
-.td-estado-aprovada, .td-estado-arrumada {
-  color: #06791F;
+.td-estado-orçada {
+  color: #683513;
 }
 
 .td-estado-rejeitada {
   color: #FF0E0E;
 }
+
+.td-estado-aprovada {
+   color: #e4d22f;
+ }
+
+ .td-estado-redirecionada {
+   color: #510981;
+ }
+
+ .td-estado-arrumada, .td-estado-aguardando_pagamento {
+   color: #1956fd;
+ }
+
+ .td-estado-paga {
+   color: #ff9113;
+ }
+
+ .td-estado-finalizada {
+   color: #078f02;
+ }
 
 .btn-acao {
   width: 60%;
