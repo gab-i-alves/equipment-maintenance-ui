@@ -31,15 +31,6 @@ export class ViewRequestsComponent {
 
   ngOnInit(){
     this.requests = this.requestService.getRequests();
-    const navigation = this.router.getCurrentNavigation();
-    const updatedRequest = navigation?.extras.state?.['updatedRequest'];
-
-    if (updatedRequest) {
-      const index = this.requests.findIndex(req => req.id === updatedRequest.id);
-      if (index !== -1) {
-        this.requests[index] = updatedRequest;
-      }
-    }
   }
 
   ngAfterViewInit(): void {
