@@ -10,7 +10,7 @@ import { Route } from '@angular/router';
 @Component({
   selector: 'app-relatorios',
   standalone: true,
-  imports: [EmployeeSidebarComponent],
+  imports: [EmployeeSidebarComponent, FormsModule],
   templateUrl: './relatorios.component.html',
   styleUrl: './relatorios.component.css'
 })
@@ -24,16 +24,24 @@ export class RelatoriosComponent {
 }
   // dps tem que pegar os dados do back-end
   vendas = [
-      { data: '2024-10-01', valor: 100 },
-      { data: '2024-10-01', valor: 200 },
-      { data: '2024-10-02', valor: 300 },
-      { data: '2024-10-03', valor: 150 }
+      { data: '2024-10-01', valor: 100, categoria:"Notebook"},
+      { data: '2024-10-01', valor: 200, categoria:"Desktop" },
+      { data: '2024-10-02', valor: 300, categoria:"Teclado" },
+      { data: '2024-10-03', valor: 50, categoria:"Mouse" },
+      { data: '2024-10-04', valor: 170, categoria:"Teclado" },
+      { data: '2024-10-06', valor: 400, categoria:"Impressora" }
   ];
 
-
   gerarRelatorioReceitas() {
-    const dataInic = new Date(this.dataInicial);
-    const dataFin = new Date(this.dataFinal);
+    if (this.dataInicial === undefined){
+      this.dataInicial = '2024-09-02'; //data fictícia de abertura da empresa 
+    }
+    if (this.dataFinal === undefined){
+      this.dataFinal = new Date().toString();
+    }
+
+    const dataFin = (new Date(this.dataFinal)).toLocaleDateString();
+    const dataInic = (new Date(this.dataInicial)).toLocaleDateString();
  
     const vendasAgrupadas: any = {};
 
@@ -51,10 +59,44 @@ export class RelatoriosComponent {
 
     const doc = new jsPDF();
     doc.text('Relatório de Receita', 14, 16);
-    doc.text(`Período: ${this.dataInicial} a ${this.dataFinal}`, 14, 24);
+    doc.text(`Período: ${dataInic} a ${dataFin}`, 14, 24);
 
     (doc as any).autoTable({
       head: [['Data', 'Total de Vendas']],
+      body: vendasParaTabela,
+      startY: 30
+    });
+
+    const pdfBlob = doc.output('blob');
+    const pdfUrl = URL.createObjectURL(pdfBlob);
+    window.open(pdfUrl);
+  }
+
+
+  gerarRelatorioReceitasPorCategoria() {
+    const dataInic = (new Date('2024-09-02')).toLocaleDateString();
+    const dataFin = (new Date).toLocaleDateString();
+ 
+    const vendasAgrupadas: any = {};
+
+    this.vendas.forEach(venda => {
+      if (!vendasAgrupadas[venda.categoria]) {
+        vendasAgrupadas[venda.categoria] = 0;
+      }
+      vendasAgrupadas[venda.categoria] += venda.valor;
+    });
+
+    const vendasParaTabela = [];
+    for (let categoria in vendasAgrupadas) {
+      vendasParaTabela.push([categoria, vendasAgrupadas[categoria]]);
+    }
+
+    const doc = new jsPDF();
+    doc.text('Relatório de Receita por Categoria', 14, 16);
+    doc.text(`Período: ${dataInic} a ${dataFin}`, 14, 24);
+
+    (doc as any).autoTable({
+      head: [['Categoria', 'Total de Vendas']],
       body: vendasParaTabela,
       startY: 30
     });
