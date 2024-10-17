@@ -4,6 +4,7 @@ import { EmployeeSidebarComponent } from '../../employee-sidebar/employee-sideba
 import { FormsModule } from '@angular/forms';
 import { MaintenceRequest } from '../../../../models/mainteceRequest';
 import { CommonModule } from '@angular/common';
+import { RequestStatus } from '../../../../models/enums/requestStatus';
 
 @Component({
   selector: 'app-make-budget',
@@ -33,11 +34,14 @@ export class MakeBudgetComponent implements OnInit {
 
   confirmBudget(descricao: string): void {
     this.descricaoOrcamento = descricao;
-    console.log("Valor: " + this.valorOrcamento + " - Descricao: " + this.descricaoOrcamento);
+    if (this.request) {
+      this.request.status = RequestStatus.Budgeted;
+      console.log("Solicitação orçada com o valor: " + this.valorOrcamento + " - Descrição: " + this.descricaoOrcamento);
+    }
   }
 
 
     returnHome(){
-      this.router.navigate(['/view-requests']);
+      this.router.navigate(['/view-requests'], { state: { updatedRequest: this.request}});
   }
 }

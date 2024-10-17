@@ -69,7 +69,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Você realmente deseja orçar a solicitação no valor de R$ {{valorOrcamento}}</p>
+        <p>Você realmente deseja orçar a solicitação no valor de R${{valorOrcamento}} ?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -95,7 +95,7 @@
       </div>
       <div class="modal-footer align-items-center">
 
-        <button type="button" class="btn btn-primary"  data-bs-dismiss="modal">OK</button>
+        <button type="button" class="btn btn-primary" (click)="returnHome()"  data-bs-dismiss="modal">OK</button>
       </div>
     </div>
   </div>
