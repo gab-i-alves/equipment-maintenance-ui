@@ -4,6 +4,7 @@ import { EmployeeSidebarComponent } from '../employee-sidebar/employee-sidebar.c
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MaintenceRequest } from '../../../models/mainteceRequest';
+import { RequestStatus } from '../../../models/enums/requestStatus';
 
 @Component({
   selector: 'app-do-maintence',
@@ -37,7 +38,18 @@ employees: Array<string>;
     this.router.navigate(['/view-requests']);
   }
 
+  doMaintence() {
+    if (this.request) {
+      this.request.status = RequestStatus.WaitingPayment;
+      this.router.navigate(['/view-requests']);
+    }
+  }
+
   redirectRequest(){
+    if (this.request) {
+      this.request.status = RequestStatus.Redirected;
+      this.router.navigate(['/view-requests']);
+    }
     //target = serviceEmployee.getEmployee(this.redirectTarget)
     //if (target != this.request.employee){
     //  this.request.redirect(target); exemplo

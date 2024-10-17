@@ -2,7 +2,7 @@ export enum RequestStatus{
     Open = 'ABERTA',
     Budgeted = 'ORÇADA',
     Approved = 'APROVADA',
-    Rejected = 'REJEITADA', 
+    Rejected = 'REJEITADA',
     Fixed = 'ARRUMADA',
     Payed = 'PAGA',
     Redirected = 'REDIRECIONADA',
