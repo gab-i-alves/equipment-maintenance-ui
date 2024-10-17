@@ -28,7 +28,7 @@
  .td-estado-aberta, .td-estado-orçada,
  .td-estado-rejeitada, .td-estado-aprovada,
  .td-estado-redirecionada, .td-estado-arrumada,
- .td-estado-paga, .td-estado-finalizada {
+ .td-estado-paga, .td-estado-finalizada, .td-estado-aguardando_pagamento {
    text-transform: uppercase;
    font-weight: 700;
  }
@@ -53,7 +53,7 @@
     color: #510981;
   }
 
-  .td-estado-arrumada {
+  .td-estado-arrumada, .td-estado-aguardando_pagamento {
     color: #1956fd;
   }
 

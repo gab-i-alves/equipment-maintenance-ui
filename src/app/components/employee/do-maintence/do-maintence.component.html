@@ -2,27 +2,27 @@
 
 <div class="container-view-service">
 
-  <div class="details-container p-5 py-4 d-flex flex-column">
-    <h2>Detalhes da Solicitação - Solicitação 1</h2>
+  <div *ngIf="request" class="details-container p-5 py-4 d-flex flex-column">
+    <h2>Detalhes da Solicitação - {{ request.id }}</h2>
     <div class="details-infos d-flex flex-column gap-3 mt-4">
       <div class="row">
         <div class="details-item col-4 d-flex gap-3">
           <p class="">Cliente:</p>
-          <span>João da Silva</span>
+          <span>{{ request.userName }}</span>
         </div>
         <div class="details-item col-4 d-flex gap-3">
           <p>Data / Hora da Solicitação</p>
-          <span>12/09/2024 14:36</span>
+          <span> {{ request.date }}</span>
         </div>
       </div>
       <div class="row">
         <div class="details-item col-4 d-flex gap-3">
           <p class="">Descrição do Equipamento:</p>
-          <span>Notebook Lenovo</span>
+          <span>{{ request.description }}</span>
         </div>
         <div class="details-item col d-flex gap-3">
           <p>Estado Atual:</p>
-          <span class="estado aprovada">APROVADA</span>
+          <span class="estado aprovada"> {{ request.status }}</span>
         </div>
       </div>
       <div class="row">
@@ -66,16 +66,16 @@
           <p>Descrição da Manutenção:</p>
           <input type="text" class="input_" placeholder="Escreva uma descrição para a manutenção realizada."/>
         </div>
-       
+
         <div class="text_desc mt-4">
           <p>Orientação para o cliente:</p>
           <input type="text" class="input_" placeholder="Escreva uma orientação para o  cliente"/>
         </div>
-     
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary me-4 " data-bs-dismiss="modal">CANCELAR</button>
-        <button type="button" class="btn btn-success me-3">CONFIRMAR</button>
+        <button type="button" (click)="doMaintence()" data-bs-dismiss="modal" class="btn btn-success me-3">CONFIRMAR</button>
       </div>
     </div>
   </div>
@@ -95,9 +95,9 @@
           <p>Redirecionar para:</p>
           <select name="categoria" id= "redirectSelect" class="form-control" required [(ngModel)]="redirectTarget" size="1">
             <option *ngFor="let name of employees">{{name}}</option>
-        </select>        
+        </select>
       </div>
-     
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary me-4 " data-bs-dismiss="modal">CANCELAR</button>

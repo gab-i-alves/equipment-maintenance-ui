@@ -55,13 +55,12 @@ export class ViewRequestsComponent {
     }, 0);
   }
 
-
-  doBudget(){
-    this.router.navigate(['/make-budget']);
+  doBudget(request: MaintenceRequest) {
+    this.router.navigate(['/make-budget'], { state: { request: request} });
   }
 
-  doMaintence(){
-    this.router.navigate(['/do-maintence']);
+  doMaintence(request: MaintenceRequest){
+    this.router.navigate(['/do-maintence'], { state: { request: request} });
   }
 
   openFinalizationModal(request: MaintenceRequest) {
