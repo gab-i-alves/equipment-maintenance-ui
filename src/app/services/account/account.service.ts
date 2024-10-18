@@ -8,9 +8,14 @@ export class AccountService {
   constructor() { }
 
   login(email: string, password:string) : [boolean, boolean]{
-    if(email == "emaildeteste@gmail.com" && password == "senhadeteste123"){
-        localStorage.setItem('user', 'true');
+    if(email == "cliente@gmail.com" && password == "cliente123"){
+        localStorage.setItem('customer', 'true');
         return[false, false];    
+    }else{
+      if(email == "funcionario@gmail.com" && password == "funcionario123"){
+        localStorage.setItem('employee', 'true');
+        return[false, false];    
+      }
     }
     if(email == '' || password == ''){
         return [true, false]; //vazio e sem erro
@@ -20,6 +25,7 @@ export class AccountService {
   }
 
   logout(){
-    localStorage.removeItem('user');
+    localStorage.removeItem('customer');
+    localStorage.removeItem('employee');
   }  
 }

@@ -27,9 +27,4 @@ export class EmployeesComponent implements OnInit {
     this.Funcionarios = this.employeeService.listarTodos();
   
   }
-
-  editarFuncionario(id : number){
-
-  }
-
 }
