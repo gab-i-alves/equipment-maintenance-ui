@@ -22,8 +22,8 @@
             <td class="td-descricao">{{ request.description }}</td>
             <td class="td-estado-{{request.status.toLocaleLowerCase()}}">{{ request.status }}</td>
             <td [ngSwitch]="request.status">
-              <button *ngSwitchCase="'ORÇADA'" class="btn btn-acao btn-aprovar" (click)="viewBudget()">Aprovar Serviço</button>
-              <button *ngSwitchCase="'ORÇADA'" class="btn btn-acao btn-rejeitar" (click)="viewBudget()">Rejeitar Serviço</button>
+              <button *ngSwitchCase="'ORÇADA'" class="btn btn-acao btn-aprovar" (click)="viewBudget(request)">Aprovar Serviço</button>
+              <button *ngSwitchCase="'ORÇADA'" class="btn btn-acao btn-rejeitar" (click)="viewBudget(request)">Rejeitar Serviço</button>
               <button *ngSwitchCase="'REJEITADA'" class="btn btn-acao btn-resgatar" (click)="rescueService(request)">Resgatar Serviço</button>
               <button *ngSwitchCase="'ARRUMADA'" class="btn btn-acao btn-pagar" (click)="payService(request)">Pagar Serviço</button>
             </td>

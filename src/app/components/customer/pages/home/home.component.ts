@@ -53,8 +53,8 @@ export class HomeComponent {
     }, 0);
   }
 
-  viewBudget() {
-    this.router.navigate(['/budget']);
+  viewBudget(request: MaintenceRequest) {
+    this.router.navigate(['/budget'], { state: { request: request} });
   }
 
   viewService() {
