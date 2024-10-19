@@ -1,31 +1,31 @@
 <app-sidebar [title]="'Resgatar Serviço'"></app-sidebar>
 
 
-<div class="page-container d-flex flex-column  justify-content-center  align-items-center ">
-    <h2 class="title-page mt-5 fw-bold "> Detalhes da Solicitação Rejeitada</h2>
+<div *ngIf="request" class="page-container d-flex flex-column  justify-content-center  align-items-center ">
+    <h2 class="title-page mt-5 fw-bold "> Detalhes da Solicitação Rejeitada - Solicitação {{ request.id }}</h2>
     <div class="container-fluid mt-4">
         <div class="row">
             <div class="col-sm-6">
                 <ul class="  d-flex flex-row gap-3">
-                    <p class=" fw-bold ">Data  Hora da Solicitação :</p> 
-                    <p>12/09/2024    14:36</p>
+                    <p class=" fw-bold ">Data  Hora da Solicitação :</p>
+                    <p>{{ request.date }}</p>
                </ul>
                <ul class="  d-flex flex-row gap-3">
-                   <p class="fw-bold">Descrição do Equipamento :</p> 
+                   <p class="fw-bold">Descrição do Equipamento :</p>
                    <p>Máquina de Lavar</p>
               </ul>
               <ul class="  d-flex flex-row gap-3">
-                   <p class="fw-bold">Categoria do equipamento :</p> 
+                   <p class="fw-bold">Categoria do equipamento :</p>
                    <p>Eletrodoméstico</p>
               </ul>
                <ul class="  d-flex flex-row gap-3">
-                   <p class="fw-bold">Descrição do Defeito :</p> 
-                   <p>Máquina não esta centrifugando corretamente</p>
+                   <p class="fw-bold">Descrição do Defeito :</p>
+                   <p>{{ request.description }}</p>
                </ul>
                <ul class="  d-flex flex-row gap-3">
-                   <p class="fw-bold">Estado Atual:</p> 
-                   <p id="status">Solicitação Rejeitada</p>
-               </ul>   
+                   <p class="fw-bold">Estado Atual:</p>
+                   <p id="status">{{ request.status }}</p>
+               </ul>
             </div>
 
             <div class="card col-sm-5 bg-light">
@@ -34,20 +34,20 @@
             </div>
 
         </div>
-        
+
         <hr id="line">
 
         <ul class="d-flex flex-row mt-4 ms-3">
-            <p class="fw-bold ">Valor a Pagar:</p> 
+            <p class="fw-bold ">Valor a Pagar:</p>
             <h3 class="price fw-bold ">R$450,00</h3>
-            <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn">Reaprovar Serviço</button>
-        </ul>   
+            <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn" (click)="reapproveService()">Reaprovar Serviço</button>
+        </ul>
         <button (click)="returnHome()" class="btn-return-box ms-4 mt-2">VOLTAR</button>
     </div>
 </div>
 
 
-  
+
 
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -60,7 +60,7 @@
           <p>O serviço foi reaprovado corretamente, redirecionando para o menu inicial.</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="reapproveService()">OK</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="returnHome()">OK</button>
         </div>
       </div>
     </div>

@@ -61,9 +61,8 @@ export class HomeComponent {
     this.router.navigate(['/viewservice']);
   }
 
-  rescueService() {
-    console.log("Resgatar Serviço")
-    this.router.navigate(['/rescue-service'])
+  rescueService(request: MaintenceRequest) {
+    this.router.navigate(['/rescue-service'], { state: { request: request} });
   }
 
   payService(request: MaintenceRequest) {
