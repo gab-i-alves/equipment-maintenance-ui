@@ -21,15 +21,6 @@
             name="email"
             required
           />
-          <label for="senha">Senha</label>
-          <input
-            id="senha"
-            type="text"
-            class="form-control"
-            [(ngModel)]="employee.password"
-            name="senha"
-            required
-          />
           <label for="date">Data de Nascimento</label>
           <input
             id="date"
@@ -40,9 +31,11 @@
             required
           />
         </div>
-        
-        <button type="submit" class="btn btn-success" (click)="save()" [routerLink]="['/employees']">Salvar</button>
+        <div class="text-danger">
+          <div *ngIf="errorDate">A data informada não é valida! </div>
+          <div *ngIf="errorEmpty">Preencha todos os campos corretamente! </div>
+      </div>
+        <button type="submit" class="btn btn-success" (click)="save()">Salvar</button>
         <a [routerLink]="['/employees']" class="btn btn-secondary mt-2">Cancelar</a>
   </div>
-  
 </div>

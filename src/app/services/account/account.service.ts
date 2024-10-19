@@ -9,11 +9,11 @@ export class AccountService {
 
   login(email: string, password:string) : [boolean, boolean]{
     if(email == "cliente@gmail.com" && password == "cliente123"){
-        localStorage.setItem('customer', 'true');
+        localStorage.setItem('user', 'customer');
         return[false, false];    
     }else{
       if(email == "funcionario@gmail.com" && password == "funcionario123"){
-        localStorage.setItem('employee', 'true');
+        localStorage.setItem('user', 'employee');
         return[false, false];    
       }
     }

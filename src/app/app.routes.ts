@@ -12,7 +12,7 @@ import { RescueServiceComponent } from './components/customer/rescue-service/res
 import { ViewServiceComponent } from './components/customer/view-service/view-service.component';
 import { HomeComponent } from './components/customer/pages/home/home.component';
 import { ViewRequestsComponent } from './components/employee/pages/view-requests/view-requests.component';
-import { DoMaintenceComponent } from './components/employee/do-maintence/do-maintence.component';
+import { DoMaintenceComponent } from './components/employee/pages/do-maintence/do-maintence.component';
 import { MakeBudgetComponent } from './components/employee/pages/make-budget/make-budget.component';
 import { InserirEditarCategoriaComponent } from './components/employee/pages/inserir-editar-categoria/inserir-editar-categoria.component';
 import { ListarCategoriaComponent } from './components/employee/pages/list-categories/list-categories.component';
@@ -42,7 +42,7 @@ export const routes: Routes = [
     {
         path: 'budget',
         component: BudgetComponent,
-        canActivate: [authGuard]
+        canActivate: [authGuard], data: {role: 'customer'}
     },
     {
         path: 'sideBar',
@@ -51,54 +51,57 @@ export const routes: Routes = [
     {
         path: 'newRequest',
         component:NewRequestComponent,
-        canActivate: [authGuard]
+        canActivate: [authGuard], data: {role: 'customer'}
     },
     {
         path: 'viewservice',
         component:ViewServiceComponent,
-        canActivate: [authGuard]
+        canActivate: [authGuard], data: {role: 'customer'}
     },
     {
         path: 'payment',
         component:PaymentComponent,
-        canActivate: [authGuard]
+        canActivate: [authGuard], data: {role: 'customer'}
     },
     {
         path: 'rescue-service',
         component:RescueServiceComponent,
-        canActivate: [authGuard]
+        canActivate: [authGuard], data: {role: 'customer'}
     },
     {
         path: 'make-budget',
         component:MakeBudgetComponent,
-        canActivate: [authGuard]
+        canActivate: [authGuard], data: {role : 'employee'}
     },
     {
         path: 'employee-home',
         component:EmployeeHomeComponent,
-        canActivate: [authGuard]
+        canActivate: [authGuard], data: {role : 'employee'}
     },
     {
         path: 'view-requests',
         component:ViewRequestsComponent,
-        canActivate: [authGuard]
+        canActivate: [authGuard], data: {role : 'employee'}
     },
     {
         path: 'do-maintence',
         component:DoMaintenceComponent,
-        canActivate: [authGuard]
+        canActivate: [authGuard], data: {role : 'employee'}
     },
     {
         path: 'categories',
-        component: ListarCategoriaComponent
+        component: ListarCategoriaComponent,
+        canActivate: [authGuard], data: {role : 'employee'}
     },
     {
         path: 'categories/new',
-        component: InserirEditarCategoriaComponent
+        component: InserirEditarCategoriaComponent,
+        canActivate: [authGuard], data: {role : 'employee'}
     },
     {
         path: 'categories/edit/:id',
-        component: InserirEditarCategoriaComponent
+        component: InserirEditarCategoriaComponent,
+        canActivate: [authGuard], data: {role : 'employee'}
     },
     {
         path: '',
@@ -108,21 +111,21 @@ export const routes: Routes = [
     {
         path: 'relatorios',
         component: RelatoriosComponent,
-        canActivate: [authGuard]
+        canActivate: [authGuard], data: {role : 'employee'}
     },
     {
         path: 'employees',
         component: EmployeesComponent,
-        canActivate: [authGuard]
+        canActivate: [authGuard], data: {role : 'employee'}
     },
     {
         path: 'employees/new',
         component: NewEditEmployeeComponent,
-        canActivate: [authGuard]
+        canActivate: [authGuard], data: {role : 'employee'}
     },
     {
         path: 'employees/new/:id',
         component: NewEditEmployeeComponent,
-        canActivate: [authGuard]
+        canActivate: [authGuard], data: {role : 'employee'}
     },
 ];

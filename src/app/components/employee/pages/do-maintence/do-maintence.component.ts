@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { EmployeeSidebarComponent } from '../employee-sidebar/employee-sidebar.component';
+import { EmployeeSidebarComponent } from '../../employee-sidebar/employee-sidebar.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
