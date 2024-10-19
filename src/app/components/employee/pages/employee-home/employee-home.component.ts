@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import DataTable from 'datatables.net-dt';
 import * as $ from 'jquery';
-import 'datatables.net'; 
-import 'datatables.net-dt'; 
+import 'datatables.net';
+import 'datatables.net-dt';
 import 'datatables.net-responsive';
 
 
@@ -19,7 +19,7 @@ import 'datatables.net-responsive';
 export class EmployeeHomeComponent {
   finalDate: any;
   initialDate: any;
-  
+
     ngAfterViewInit(): void {
       if (!$.fn.dataTable.isDataTable('#tableSolic')) {
         new DataTable('#tableSolic', {
@@ -39,23 +39,23 @@ export class EmployeeHomeComponent {
         });
       }
     }
-  
+
     constructor(private router : Router){ }
-  
+
     doBudget(){
-  
+
     }
     filterInitialDate() {
-  
+
     }
-  
+
     filterFinalDate() {
-  
+
     }
-  
+
     filterToday() {
     }
-  
+
     removeFilters() {
     }
 }

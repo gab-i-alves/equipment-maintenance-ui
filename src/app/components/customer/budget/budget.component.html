@@ -1,15 +1,15 @@
 <app-sidebar [title]="'Orçamento do Serviço'"></app-sidebar>
 
-<div class="page-container d-flex flex-column justify-content-center align-items-center vh-100">
-  <h2 class="title-page mb-4 fw-bold">Detalhes da Solicitação</h2>
+<div *ngIf="request" class="page-container d-flex flex-column justify-content-center align-items-center vh-100">
+  <h2 class="title-page mb-4 fw-bold">Detalhes da Solicitação {{ request.id }}</h2>
 
   <section class="sectionTable container page-container d-flex flex-column justify-content-center align-items-center">
     <div class="tableBox p-3 rounded">
       <div class="details-section">
         <p><strong>Descrição do Equipamento:</strong> Máquina de Lavar</p>
         <p><strong>Categoria do Equipamento:</strong> Eletrodoméstico</p>
-        <p><strong>Descrição do Defeito:</strong> Máquina não esta centrifugando corretamente.</p>
-        <p><strong>Data / Hora da Solicitação:</strong> 12/09/2024  14:36</p>
+        <p><strong>Descrição do Defeito:</strong>{{ request.description }} </p>
+        <p><strong>Data / Hora da Solicitação:</strong> {{ request.date }}</p>
       </div>
 
       <div class="price-section my-4 p-3 bg-light rounded">

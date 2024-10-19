@@ -53,20 +53,19 @@ export class HomeComponent {
     }, 0);
   }
 
-  viewBudget() {
-    this.router.navigate(['/budget']);
+  viewBudget(request: MaintenceRequest) {
+    this.router.navigate(['/budget'], { state: { request: request} });
   }
 
   viewService() {
     this.router.navigate(['/viewservice']);
   }
 
-  rescueService() {
-    console.log("Resgatar Serviço")
-    this.router.navigate(['/rescue-service'])
+  rescueService(request: MaintenceRequest) {
+    this.router.navigate(['/rescue-service'], { state: { request: request} });
   }
 
-  payService() {
-    this.router.navigate(['/payment'])
+  payService(request: MaintenceRequest) {
+    this.router.navigate(['/payment'], { state: { request: request} });
   }
 }
