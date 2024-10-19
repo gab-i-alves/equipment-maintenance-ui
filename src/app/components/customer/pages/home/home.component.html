@@ -25,7 +25,7 @@
               <button *ngSwitchCase="'ORÇADA'" class="btn btn-acao btn-aprovar" (click)="viewBudget()">Aprovar Serviço</button>
               <button *ngSwitchCase="'ORÇADA'" class="btn btn-acao btn-rejeitar" (click)="viewBudget()">Rejeitar Serviço</button>
               <button *ngSwitchCase="'REJEITADA'" class="btn btn-acao btn-resgatar" (click)="rescueService()">Resgatar Serviço</button>
-              <button *ngSwitchCase="'ARRUMADA'" class="btn btn-acao btn-pagar" (click)="payService()">Pagar Serviço</button>
+              <button *ngSwitchCase="'ARRUMADA'" class="btn btn-acao btn-pagar" (click)="payService(request)">Pagar Serviço</button>
             </td>
             <td>
               <button class="btn btn-primary" (click)="viewService()">Visualizar</button>

@@ -1,43 +1,43 @@
 <app-sidebar [title]="'Realizar Pagamento'"></app-sidebar>
 
 
-<div class="page-container d-flex flex-column  justify-content-center  align-items-center ">
-    <h2 class="title-page mt-5 fw-bold "> Detalhes do Pagamento</h2>
+<div *ngIf="request" class="page-container d-flex flex-column  justify-content-center  align-items-center ">
+    <h2 class="title-page mt-5 fw-bold "> Detalhes do Pagamento - Solicitação {{ request.id }}</h2>
     <div class="container-fluid mt-4">
         <ul class="  d-flex flex-row gap-3">
-             <p class=" fw-bold ">Data  Hora da Solicitação :</p> 
-             <p>12/09/2024    14:36</p>
+             <p class=" fw-bold ">Data  Hora da Solicitação :</p>
+             <p>{{ request.date }}</p>
         </ul>
         <ul class="  d-flex flex-row gap-3">
-            <p class="fw-bold">Descrição do Equipamento :</p> 
+            <p class="fw-bold">Descrição do Equipamento :</p>
             <p>Máquina de Lavar</p>
        </ul>
        <ul class="  d-flex flex-row gap-3">
-            <p class="fw-bold">Categoria do equipamento :</p> 
+            <p class="fw-bold">Categoria do equipamento :</p>
             <p>Eletrodoméstico</p>
        </ul>
         <ul class="  d-flex flex-row gap-3">
-            <p class="fw-bold">Descrição do Defeito :</p> 
-            <p>Máquina não esta centrifugando corretamente</p>
+            <p class="fw-bold">Descrição do Defeito :</p>
+            <p>{{ request.description }}</p>
         </ul>
         <ul class="  d-flex flex-row gap-3">
-            <p class="fw-bold">Estado Atual:</p> 
-            <p id="status">Aguardadndo pagamento</p>
-        </ul>   
+            <p class="fw-bold">Estado Atual:</p>
+            <p id="status">{{ request.status }}</p>
+        </ul>
         <hr id="line">
 
         <ul class="d-flex flex-row mt-4 ">
-            <p class="fw-bold ">Valor a Pagar:</p> 
+            <p class="fw-bold ">Valor a Pagar:</p>
             <h3 class=" price fw-bold ">R$450,00</h3>
-            <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"class="btn">CONFIRMA PAGAMENTO</button>
-        </ul>   
+            <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"class="btn" (click)="confirmPayment()">CONFIRMA PAGAMENTO</button>
+        </ul>
         <p class="mt-4 ms-4"> Ao confirmar o pagamento, você receberá uma notificação de confirmação do serviço.</p>
         <button (click)="returnHome()" class="btn-return-box ms-4 mt-2">VOLTAR</button>
     </div>
 </div>
 
 
-  
+
 
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">

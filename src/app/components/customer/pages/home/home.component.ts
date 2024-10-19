@@ -66,7 +66,7 @@ export class HomeComponent {
     this.router.navigate(['/rescue-service'])
   }
 
-  payService() {
-    this.router.navigate(['/payment'])
+  payService(request: MaintenceRequest) {
+    this.router.navigate(['/payment'], { state: { request: request} });
   }
 }
