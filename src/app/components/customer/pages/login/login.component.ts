@@ -27,7 +27,17 @@ export class LoginComponent {
     this.loginConditions = this.AccountService.login(this.email, this.password);
 
     if(!this.loginConditions[0] && !this.loginConditions[1]){
-      this.router.navigate(['/home']);
+
+      if(localStorage.getItem('user') == 'customer'){
+
+        this.router.navigate(['/home']);
+
+      }else{
+
+        this.router.navigate(['/employee-home']);
+        
+      }
+      
     }
 
   }

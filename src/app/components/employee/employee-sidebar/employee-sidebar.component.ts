@@ -41,5 +41,9 @@ export class EmployeeSidebarComponent {
     this.AccountService.logout();
     this.router.navigate(['/login']);
   }
+
+  viewEmployees() {
+    this.router.navigate(['/employees']);
+  }
 }
 

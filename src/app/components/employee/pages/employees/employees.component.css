@@ -1,0 +1,24 @@
+.page-container {
+    font-family: 'Poppins', sans-serif;
+ }
+
+ .tableBox {
+   background-color: #F4F3F3;
+   max-height: 80vh;
+   margin-left: 115px;
+ }
+
+ .title-page {
+   color: #005A9B;
+   margin-top: 25px;
+ }
+
+ #tableSolic thead {
+   background-color: #4682B4;
+   color: white;
+ }
+
+ .custom-modal-header {
+  background-color: #005A9B;
+  color: white;
+}
