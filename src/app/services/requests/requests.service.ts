@@ -58,9 +58,16 @@ export class RequestsService {
       description: 'Notebook com defeito'
     },
     {
-      status: RequestStatus.Finished,
+      status: RequestStatus.Budgeted,
       date: new Date().toLocaleString('pt-BR', {dateStyle: 'short', timeStyle: 'short'}),
       id: 7,
+      userName: 'Davi de Souza',
+      description: 'Notebook com defeito'
+    },
+    {
+      status: RequestStatus.Finished,
+      date: new Date().toLocaleString('pt-BR', {dateStyle: 'short', timeStyle: 'short'}),
+      id: 8,
       userName: 'Thiago Cezar',
       description: 'Notebook com defeito'
     },

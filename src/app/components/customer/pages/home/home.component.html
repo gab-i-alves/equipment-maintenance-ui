@@ -16,55 +16,25 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Solicitação 1</td>
-            <td>14/09/24  12:30</td>
-            <td class="td-descricao">Trocar HD notebook</td>
-            <td class="td-estado-orcado">Orçada</td>
-            <td>
-              <button class="btn btn-acao btn-aprovar" (click)="approveService()">Aprovar Serviço</button>
-              <button class="btn btn-acao btn-rejeitar" (click)="rejectService()">Rejeitar Serviço</button>
-            </td>
-            <td>
-              <button class="btn btn-primary" (click)="viewService()">Visualizar</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Solicitação 2</td>
-            <td>14/09/24  12:30</td>
-            <td class="td-descricao">Trocar HD notebook</td>
-            <td class="td-estado-aprovada">APROVADA</td>
-            <td>
-            </td>
-            <td>
-              <button class="btn btn-primary" (click)="viewService()">Visualizar</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Solicitação 3</td>
-            <td>14/09/24  12:30</td>
-            <td class="td-descricao ">Trocar HD notebook</td>
-            <td class="td-estado-rejeitada">REJEITADA</td>
-            <td>
-              <button class="btn btn-acao btn-resgatar" (click)="rescueService()">Resgatar</button>
-            </td>
-            <td>
-              <button class="btn btn-primary" (click)="viewService()">Visualizar</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Solicitação 4</td>
-            <td>14/09/24  12:30</td>
-            <td class="td-descricao">Trocar HD notebook</td>
-            <td class="td-estado-arrumada">ARRUMADA</td>
-            <td>
-              <button class="btn btn-acao btn-pagar" (click)="payService()">Pagar</button>
+          <tr *ngFor="let request of requests">
+            <td>Solicitação {{ request.id }}</td>
+            <td>{{ request.date }}</td>
+            <td class="td-descricao">{{ request.description }}</td>
+            <td class="td-estado-{{request.status.toLocaleLowerCase()}}">{{ request.status }}</td>
+            <td [ngSwitch]="request.status">
+              <button *ngSwitchCase="'ORÇADA'" class="btn btn-acao btn-aprovar" (click)="viewBudget(request)">Aprovar Serviço</button>
+              <button *ngSwitchCase="'ORÇADA'" class="btn btn-acao btn-rejeitar" (click)="viewBudget(request)">Rejeitar Serviço</button>
+              <button *ngSwitchCase="'REJEITADA'" class="btn btn-acao btn-resgatar" (click)="rescueService(request)">Resgatar Serviço</button>
+              <button *ngSwitchCase="'ARRUMADA'" class="btn btn-acao btn-pagar" (click)="payService(request)">Pagar Serviço</button>
             </td>
             <td>
               <button class="btn btn-primary" (click)="viewService()">Visualizar</button>
             </td>
           </tr>
         </tbody>
+
+
+
       </table>
     </div>
   </section>

@@ -8,8 +8,8 @@
         <p id="dt_fn"> Data Final</p>
     </div>
     <div class="d-flex flex-row ">
-        <input class="form-control" type="date"/>
-        <input   class="form-control" type="date"/>
+        <input class="form-control" type="date" [(ngModel)]="dataInicial"/>
+        <input class="form-control" type="date" [(ngModel)]="dataFinal"/>
     </div>
       <div class=" mt-4">
           <button type="button" class="btn btn-success"  (click)="gerarRelatorioReceitas()">Gerar Relatório</button>
@@ -19,16 +19,8 @@
   <div class="ps-5">
     <h3 id="title">Relatório de Receitas por Categoria em PDF</h3>
     <div class="mt-4 ms-3">
-    <div class=" d-flex flex-row ">
-      <p  id="dt_in">Data Inicial</p>
-      <p id="dt_fn"> Data Final</p>
-  </div>
-  <div class="d-flex flex-row ">
-      <input class="form-control" type="date"/>
-      <input   class="form-control" type="date"/>
-  </div>
     <div class=" mt-4">
-        <button type="button" class="btn btn-success"  (click)="gerarRelatorioReceitas()">Gerar Relatório</button>
+        <button type="button" class="btn btn-success"  (click)="gerarRelatorioReceitasPorCategoria()">Gerar Relatório</button>
     </div>
     <button type="button" class="btn btn-salvar-voltar" (click)="returnHome()">Voltar</button>
   </div>
