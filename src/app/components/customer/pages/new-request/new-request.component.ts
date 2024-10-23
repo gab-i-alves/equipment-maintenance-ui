@@ -1,6 +1,9 @@
 import { Component} from '@angular/core';
+import { Router } from '@angular/router';
 import { SidebarComponent } from "../../sidebar/sidebar.component";
 import { FormsModule } from '@angular/forms';
+import { MaintenceRequest } from '../../../../models/mainteceRequest';
+import { RequestsService } from '../../../../services/requests/requests.service';
 
 @Component({
   selector: 'app-new-request',
@@ -14,12 +17,15 @@ export class NewRequestComponent {
   categoria:number = 1;
   defeito:string = '';
   data:Date = new Date
-  submiting:boolean = false;
+  request: MaintenceRequest | null = null;
+
+  constructor(private router: Router, private RequestsService: RequestsService) {}
 
   newRequestAction(){
-    console.log(this.descEquipamento)
-    console.log(this.categoria)
-    console.log(this.defeito)
-    console.log(this.data)
+    this.RequestsService.addRequest(this.descEquipamento, this.categoria, this.defeito, this.data)
+  }
+
+  returnHome(){
+    this.router.navigate(['/home']);
   }
 }
