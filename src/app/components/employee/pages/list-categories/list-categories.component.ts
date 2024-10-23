@@ -19,13 +19,20 @@ export class ListarCategoriaComponent implements OnInit {
   constructor(private categoriaService: EquipmentCategoryService) {}
 
   ngOnInit(): void {
-    this.categorias = this.categoriaService.listarTodos();
+    // this.categorias = this.categoriaService.listarTodos();
+    
+    this.categorias = [
+      { id: 1, name: 'Notebook' },
+      { id: 2, name: 'Máquina de Lavar' },
+      { id: 3, name: 'Smartphone' }
+    ];
   }
 
   removerCategoria(id: number): void {
     if (confirm('Deseja realmente remover esta categoria?')) {
       this.categoriaService.remover(id);
-      this.categorias = this.categoriaService.listarTodos();
+      // this.categorias = this.categoriaService.listarTodos();
+      this.categorias = this.categorias.filter(categoria => categoria.id !== id);
     }
   }
 }
