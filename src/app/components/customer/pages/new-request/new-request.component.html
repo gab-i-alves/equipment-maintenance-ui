@@ -3,6 +3,7 @@
 <div class="page-container d-flex flex-column justify-content-center align-items-center vh-100">
     
         <section class="sectionTable container">
+            <form #formRequest = "ngForm">
             <div class="tableBox p-3 rounded">
                 <div class="card-body row align-items-center">
 
@@ -28,11 +29,31 @@
                     <input type="text" placeholder="Descreva o defeito ou problema que está ocorrendo ... Max 500 caracteres" name="defeito" class="form-control" required [(ngModel)]="defeito">
                 </div>
             
-                <button [disabled]="submiting" type="submit" class="mt-5 btn btn-primary btn-lg bstyle" (click)="newRequestAction()">Registrar Solicitação</button>
-
+                <button [disabled]="formRequest.form.invalid" type="submit" class="mt-5 btn btn-primary btn-lg bstyle" (click)="newRequestAction()" data-bs-toggle="modal" data-bs-target="#requestCreatedModal">Registrar Solicitação</button>
                 </div>
+            
             </div>
+        </form>
         </section>
+
+
+        <div class="modal fade" id="requestCreatedModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="requestCreatedLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="requestCreatedLabel">SOLICITAÇÃO REALIZADA !</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>A requisição de manutenção do seu equipamento foi criada!</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="returnHome()">OK</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        
         
 
 </div>

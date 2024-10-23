@@ -77,5 +77,18 @@ export class RequestsService {
     return this.requests;
   }
 
+  addRequest( descEquipamento:string, categoria:number, descDefeito:string, data:Date){
+    var req: MaintenceRequest = 
+    {
+      status: RequestStatus.Open,
+      date: data.toLocaleString('pt-BR', {dateStyle: 'short', timeStyle: 'short'}),
+      id: 9,
+      userName: 'Thiago Cezar',
+      description: descEquipamento
+    };
+
+    this.requests.push(req);
+  }
+
   constructor() { }
 }
