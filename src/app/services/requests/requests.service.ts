@@ -71,6 +71,13 @@ export class RequestsService {
       userName: 'Thiago Cezar',
       description: 'Notebook com defeito'
     },
+    {
+      status: RequestStatus.Open,
+      date: new Date().toLocaleString('pt-BR', {dateStyle: 'short', timeStyle: 'short'}),
+      id: 9,
+      userName: 'Ana Beatriz',
+      description: 'Notebook com defeito'
+    },
   ];
 
   getRequests() : MaintenceRequest[] {
@@ -78,7 +85,7 @@ export class RequestsService {
   }
 
   addRequest( descEquipamento:string, categoria:number, descDefeito:string, data:Date){
-    var req: MaintenceRequest = 
+    var req: MaintenceRequest =
     {
       status: RequestStatus.Open,
       date: data.toLocaleString('pt-BR', {dateStyle: 'short', timeStyle: 'short'}),
