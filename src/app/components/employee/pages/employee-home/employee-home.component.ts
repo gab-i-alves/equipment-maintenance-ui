@@ -1,3 +1,4 @@
+import { RequestsService } from './../../../../services/requests/requests.service';
 import { Component } from '@angular/core';
 import { EmployeeSidebarComponent } from "../../employee-sidebar/employee-sidebar.component";
 import { FormsModule } from '@angular/forms';
@@ -7,18 +8,22 @@ import * as $ from 'jquery';
 import 'datatables.net';
 import 'datatables.net-dt';
 import 'datatables.net-responsive';
+import { MaintenceRequest } from '../../../../models/mainteceRequest';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-employee-home',
   standalone: true,
-  imports: [EmployeeSidebarComponent, FormsModule],
+  imports: [EmployeeSidebarComponent, FormsModule, CommonModule],
   templateUrl: './employee-home.component.html',
   styleUrl: './employee-home.component.css'
 })
 export class EmployeeHomeComponent {
   finalDate: any;
   initialDate: any;
+  requests: MaintenceRequest[] = [];
+  openRequests: MaintenceRequest[] = [];
 
     ngAfterViewInit(): void {
       if (!$.fn.dataTable.isDataTable('#tableSolic')) {
@@ -40,7 +45,12 @@ export class EmployeeHomeComponent {
       }
     }
 
-    constructor(private router : Router){ }
+    constructor(private router : Router, private requestsService: RequestsService){ }
+
+    ngOnInit() {
+      this.requests = this.requestsService.getRequests();
+      this.openRequests = this.requests.filter(request => request.status === 'ABERTA');
+    }
 
     doBudget(){
 
