@@ -52,9 +52,10 @@ export class EmployeeHomeComponent {
       this.openRequests = this.requests.filter(request => request.status === 'ABERTA');
     }
 
-    doBudget(){
-
+    doBudget(request: MaintenceRequest) {
+      this.router.navigate(['/make-budget'], { state: { request: request} });
     }
+
     filterInitialDate() {
 
     }
