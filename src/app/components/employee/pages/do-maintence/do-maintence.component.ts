@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { EmployeeSidebarComponent } from '../../employee-sidebar/employee-sidebar.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { MaintenceRequest } from '../../../models/mainteceRequest';
-import { RequestStatus } from '../../../models/enums/requestStatus';
+import { MaintenceRequest } from '../../../../models/mainteceRequest';
+import { RequestStatus } from '../../../../models/enums/requestStatus';
 
 @Component({
   selector: 'app-do-maintence',
