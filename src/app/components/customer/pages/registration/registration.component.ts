@@ -81,6 +81,10 @@ export class RegistrationComponent {
     this.cpf = cpf;
   }
 
+  isNameValid(): boolean {
+    return this.name.trim().split(/\s+/).length >= 2;
+  }
+
   isEmailValid(): boolean {
     return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(this.email);
   }
@@ -93,9 +97,34 @@ export class RegistrationComponent {
     return /^\(\d{2}\)\s?\d{4,5}\-\d{4}$/.test(this.phone);
   }
 
+  onPhoneInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    let phone = input.value.replace(/\D/g, '');
+
+    if (phone.length > 2) phone = `(${phone.slice(0, 2)}) ${phone.slice(2)}`;
+    if (phone.length > 8) phone = `${phone.slice(0, 10)}-${phone.slice(10, 14)}`;
+
+    input.value = phone;
+    this.phone = phone;
+  }
+
+
   isCepValid(): boolean {
     return /^\d{5}\-\d{3}$/.test(this.cep);
   }
+
+  onCepInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    let cep = input.value.replace(/\D/g, '');
+
+    if (cep.length > 5) {
+      cep = `${cep.slice(0, 5)}-${cep.slice(5)}`;
+    }
+
+    input.value = cep;
+    this.cep = cep;
+  }
+
 
   isFormValid(): boolean {
     return (
