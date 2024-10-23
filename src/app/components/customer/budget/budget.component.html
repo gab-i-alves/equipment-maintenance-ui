@@ -1,30 +1,40 @@
 <app-sidebar [title]="'Orçamento do Serviço'"></app-sidebar>
 
 <div *ngIf="request" class="page-container d-flex flex-column justify-content-center align-items-center vh-100">
-  <h2 class="title-page mb-4 fw-bold">Detalhes da Solicitação {{ request.id }}</h2>
+  <h2 class="title-page mt-5 fw-bold">Detalhes da Solicitação {{ request.id }}</h2>
+    <div class="container-fluid mt-4">
+      <ul class="  d-flex flex-row gap-3">
+        <p class=" fw-bold ">Data  Hora da Solicitação :</p>
+        <p>{{ request.date }}</p>
+      </ul>
+      <ul class="  d-flex flex-row gap-3">
+        <p class="fw-bold">Descrição do Equipamento :</p>
+        <p>Máquina de Lavar</p>
+      </ul>
+      <ul class="  d-flex flex-row gap-3">
+        <p class="fw-bold">Categoria do equipamento :</p>
+        <p>Eletrodoméstico</p>
+      </ul>
+      <ul class="  d-flex flex-row gap-3">
+        <p class="fw-bold">Descrição do Defeito :</p>
+        <p>{{ request.description }}</p>
+      </ul>
+      <ul class="  d-flex flex-row gap-3">
+        <p class="fw-bold">Estado Atual:</p>
+        <p id="status">{{ request.status }}</p>
+      </ul>
+      <hr id="line">
 
-  <section class="sectionTable container page-container d-flex flex-column justify-content-center align-items-center">
-    <div class="tableBox p-3 rounded">
-      <div class="details-section">
-        <p><strong>Descrição do Equipamento:</strong> Máquina de Lavar</p>
-        <p><strong>Categoria do Equipamento:</strong> Eletrodoméstico</p>
-        <p><strong>Descrição do Defeito:</strong>{{ request.description }} </p>
-        <p><strong>Data / Hora da Solicitação:</strong> {{ request.date }}</p>
-      </div>
-
-      <div class="price-section my-4 p-3 bg-light rounded">
-        <h4 class="title-page fw-bold">Preço Orçado:</h4>
-        <p class="text-center display-4 fw-bold text-success">R$ 450,00</p>
-      </div>
-
-      <div class="action-buttons d-flex justify-content-around">
-        <button class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#rejectReasonModal">
-          Rejeitar Serviço
-        </button>
-        <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#confirmServiceModal">
-          Aprovar Serviço
-        </button>
-      </div>
+      <ul class="d-flex flex-row mt-4 ">
+        <p class="fw-bold ">Valor a Pagar:</p>
+            <h3 class=" price fw-bold ">R$450,00</h3>
+          <button class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#rejectReasonModal">
+            Rejeitar Serviço
+          </button>
+          <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#confirmServiceModal">
+            Aprovar Serviço
+          </button>
+      </ul>
 
         <!-- Modal de Aprovação -->
         <div class="modal fade" id="confirmServiceModal" tabindex="-1" aria-labelledby="confirmServiceModalLabel" aria-hidden="true">
@@ -110,6 +120,5 @@
         </div>
     </div>
     <button (click)="returnHome()" class="btn-return-box ms-4 mt-2">VOLTAR</button>
-  </section>
 </div>
 

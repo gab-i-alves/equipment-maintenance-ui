@@ -1,3 +1,25 @@
+html, body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #4682B4;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 960px;
+  margin: 20px auto;
+}
+
+
 .col-md-6 {
   padding-left: 15px;
   padding-right: 15px;
@@ -8,7 +30,7 @@
   color: white;
   border: none;
   border-radius: 7px;
-  padding: 0.3rem 2rem 0.3rem 2rem;
+  padding: 0.3rem 2rem;
   font-size: 1.4rem;
 }
 
@@ -17,6 +39,6 @@
   color: white;
   border: none;
   border-radius: 7px;
-  padding: 0.3rem 2rem 0.3rem 2rem;
+  padding: 0.3rem 2rem;
   font-size: 1.4rem;
 }
