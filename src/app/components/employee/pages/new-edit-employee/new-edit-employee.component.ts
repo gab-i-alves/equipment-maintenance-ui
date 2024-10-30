@@ -5,11 +5,12 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { EmployeeService } from '../../../../services/employee/employee.service';
 import { CommonModule } from '@angular/common';
+import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask'
 
 @Component({
   selector: 'app-new-edit-employee',
   standalone: true,
-  imports: [EmployeeSidebarComponent, FormsModule, RouterModule, CommonModule],
+  imports: [EmployeeSidebarComponent, FormsModule, RouterModule, CommonModule, NgxMaskPipe, NgxMaskDirective],
   templateUrl: './new-edit-employee.component.html',
   styleUrl: './new-edit-employee.component.css'
 })
@@ -24,7 +25,7 @@ export class NewEditEmployeeComponent implements OnInit {
 
   ngOnInit(): void {
     let id = +this.route.snapshot.params['id'];
-    console.log(id);
+   
     if(!isNaN(id)){
 
       this.edit = true;
@@ -79,11 +80,11 @@ export class NewEditEmployeeComponent implements OnInit {
 
   dateErrors(date : string){
     const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
-    
+    console.log(date);
     if(!dateRegex.test(date)){
       return true;
     }
-    
+
     let day = parseInt(date.split('/')[0]);
     let month = parseInt(date.split('/')[1]);
     let year = parseInt(date.split('/')[2]);
