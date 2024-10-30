@@ -2,15 +2,15 @@
 <section class="vh-100 ">
 
     <div class="container-fluid row p-0 m-0">
-        
+
         <div class="col-sm-7 px-0">
             <img src="..\..\..\assets\images\manutencao-eletronica-em-equipamentos-prevencao-acidentes.png" class="w-100 vh-100" alt="Responsive image">
         </div>
-    
+
         <div class="col-sm-5 px-5 pt-4 pb-4 d-flex justify-content-center" style="background-color: #4682B4;">
 
             <div class="card bg-white px-5 pt-4 pb-4 m-5 w-100" style="border-radius: 1rem;">
-                
+
                 <div class="card-title mt-5 text-center">
                     <p class="h4 fstyle">Manutenções Eletronicas</p>
                 </div>
@@ -21,14 +21,14 @@
                         <label for="email" class="form-label fstyle"><b>E-mail: </b></label>
                         <input type="text" placeholder="Digite seu email" name="email" class="form-control" required [(ngModel)]="email">
                     </div>
-                    
+
                     <div class="row">
                         <label for="password" class="form-label fstyle"><b>Senha: </b></label>
-                        <input type="password" placeholder="Digite seu senha" name="senha" class="form-control" required [(ngModel)]="password">
+                        <input type="password" placeholder="Digite seu senha" name="senha" class="form-control" required [(ngModel)]="password" (keyup.enter)="loginAction()">
                     </div>
-                
+
                     <button [disabled]="submiting" type="submit" class="mt-5 btn btn-primary btn-lg bstyle" (click)="loginAction()">Entrar</button>
-                    
+
                     <div class="alert alert-danger mt-5" *ngIf="loginConditions[1]">
                         <p class="h6 text-center">Email ou senha incorretos</p>
                         <p class="mb-0 text-center ">Verifique se seus dados estão corretos</p>
@@ -45,9 +45,9 @@
 
                 </div>
 
-                
+
 
             </div>
-        </div> 
+        </div>
     </div>
 </section>
