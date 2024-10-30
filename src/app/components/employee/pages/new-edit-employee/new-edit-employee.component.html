@@ -24,8 +24,10 @@
           <label for="date">Data de Nascimento</label>
           <input
             id="date"
-            type="string"
+            type="text"
             class="form-control"
+            mask="00/00/0000" 
+            [dropSpecialCharacters]="false"
             [(ngModel)]="employee.birthDate"
             name="date"
             required

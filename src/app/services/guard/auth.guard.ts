@@ -8,10 +8,6 @@ export const authGuard: CanActivateFn = (route, state) => {
   const localData = localStorage.getItem('user');
 
   const role : string = route.data['role'];
-
-  console.log(role);
-
-  console.log(localData);
   
   if(localData == role){
     return true;
