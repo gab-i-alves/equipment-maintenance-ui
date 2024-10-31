@@ -12,7 +12,7 @@ import { AccountService } from '../../../services/account/account.service';
   styleUrl: './employee-sidebar.component.css'
 })
 export class EmployeeSidebarComponent {
-  @Input() title: string = 'Bem-Vindo, User X';  
+  @Input() title: string = 'Bem-Vindo, User X';
   faUser = faUser;
   faHistory = faHistory;
   faSignOutAlt = faSignOutAlt;
@@ -44,6 +44,10 @@ export class EmployeeSidebarComponent {
 
   viewEmployees() {
     this.router.navigate(['/employees']);
+  }
+
+  viewCategories() {
+    this.router.navigate(['/categories']);
   }
 }
 
