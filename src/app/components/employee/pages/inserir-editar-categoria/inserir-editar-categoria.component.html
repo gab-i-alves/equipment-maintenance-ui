@@ -5,7 +5,7 @@
 
     <div class="edit-category-container">
       <h1>{{ editMode ? 'Editar Categoria' : 'Nova Categoria' }}</h1>
-      
+
       <form (ngSubmit)="salvarCategoria()">
         <div class="form-group">
           <label for="name">Nome da Categoria</label>
@@ -18,11 +18,11 @@
           required
           />
         </div>
-        
+
         <button type="submit" class="btn btn-success">{{ editMode ? 'Salvar Alterações' : 'Adicionar Categoria' }}</button>
-        <a routerLink="/categorias" class="btn btn-secondary mt-2">Cancelar</a>
+        <a [routerLink]="['/categories']" class="btn btn-secondary mt-2">Cancelar</a>
       </form>
     </div>
-    
+
   </body>
   </html>

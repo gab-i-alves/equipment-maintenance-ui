@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { EquipmentCategory } from '../../../../models/equipment-category/equipment-category.model';
 import { EquipmentCategoryService } from '../../../../services/equipment-category/equipment-category.service';
 import { FormsModule } from '@angular/forms';
@@ -8,7 +8,7 @@ import { EmployeeSidebarComponent } from '../../employee-sidebar/employee-sideba
 @Component({
   selector: 'app-inserir-editar-categoria',
   standalone: true,
-  imports: [EmployeeSidebarComponent, FormsModule],
+  imports: [EmployeeSidebarComponent, FormsModule, RouterModule],
   templateUrl: './inserir-editar-categoria.component.html',
   styleUrl: './inserir-editar-categoria.component.css'
 })
@@ -37,6 +37,6 @@ export class InserirEditarCategoriaComponent implements OnInit {
     } else {
       this.categoriaService.inserir(this.categoria);
     }
-    this.router.navigate(['/categorias']);
+    this.router.navigate(['/categories']);
   }
 }
