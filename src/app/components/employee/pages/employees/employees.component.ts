@@ -21,7 +21,7 @@ export class EmployeesComponent implements OnInit {
 
   Funcionarios : Employee[] = [];
 
-  selectedId! : number 
+  selectedId! : number
 
   constructor(private employeeService : EmployeeService) {}
 
@@ -35,11 +35,12 @@ export class EmployeesComponent implements OnInit {
         new DataTable('#tableSolic', {
           responsive: true,
           paging: true,
+          pageLength: 7,
+          lengthChange: false,
           searching: false,
           info: false,
           language: {
             processing: "Processando...",
-            lengthMenu: "Mostrar _MENU_ registros",
             zeroRecords: "Nenhum registro encontrado",
             info: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
             infoEmpty: "Mostrando 0 até 0 de 0 registros",
@@ -53,7 +54,7 @@ export class EmployeesComponent implements OnInit {
 
   removerFuncionario() {
     this.employeeService.remover(this.selectedId);
-    this.Funcionarios = this.employeeService.listarTodos();  
+    this.Funcionarios = this.employeeService.listarTodos();
   }
 
   openRemoveModal(id: number) {

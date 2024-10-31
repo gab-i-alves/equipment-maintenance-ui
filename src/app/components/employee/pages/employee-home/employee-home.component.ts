@@ -25,16 +25,18 @@ export class EmployeeHomeComponent {
   requests: MaintenceRequest[] = [];
   openRequests: MaintenceRequest[] = [];
 
-    ngAfterViewInit(): void {
+  ngAfterViewInit(): void {
+    setTimeout(() => {
       if (!$.fn.dataTable.isDataTable('#tableSolic')) {
         new DataTable('#tableSolic', {
           responsive: true,
           paging: true,
+          pageLength: 7,
+          lengthChange: false,
           searching: false,
           info: false,
           language: {
             processing: "Processando...",
-            lengthMenu: "Mostrar _MENU_ registros",
             zeroRecords: "Nenhum registro encontrado",
             info: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
             infoEmpty: "Mostrando 0 até 0 de 0 registros",
@@ -43,7 +45,8 @@ export class EmployeeHomeComponent {
           }
         });
       }
-    }
+    }, 0);
+  }
 
     constructor(private router : Router, private requestsService: RequestsService){ }
 

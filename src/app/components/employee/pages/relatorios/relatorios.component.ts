@@ -17,24 +17,24 @@ import { Route } from '@angular/router';
 export class RelatoriosComponent {
   dataInicial!: string;
   dataFinal!: string;
-  
+
   constructor(private router: Router) {}
   returnHome(){
     this.router.navigate(['/view-requests']);
 }
   // dps tem que pegar os dados do back-end
   vendas = [
-      { data: '2024-10-01', valor: 100, categoria:"Notebook"},
-      { data: '2024-10-01', valor: 200, categoria:"Desktop" },
-      { data: '2024-10-02', valor: 300, categoria:"Teclado" },
-      { data: '2024-10-03', valor: 50, categoria:"Mouse" },
-      { data: '2024-10-04', valor: 170, categoria:"Teclado" },
-      { data: '2024-10-06', valor: 400, categoria:"Impressora" }
+      { data: '01-10-2024', valor: 100, categoria:"Notebook"},
+      { data: '02-10-2024', valor: 200, categoria:"Desktop" },
+      { data: '03-10-2024', valor: 300, categoria:"Teclado" },
+      { data: '04-10-2024', valor: 50, categoria:"Mouse" },
+      { data: '05-10-2024', valor: 170, categoria:"Teclado" },
+      { data: '06-10-2024', valor: 400, categoria:"Impressora" }
   ];
 
   gerarRelatorioReceitas() {
     if (this.dataInicial === undefined){
-      this.dataInicial = '2024-09-02'; //data fictícia de abertura da empresa 
+      this.dataInicial = '2024-09-02'; //data fictícia de abertura da empresa
     }
     if (this.dataFinal === undefined){
       this.dataFinal = new Date().toString();
@@ -42,7 +42,7 @@ export class RelatoriosComponent {
 
     const dataFin = (new Date(this.dataFinal)).toLocaleDateString();
     const dataInic = (new Date(this.dataInicial)).toLocaleDateString();
- 
+
     const vendasAgrupadas: any = {};
 
     this.vendas.forEach(venda => {
@@ -76,7 +76,7 @@ export class RelatoriosComponent {
   gerarRelatorioReceitasPorCategoria() {
     const dataInic = (new Date('2024-09-02')).toLocaleDateString();
     const dataFin = (new Date).toLocaleDateString();
- 
+
     const vendasAgrupadas: any = {};
 
     this.vendas.forEach(venda => {
