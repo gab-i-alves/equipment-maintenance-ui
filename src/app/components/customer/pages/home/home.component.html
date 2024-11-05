@@ -4,25 +4,28 @@
   <h2 class="title-page mb-4 fw-bold">Suas Solicitações</h2>
   <section class="sectionTable container">
     <div class="tableBox p-3 rounded">
+      <!-- <pre>{{ requestSolicitacao | json }}</pre> -->
+
       <table id="tableSolic" class="display">
         <thead>
           <tr>
             <th>Solicitação</th>
-            <th>Data/Hora</th>
-            <th>Descrição do Equipamento</th>
+             <th>Data/Hora</th> 
+           <th>Descrição do Equipamento</th>
             <th>Estado</th>
-            <th>Acões Disponíveis</th>
+            <th>Acões Disponíveis</th> 
             <th>Visualizar</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let request of requests">
-            <td>Solicitação {{ request.id }}</td>
-            <td>{{ request.date }}</td>
-            <td class="td-descricao">{{ request.description }}</td>
-            <td class="td-estado-{{request.status.toLocaleLowerCase()}}">{{ request.status }}</td>
-            <td [ngSwitch]="request.status">
-              <button *ngSwitchCase="'ORÇADA'" class="btn btn-acao btn-aprovar" (click)="viewBudget(request)">Aprovar Serviço</button>
+          
+          <tr *ngFor="let request of requestSolicitacao">
+            <td>{{ request.id}}</td>
+             <td>{{ request.dataHoraCriacao |  date: 'dd/MM/yyyy HH:mm'}}</td> 
+             <td class="td-descricao">{{ request.descricaoEquipamento }}</td>
+            <td class="td-estado-{{request.estadoSolicitacao.descricao}}">{{ request.estadoSolicitacao.descricao }}</td>
+            <td [ngSwitch]="request.estadoSolicitacao.descricao">
+            <button *ngSwitchCase="'ORÇADA'" class="btn btn-acao btn-aprovar" (click)="viewBudget(request)">Aprovar Serviço</button>
               <button *ngSwitchCase="'ORÇADA'" class="btn btn-acao btn-rejeitar" (click)="viewBudget(request)">Rejeitar Serviço</button>
               <button *ngSwitchCase="'REJEITADA'" class="btn btn-acao btn-resgatar" (click)="rescueService(request)">Resgatar Serviço</button>
               <button *ngSwitchCase="'ARRUMADA'" class="btn btn-acao btn-pagar" (click)="payService(request)">Pagar Serviço</button>
@@ -32,9 +35,6 @@
             </td>
           </tr>
         </tbody>
-
-
-
       </table>
     </div>
   </section>
