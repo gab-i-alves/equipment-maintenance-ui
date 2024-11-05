@@ -13,6 +13,11 @@
   margin-top: 25px;
 }
 
+#tableSolic {
+  height: 20vh;
+  overflow: auto;
+}
+
 #tableSolic thead {
   background-color: #4682B4;
   color: white;
