@@ -12,6 +12,7 @@ import 'datatables.net-responsive';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RequestsService } from '../../../../services/requests/requests.service';
+import { SolictacaoRequest } from '../../../../models/solicitacaoRequest';
 
 @Component({
   selector: 'app-view-requests',
@@ -23,15 +24,16 @@ import { RequestsService } from '../../../../services/requests/requests.service'
 export class ViewRequestsComponent {
 
   requests: MaintenceRequest[] = [];
+ 
   selectedRequest: MaintenceRequest | null = null;
   finalDate: any;
   initialDate: any;
 
   constructor(private router : Router, private requestService: RequestsService){ }
 
-  // ngOnInit(){
-  //   this.requests = this.requestService.getRequests();
-  // }
+  ngOnInit(){
+    this.requests = this.requestService.getRequests();
+  }
 
   ngAfterViewInit(): void {
     setTimeout(() => {

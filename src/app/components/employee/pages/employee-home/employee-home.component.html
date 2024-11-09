@@ -24,8 +24,8 @@
         <table id="tableSolic" class="display">
           <thead>
             <tr>
-              <th>Data/Hora</th>
               <th>Solicitação</th>
+              <th>Data/Hora</th>
               <th>Cliente</th>
               <th>Descrição do Equipamento</th>
               <th>Estado</th>
@@ -33,12 +33,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let request of openRequests">
-              <td>{{ request.date }}</td>
+            <tr *ngFor="let request of requestSolicitacao ">
               <td>Solicitação {{ request.id }}</td>
-              <td>{{ request.userName }}</td>
-              <td class="td-descricao">{{ request.description }}</td>
-              <td class="td-estado-aberta">{{ request.status }}</td>
+              <td>{{ request.dataHoraCriacao |  date: 'dd/MM/yyyy HH:mm'}}</td>
+              <td>{{ request.cliente.nome }}</td>
+              <td class="td-descricao">{{ request.descricaoEquipamento }}</td>
+              <td class="td-estado-aberta">{{ request.estadoSolicitacao.descricao }}</td>
               <td>
                 <button class="btn btn-acao btn-orcar" (click)="doBudget(request)">Realizar Orçamento</button>
               </td>
