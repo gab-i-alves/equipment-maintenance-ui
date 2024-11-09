@@ -12,6 +12,8 @@ export class RequestsService {
   private requests: MaintenceRequest[] = []
 
   BASE_URL = 'http://localhost:8080/api/solicitacoes';
+  BASE_URL_SOLICITACAO = 'http://localhost:8080/api/solicitacoes/estado/aberta';
+  
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -22,6 +24,10 @@ export class RequestsService {
 
   getSolicitacoes(): Observable<any> {
     return this.http.get<any>(`${this.BASE_URL}`, this.httpOptions);
+  }
+  getSolicitacoesAberta(): Observable<any> {
+    console.log('Esta funcionando!')
+    return this.http.get<any>(`${this.BASE_URL_SOLICITACAO}`, this.httpOptions);
   }
 
   // private requests: MaintenceRequest[] = [

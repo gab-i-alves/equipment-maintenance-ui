@@ -31,18 +31,18 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let request of requests">
-              <td>{{ request.date }}</td>
+            <tr *ngFor="let request of  requests">
+              <td>{{ request.date}}</td>
               <td>Solicitação {{ request.id }}</td>
-              <td>{{ request.userName }}</td>
-              <td class="td-descricao">{{ request.description }}</td>
-              <td class="td-estado-{{request.status.toLocaleLowerCase()}}">{{ request.status }}</td>
-              <td [ngSwitch]="request.status">
-                <button *ngSwitchCase="'ABERTA'" class="btn btn-acao btn-orcar" (click)="doBudget(request)">Realizar Orçamento</button>
+              <td>{{ request.userName}}</td>
+              <td class="td-descricao">{{ request.description}}</td>
+              <td class="td-estado-{{request.description}}">{{ request.description }}</td>
+              <td [ngSwitch]="request.description">
+                 <button *ngSwitchCase="'ABERTA'" class="btn btn-acao btn-orcar" (click)="doBudget(request)">Realizar Orçamento</button>
                 <button *ngSwitchCase="'APROVADA'" class="btn btn-acao btn-manutencao" (click)="doMaintence(request)">Realizar Manutenção</button>
                 <button *ngSwitchCase="'REDIRECIONADA'" class="btn btn-acao btn-manutencao" (click)="doMaintence(request)">Realizar Manutenção</button>
-                <button *ngSwitchCase="'PAGA'" class="btn btn-acao btn-finalizar" data-bs-toggle="modal" data-bs-target="#endMaintence" (click)="openFinalizationModal(request)">Finalizar Manutenção</button>
-              </td>
+                <button *ngSwitchCase="'PAGA'" class="btn btn-acao btn-finalizar" data-bs-toggle="modal" data-bs-target="#endMaintence" (click)="openFinalizationModal(request)">Finalizar Manutenção</button> -->
+              </td> 
             </tr>
           </tbody>
         </table>
