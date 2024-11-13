@@ -1,6 +1,6 @@
 import { RequestStatus } from "./enums/requestStatus";
 
-export interface SolictacaoRequest{
+export interface SolicitacaoRequest{
 
     estadoSolicitacao: estadoSolicitacao,
     dataHoraCriacao: Date,

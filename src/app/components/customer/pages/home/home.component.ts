@@ -12,7 +12,7 @@ import { MaintenceRequest } from '../../../../models/mainteceRequest';
 import { RequestStatus } from '../../../../models/enums/requestStatus';
 import { RequestsService } from '../../../../services/requests/requests.service';
 import { FormsModule } from '@angular/forms';
-import { SolictacaoRequest } from '../../../../models/solicitacaoRequest';
+import { SolicitacaoRequest } from '../../../../models/solicitacaoRequest';
 import { NgxMaskPipe } from 'ngx-mask';
 
 @Component({
@@ -24,7 +24,7 @@ import { NgxMaskPipe } from 'ngx-mask';
 })
 export class HomeComponent implements OnInit, AfterViewInit {
 
-  requestSolicitacao: SolictacaoRequest[] = []
+  requestSolicitacao: SolicitacaoRequest[] = []
   requests: MaintenceRequest[] = [];
   selectedRequest: MaintenceRequest | null = null;
   dataTable: any;
@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngOnInit(){
      this.requestService.getSolicitacoes().subscribe(
-      (data: SolictacaoRequest[]) => {
+      (data: SolicitacaoRequest[]) => {
         
         this.requestSolicitacao = data;
         console.log(this.requestSolicitacao)
@@ -53,8 +53,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   initializeDataTable() {
-
-  
     this.dataTable = new DataTable('#tableSolic', {
       responsive: true,
       paging: true,
@@ -73,7 +71,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     });
   }
 
-  viewBudget(request: SolictacaoRequest) {
+  viewBudget(request: SolicitacaoRequest) {
     this.router.navigate(['/budget'], { state: { request: request} });
   }
 
@@ -81,11 +79,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/viewservice']);
   }
 
-  rescueService(request: SolictacaoRequest) {
+  rescueService(request: SolicitacaoRequest) {
     this.router.navigate(['/rescue-service'], { state: { request: request} });
   }
 
-  payService(request: SolictacaoRequest) {
+  payService(request: SolicitacaoRequest) {
     this.router.navigate(['/payment'], { state: { request: request} });
   }
 }
