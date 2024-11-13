@@ -4,11 +4,12 @@ import { provideRouter, RouterOutlet } from '@angular/router';
 import { LoginComponent } from './components/customer/pages/login/login.component';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { routes } from './app.routes';
+import { HttpClientModule, provideHttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, LoginComponent],
+  imports: [CommonModule, RouterOutlet, LoginComponent, HttpClientModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
@@ -17,5 +18,5 @@ export class AppComponent {
 }
 
 bootstrapApplication(AppComponent, {
-  providers: [provideRouter(routes)],
+  providers: [provideRouter(routes), provideHttpClient()],
 });
