@@ -12,7 +12,7 @@ import 'datatables.net-responsive';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RequestsService } from '../../../../services/requests/requests.service';
-import { SolictacaoRequest } from '../../../../models/solicitacaoRequest';
+import { SolicitacaoRequest } from '../../../../models/solicitacaoRequest';
 
 @Component({
   selector: 'app-view-requests',

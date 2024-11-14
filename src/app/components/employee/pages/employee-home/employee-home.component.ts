@@ -10,7 +10,7 @@ import 'datatables.net-dt';
 import 'datatables.net-responsive';
 import { MaintenceRequest } from '../../../../models/mainteceRequest';
 import { CommonModule } from '@angular/common';
-import { SolictacaoRequest } from '../../../../models/solicitacaoRequest';
+import { SolicitacaoRequest } from '../../../../models/solicitacaoRequest';
 import { RequestsService } from './../../../../services/requests/requests.service';
 import { NgxMaskPipe } from 'ngx-mask';
 
@@ -26,8 +26,8 @@ export class EmployeeHomeComponent {
   finalDate: any;
   initialDate: any;
   requests: MaintenceRequest[] = [];
-  requestSolicitacao: SolictacaoRequest[] = []
-  openRequests: SolictacaoRequest[] = [];
+  requestSolicitacao: SolicitacaoRequest[] = []
+  openRequests: SolicitacaoRequest[] = [];
   dataTable: any;
   
   constructor(private router : Router, private requestsService: RequestsService){ }
@@ -35,7 +35,7 @@ export class EmployeeHomeComponent {
   ngOnInit() {
     console.log('ngOnInit chamado');
     this.requestsService.getSolicitacoesAberta().subscribe(
-      (data: SolictacaoRequest[]) => {
+      (data: SolicitacaoRequest[]) => {
         this.requestSolicitacao = data;
      
         console.log("Solicitações abertas:", this.requestSolicitacao);
@@ -79,7 +79,7 @@ export class EmployeeHomeComponent {
     //   this.openRequests = this.requests.filter(request => request.status === 'ABERTA');
     // }
 
-    doBudget(request: SolictacaoRequest) {
+    doBudget(request: SolicitacaoRequest) {
       this.router.navigate(['/make-budget'], { state: { request: request} });
     }
 
