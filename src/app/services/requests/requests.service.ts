@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { MaintenceRequest } from '../../models/mainteceRequest';
 import { RequestStatus } from '../../models/enums/requestStatus';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { catchError, map, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -120,5 +120,9 @@ export class RequestsService {
     this.requests.push(req);
   }
 
-
+  insert(request: MaintenceRequest): Observable<MaintenceRequest|null> {
+    return this.http.post<MaintenceRequest>(this.BASE_URL,
+      JSON.stringify(request),
+      this.httpOptions);
+  };
 }

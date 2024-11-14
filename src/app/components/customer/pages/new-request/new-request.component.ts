@@ -4,6 +4,7 @@ import { SidebarComponent } from "../../sidebar/sidebar.component";
 import { FormsModule } from '@angular/forms';
 import { MaintenceRequest } from '../../../../models/mainteceRequest';
 import { RequestsService } from '../../../../services/requests/requests.service';
+import { RequestStatus } from '../../../../models/enums/requestStatus';
 
 @Component({
   selector: 'app-new-request',
@@ -22,7 +23,16 @@ export class NewRequestComponent {
   constructor(private router: Router, private RequestsService: RequestsService) {}
 
   newRequestAction(){
-    this.RequestsService.addRequest(this.descEquipamento, this.categoria, this.defeito, this.data)
+    var novaRequisicao: MaintenceRequest =
+    {
+      status: RequestStatus.Open,
+      date: this.data.toLocaleString('pt-BR', {dateStyle: 'short', timeStyle: 'short'}),
+      id: 9,
+      userName: 'Thiago Cezar',
+      description: this.descEquipamento
+    };
+
+    console.log(this.RequestsService.insert(novaRequisicao))
   }
 
   returnHome(){
