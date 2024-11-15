@@ -1,33 +1,61 @@
 <app-sidebar [title]="'Orçamento do Serviço'"></app-sidebar>
 
-<div *ngIf="request" class="page-container d-flex flex-column justify-content-center align-items-center vh-100">
-  <h2 class="title-page mt-5 fw-bold">Detalhes da Solicitação {{ request.id }}</h2>
+<div *ngIf="budget" class="page-container d-flex flex-column justify-content-center align-items-center vh-100">
+  <h2 class="title-page mt-5 fw-bold">Detalhes da Solicitação {{ budget.idOrcamento }}</h2>
     <div class="container-fluid mt-4">
-      <ul class="  d-flex flex-row gap-3">
+      <ul class="  d-flex flex-row gap-1">
         <p class=" fw-bold ">Data  Hora da Solicitação :</p>
-        <p>{{ request.date }}</p>
+        <p>{{ budget.solicitacao.dataHoraCriacao | date: 'dd/MM/yyyy HH:mm'}}</p>
       </ul>
-      <ul class="  d-flex flex-row gap-3">
+      <ul class="  d-flex flex-row gap-1">
         <p class="fw-bold">Descrição do Equipamento :</p>
-        <p>Máquina de Lavar</p>
+        <p>{{ budget.solicitacao.descricaoEquipamento }}</p>
+        <ul class="  d-flex flex-row gap-1">
+          <p class="fw-bold">Categoria do equipamento :</p>
+          <p>{{budget.solicitacao.categoriaEquipamento.descricao}}</p>
+        </ul>
+        <ul class="  d-flex flex-row gap-1">
+          <p class="fw-bold">Descrição do Defeito :</p>
+          <p>{{ budget.solicitacao.descricaoDefeito }}</p>
+        </ul>
       </ul>
-      <ul class="  d-flex flex-row gap-3">
-        <p class="fw-bold">Categoria do equipamento :</p>
-        <p>Eletrodoméstico</p>
+   
+   
+      <ul class="  d-flex flex-row gap-1">
+        <p class="fw-bold">Estado Atual da Solicitação:</p>
+        <p>{{ budget.solicitacao.estadoSolicitacao.descricao }}</p>
+        <ul class="  d-flex flex-row gap-1">
+          <p class="fw-bold">Data/Hora do Orçamento:</p>
+          <p>{{ budget.dataHoraCriacao | date: 'dd/MM/yyyy HH:mm' }}</p>
+        </ul>
+        <ul class=" d-flex flex-row gap-1">
+          <p class="fw-bold">Orçamento Realizado por:</p>
+          <p>{{ budget.nomeFuncionario }}</p>
+        </ul>
       </ul>
-      <ul class="  d-flex flex-row gap-3">
-        <p class="fw-bold">Descrição do Defeito :</p>
-        <p>{{ request.description }}</p>
+
+      <ul class="  d-flex flex-row gap-1">
+        <p class="fw-bold">Estado Atual Orçamento:</p>
+        <p *ngIf="!budget.aprovado && !budget.rejeitado">AGUARDANDO RESPOSTA DO CLIENTE</p>
+        <p *ngIf="budget.aprovado">APROVADO</p>
+        <p *ngIf="budget.rejeitado">REJEITADO</p>
+
+        <ul *ngIf="budget.aprovado" class="d-flex flex-row gap-1">
+          <p class="fw-bold">Data/Hora da Aprovação do Orçamento:</p>
+          <p>{{ budget.dataHoraAprovacao | date: 'dd/MM/yyyy HH:mm' }}</p>
+        </ul>
+
+        <ul *ngIf="budget.rejeitado" class="d-flex flex-row gap-1">
+          <p class="fw-bold">Data/Hora da Rejeição do Orçamento:</p>
+          <p>{{ budget.dataHoraRejeicao | date: 'dd/MM/yyyy HH:mm' }}</p>
+        </ul>
       </ul>
-      <ul class="  d-flex flex-row gap-3">
-        <p class="fw-bold">Estado Atual:</p>
-        <p id="status">{{ request.status }}</p>
-      </ul>
+     
       <hr id="line">
 
       <ul class="d-flex flex-row mt-4 ">
         <p class="fw-bold ">Valor a Pagar:</p>
-            <h3 class=" price fw-bold ">R$450,00</h3>
+            <h3 class=" price fw-bold ">{{budget.valorOrcamento}}</h3>
           <button class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#rejectReasonModal">
             Rejeitar Serviço
           </button>
@@ -45,14 +73,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                  Você realmente deseja aprovar o serviço no valor de R$450,00?
+                  Você realmente deseja aprovar o serviço no valor de {{budget.valorOrcamento}}?
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                  Cancelar
-                </button>
+              <div class="modal-footer d-flex justify-content-between">
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#approveServiceModal" (click)="approveService()">
                   Confirmar aprovação
+                </button>
+                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  Cancelar
                 </button>
               </div>
             </div>
@@ -80,7 +108,7 @@
         <div class="modal fade" id="rejectReasonModal" tabindex="-1" aria-labelledby="rejectReasonModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-              <div class="modal-header custom-modal-header">
+              <div class="modal-header modal-header-reject custom-modal-header">
                 <h5 class="modal-title" id="rejectReasonModalLabel">ATENÇÃO!</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
@@ -91,11 +119,11 @@
               </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                  Cancelar
-                </button>
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#rejectConfirmModal" (click)="rejectService()">
                   Confirmar Rejeição
+                </button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  Cancelar
                 </button>
               </div>
             </div>
@@ -119,6 +147,5 @@
           </div>
         </div>
     </div>
-    <button (click)="returnHome()" class="btn-return-box ms-4 mt-2">VOLTAR</button>
 </div>
 

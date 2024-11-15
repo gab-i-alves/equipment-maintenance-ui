@@ -10,9 +10,7 @@ export interface SolicitacaoRequest{
     descricaoDefeito: string,
     motivoRejeicao:String,
     descricaoEquipamento:String
-    
-    
-   
+    categoriaEquipamento:CategoriaEquipamento
 }
 
 interface Cliente{
@@ -39,4 +37,9 @@ interface estadoSolicitacao{
     descricao: String,
     id: Number,
 
+}
+
+interface CategoriaEquipamento {
+    id: String,
+    descricao: String
 }
