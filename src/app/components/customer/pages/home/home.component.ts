@@ -72,7 +72,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   viewBudget(request: SolicitacaoRequest) {
-    this.router.navigate(['/budget'], { state: { request: request} });
+    this.router.navigate(['/budget', request.id], { state: { request: request} });
   }
 
   viewService() {

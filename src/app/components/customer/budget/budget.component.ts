@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { SidebarComponent } from "../sidebar/sidebar.component";
 import { FormsModule } from '@angular/forms';
 import { MaintenceRequest } from '../../../models/mainteceRequest';
 import { RequestStatus } from '../../../models/enums/requestStatus';
+import { BudgetRequest } from '../../../models/budgetRequest';
+import { BudgetService } from '../../../services/budget/budget.service';
 
 @Component({
   selector: 'app-budget',
@@ -16,18 +18,19 @@ import { RequestStatus } from '../../../models/enums/requestStatus';
 export class BudgetComponent implements OnInit {
   request: MaintenceRequest | null = null;
   rejectReason: any;
+  budget: BudgetRequest | undefined;
 
-  constructor(private router : Router) {}
+  constructor(private router : Router, private route: ActivatedRoute, private budgetService: BudgetService) {}
 
   ngOnInit(): void {
     const navigation = this.router.lastSuccessfulNavigation;
-    console.log("Navegação recebida:", navigation);
-    if (navigation?.extras.state) {
-      this.request = navigation.extras.state['request'];
-      console.log("Dados da solicitação:", this.request);
-    } else {
-      console.error("Nenhuma solicitação recebida.");
-    }
+    const idSolicitacao = +this.route.snapshot.params['id']
+   
+    this.budgetService.getOrcamentoBySolicitacaoId(idSolicitacao).subscribe(
+      (data: BudgetRequest) => {
+        this.budget = data;
+      }
+    )
   }
 
   // Method to handle service rejection
