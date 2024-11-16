@@ -11,6 +11,8 @@ export interface SolicitacaoRequest{
     motivoRejeicao:String,
     descricaoEquipamento:String
     categoriaEquipamento:CategoriaEquipamento
+  
+
 }
 
 interface Cliente{

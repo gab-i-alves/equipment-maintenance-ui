@@ -20,7 +20,7 @@
         </ul>
       </ul>
    
-   
+  
       <ul class="  d-flex flex-row gap-1">
         <p class="fw-bold">Estado Atual da Solicitação:</p>
         <p>{{ budget.solicitacao.estadoSolicitacao.descricao }}</p>
@@ -30,7 +30,7 @@
         </ul>
         <ul class=" d-flex flex-row gap-1">
           <p class="fw-bold">Orçamento Realizado por:</p>
-          <p>{{ budget.nomeFuncionario }}</p>
+          <p>{{budget.idFuncionario}}</p>
         </ul>
       </ul>
 
@@ -115,7 +115,7 @@
               <div class="modal-body">
                 <div class="row">
                   <label for="rejectReason" class="form-label fstyle"><b>Descreva o motivo da rejeição: </b></label>
-                  <input type="text" placeholder="Escreva o motivo da rejeição ..." name="rejectReason" class="form-control" required [(ngModel)]="rejectReason">
+                  <input type="text" [(ngModel)]="rejectReason" id="rejectReason" placeholder="Escreva o motivo da rejeição ..." name="rejectReason" class="form-control" required [(ngModel)]="rejectReason">
               </div>
               </div>
               <div class="modal-footer">
