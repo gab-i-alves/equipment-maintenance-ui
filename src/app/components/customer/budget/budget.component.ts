@@ -7,6 +7,7 @@ import { MaintenceRequest } from '../../../models/mainteceRequest';
 import { RequestStatus } from '../../../models/enums/requestStatus';
 import { BudgetRequest } from '../../../models/budgetRequest';
 import { BudgetService } from '../../../services/budget/budget.service';
+import { SolicitacaoRequest } from '../../../models/solicitacaoRequest';
 
 @Component({
   selector: 'app-budget',
@@ -18,8 +19,8 @@ import { BudgetService } from '../../../services/budget/budget.service';
 export class BudgetComponent implements OnInit {
   request: MaintenceRequest | null = null;
   rejectReason: any;
-  budget: BudgetRequest | undefined;
-
+  budget: BudgetRequest | null = null
+  requestSolicitacao: SolicitacaoRequest | null = null
   constructor(private router : Router, private route: ActivatedRoute, private budgetService: BudgetService) {}
 
   ngOnInit(): void {
@@ -33,18 +34,33 @@ export class BudgetComponent implements OnInit {
     )
   }
 
+
   // Method to handle service rejection
   rejectService() {
-    if (this.request) {
-      this.request.status = RequestStatus.Rejected;
+    if (this.budget != null) {
+      this.budgetService.rejeitarOrcamento(this.budget.idOrcamento, this.rejectReason).subscribe(
+        () => {
+          console.log("Orçamento rejeitado com sucesso!");
+      
+        },
+        (error) => {
+          console.error("Erro ao rejeitar o orçamento:", error);
+        }
+      );
     }
-    //this.service.rejectReason = this.rejectReason
-    //this.service.rejectBudget()
   }
 
   approveService(): void {
-    if (this.request) {
-      this.request.status = RequestStatus.Approved;
+    if (this.budget != null) {
+      this.budgetService.aprovarOrcamento(this.budget?.idOrcamento).subscribe(
+        (responce) => {
+          console.log("Orçamento Aprovado com Sucesso");
+        
+        },
+        (error) => {
+          console.error("Erro ao aprovar o orçamento:", error);
+        }
+      )
     }
   }
 
