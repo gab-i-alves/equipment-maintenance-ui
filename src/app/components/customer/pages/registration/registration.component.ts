@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ViacepService } from '../../../../services/viacep/viacep.service';
 import { Endereco } from '../../../../models/viacepResult';
+import { Registration } from '../../../../models/registration/registration';
+import { RegistrationService } from '../../../../services/registration/registration.service';
 
 @Component({
   selector: 'app-registration',
@@ -25,9 +27,10 @@ export class RegistrationComponent {
   number: string = '';
   complement: string = '';
   submiting: boolean = false;
+  bairro: string = '';
   estados: string[] = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'];
 
-  constructor(private viacepService: ViacepService, private router : Router) {}
+  constructor(private viacepService: ViacepService, private router : Router, private registrationService: RegistrationService) {}
 
   buscarEndereco(): void {
     if(this.cep) {
@@ -63,6 +66,8 @@ export class RegistrationComponent {
         numero: this.number,
         complemento: this.complement
       });
+      let registro = new Registration(this.name, this.email, this.cpf, this.phone, true, {id: "1", descricao: "Cliente"},
+         {estado: this.state, cidade: this.city, logradouro: this.logradouro, complemento: this.complement, bairro: this.bairro, cep: this.cep, numero: this.number});
     } else {
       console.log('Formulário com erros');
     }
