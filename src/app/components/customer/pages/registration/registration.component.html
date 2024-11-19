@@ -82,6 +82,12 @@
                     </div>
                   </div>
 
+                  <div class="mb-3">
+                    <label for="bairro" class="form-label">Bairro</label>
+                    <input type="text" class="form-control" id="bairro" placeholder="Bairro" [(ngModel)]="bairro" name="Bairro" required>
+                    <div *ngIf="!bairro && registrationForm.submitted" class="text-danger">Bairro é obrigatório.</div>
+                  </div>
+
                   <!-- Logradouro -->
                   <div class="mb-3">
                     <label for="logradouro" class="form-label">Logradouro</label>
@@ -94,7 +100,7 @@
                     <div class="col-md-6">
                       <div class="mb-3">
                         <label for="number" class="form-label">Número</label>
-                        <input type="number" class="form-control" id="number" placeholder="31" [(ngModel)]="number" name="number" required>
+                        <input type="string" class="form-control" id="number" placeholder="31" [(ngModel)]="number" name="number" required>
                         <div *ngIf="!number && registrationForm.submitted" class="text-danger">Número é obrigatório.</div>
                       </div>
                     </div>
@@ -115,7 +121,7 @@
                   <button type="button" (click)="returnHome()" class="btn-return-box w-100">Voltar</button>
                 </div>
                 <div class="col">
-                  <button type="submit" (click)="returnHome()" class="btn btn-primary w-100 btn-custom" [disabled]="submiting">Cadastrar</button>
+                  <button type="submit" (click)="onSubmit()" class="btn btn-primary w-100 btn-custom" [disabled]="submiting">Cadastrar</button>
                 </div>
               </div>
 
