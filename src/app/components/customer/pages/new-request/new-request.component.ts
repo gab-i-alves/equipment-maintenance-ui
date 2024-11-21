@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { MaintenceRequest } from '../../../../models/mainteceRequest';
 import { RequestsService } from '../../../../services/requests/requests.service';
 import { RequestStatus } from '../../../../models/enums/requestStatus';
+import { CategoriaEquipamento, Cliente, Endereco, estadoSolicitacao, SolicitacaoRequest, tipoPerfil } from '../../../../models/solicitacaoRequest';
 
 @Component({
   selector: 'app-new-request',
@@ -23,14 +24,57 @@ export class NewRequestComponent {
   constructor(private router: Router, private RequestsService: RequestsService) {}
 
   newRequestAction(){
-    var novaRequisicao: MaintenceRequest =
+    var estado:estadoSolicitacao = {
+      descricao: '',
+      id: this.categoria,
+    }
+    var endereco:Endereco = {
+      cep: 'String',
+      bairro: 'String',
+      cidade: 'String',
+      complemento: 'String',
+      estado: 'String',
+      id: 0,
+      lagradouro: 'String',
+      numero: 0
+    }
+
+    var tipo:tipoPerfil = {
+      id: 1,
+      descricao: 'String'
+    }
+
+    var cliente:Cliente = {
+      ativo: true,
+      nome: 'jao',
+      dataCriacao: this.data.toISOString(),
+      email: '',
+      endereco: endereco,
+      senha: 'String',
+      tipoPerfil: tipo
+    }
+
+    var categoriaEq:CategoriaEquipamento = {
+      id: '1',
+      descricao: 'String'
+    }
+
+
+
+    var novaRequisicao: SolicitacaoRequest =
     {
-      status: RequestStatus.Open,
-      date: this.data.toLocaleString('pt-BR', {dateStyle: 'short', timeStyle: 'short'}),
-      id: 9,
-      userName: 'Thiago Cezar',
-      description: this.descEquipamento
+      estadoSolicitacao: estado,
+      dataHoraCriacao: this.data,
+      id: 0,
+      descricao: '',
+      cliente: cliente,
+      descricaoDefeito: this.defeito,
+      motivoRejeicao: '',
+      descricaoEquipamento: this.descEquipamento,
+      categoriaEquipamento: categoriaEq
     };
+
+    this.RequestsService.insert(novaRequisicao).subscribe();
 
     console.log(this.RequestsService.insert(novaRequisicao))
   }

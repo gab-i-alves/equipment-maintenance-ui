@@ -15,17 +15,17 @@ export interface SolicitacaoRequest{
 
 }
 
-interface Cliente{
+export interface Cliente{
     ativo: Boolean,
     nome: String,
     dataCriacao: String,
     email: String
     endereco: Endereco,
     senha: String,
-    tipoPerfil: String
+    tipoPerfil: tipoPerfil
 }
 
-interface Endereco{
+export interface Endereco{
     cep: String,
     bairro: String,
     cidade: String,
@@ -35,13 +35,18 @@ interface Endereco{
     lagradouro: String,
     numero: Number
 }
-interface estadoSolicitacao{
+export interface estadoSolicitacao{
     descricao: String,
     id: Number,
 
 }
 
-interface CategoriaEquipamento {
+export interface CategoriaEquipamento {
     id: String,
+    descricao: String
+}
+
+export interface tipoPerfil {
+    id: number,
     descricao: String
 }
