@@ -54,20 +54,32 @@ export class RegistrationComponent {
   onSubmit() {
     this.submiting = true;
     if (this.isFormValid()){
-      console.log('Formulário submetido com dados: ', {
-        nome: this.name,
-        email: this.email,
-        cpf:this.cpf,
-        telefone: this.phone,
-        cep: this.cep,
-        estado: this.state,
-        cidade: this.city,
-        logradouro: this.logradouro,
-        numero: this.number,
-        complemento: this.complement
-      });
-      let registro = new Registration(this.name, this.email, this.cpf, this.phone, true, {id: "1", descricao: "Cliente"},
-         {estado: this.state, cidade: this.city, logradouro: this.logradouro, complemento: this.complement, bairro: this.bairro, cep: this.cep, numero: this.number});
+      const registro = new Registration(
+        this.name,
+        this.phone,
+        this.email,
+        this.cpf,
+        true,
+        { id: "1", descricao: "Cliente" },
+        {
+          estado: this.state,
+          cidade: this.city,
+          bairro: this.bairro,
+          logradouro: this.logradouro,
+          complemento: this.complement,
+          cep: this.cep,
+          numero: this.number
+        }
+      );
+      this.registrationService.insert(registro).subscribe(
+        (response: Registration | null) => {
+          console.log('Registro inserido com sucesso:', response);
+        },
+        (error) => {
+          console.error('Erro ao inserir registro:', error);
+        }
+      );
+
     } else {
       console.log('Formulário com erros');
     }
