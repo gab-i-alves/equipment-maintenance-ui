@@ -71,19 +71,22 @@ export class RegistrationComponent {
           numero: this.number
         }
       );
+      console.log("INSERT");
       this.registrationService.insert(registro).subscribe(
         (response: Registration | null) => {
           console.log('Registro inserido com sucesso:', response);
+          this.submiting = false;
         },
         (error) => {
           console.error('Erro ao inserir registro:', error);
+          this.submiting = false;
         }
       );
 
     } else {
       console.log('Formulário com erros');
+      this.submiting = false;
     }
-    this.submiting = false;
   }
 
   onCpfInput(event: Event): void {
