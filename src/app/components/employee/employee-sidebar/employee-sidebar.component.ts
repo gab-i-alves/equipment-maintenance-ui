@@ -2,7 +2,7 @@ import { Component, Input} from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faUser, faHistory, faSignOutAlt , faFileCirclePlus, faHouse, faBars, faBell, faBook, faFilePdf} from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
-import { AccountService } from '../../../services/account/account.service';
+import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-employee-sidebar',
@@ -23,7 +23,7 @@ export class EmployeeSidebarComponent {
   faBook = faBook;
   faFilePdf = faFilePdf;
 
-  constructor(private router: Router, private AccountService: AccountService){ }
+  constructor(private router: Router, private authService: AuthService){ }
 
   homeAction(){
     this.router.navigate(['/employee-home']);
@@ -38,7 +38,7 @@ export class EmployeeSidebarComponent {
   }
 
   outAction(){
-    this.AccountService.logout();
+    this.authService.logout();
     this.router.navigate(['/login']);
   }
 
