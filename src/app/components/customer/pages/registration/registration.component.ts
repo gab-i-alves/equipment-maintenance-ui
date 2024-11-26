@@ -83,6 +83,9 @@ export class RegistrationComponent {
         }
       );
 
+      alert("Registro realizado com sucesso. A senha de acesso foi enviada ao e-mail cadastrado!")
+      this.router.navigate(["/login"]);
+
     } else {
       console.log('Formulário com erros');
       this.submiting = false;
