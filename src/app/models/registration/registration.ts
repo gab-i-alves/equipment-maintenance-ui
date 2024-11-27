@@ -2,9 +2,9 @@ export class Registration {
     
     constructor(
        private nome : string,
+       private telefone: string,
        private email : string,
        private cpf: string,
-       private telefone: string,
        private ativo : boolean = true,
        private tipoPerfil: {
         id : string,

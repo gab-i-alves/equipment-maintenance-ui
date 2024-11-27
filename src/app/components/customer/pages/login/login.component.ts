@@ -1,9 +1,11 @@
-import { AccountService } from './../../../../services/account/account.service';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { LoginService } from '../../../../services/login/login.service';
+import { Login } from '../../../../models/login/login';
+import { AuthService } from '../../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,35 +16,45 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 })
 export class LoginComponent {
 
-  email:string = '';
-  password:string = '';
-  submiting:boolean = false;
-
+  email: string = '';
+  password: string = '';
+  submiting: boolean = false;
   loginConditions: [boolean, boolean] = [false, false]; //[Campos não preenchidos, Login incorreto]
 
-  constructor(private router: Router, private AccountService: AccountService, private http: HttpClient) {}
+  constructor(
+    private router: Router,
+    private loginService: LoginService,
+    private authService: AuthService
+  ) {}
 
-  loginAction(){
+  loginAction() {
+    this.loginConditions[0] = this.email === '' || this.password === '';
+    if (this.loginConditions[0]) return;
 
-    this.loginConditions = this.AccountService.login(this.email, this.password);
-
-    if(!this.loginConditions[0] && !this.loginConditions[1]){
-
-      if(localStorage.getItem('user') == 'customer'){
-
-        this.router.navigate(['/home']);
-
-      }else{
-
-        this.router.navigate(['/employee-home']);
-        
-      }
-      
-    }
-
+    this.loginService.login(new Login(this.email, this.password)).subscribe(
+      (response: any) => this.handleLoginResponse(response),
+      (error) => console.error('Erro no login:', error)
+    );
   }
 
-  createAcount(){
+  handleLoginResponse(response: any) {
+    if (response == null) {
+      this.loginConditions[1] = true;
+      return;
+    }
+
+    const perfil = response.tipoPerfil.descricao;
+    this.authService.login(response.id, perfil);
+    this.loginConditions[1] = false;
+    
+    if (perfil === 'Cliente') {
+      this.router.navigate(['/home']);
+    } else {
+      this.router.navigate(['/employee-home']);
+    }
+  }
+
+  createAcount() {
     this.router.navigate(['/registration']);
   }
 }
