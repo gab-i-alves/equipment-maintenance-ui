@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { provideRouter, RouterOutlet } from '@angular/router';
-import { LoginComponent } from './components/customer/pages/login/login.component';
+import { LoginComponent } from './components/login/login.component';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { routes } from './app.routes';
 import { HttpClientModule, provideHttpClient} from '@angular/common/http';

@@ -1,3 +1,4 @@
+import { Customer } from "./customer/customer";
 import { RequestStatus } from "./enums/requestStatus";
 
 export interface SolicitacaoRequest{
@@ -6,7 +7,7 @@ export interface SolicitacaoRequest{
     dataHoraCriacao: Date,
     id: number,
     descricao:String,
-    cliente: Cliente,
+    cliente: Customer,
     descricaoDefeito: string,
     motivoRejeicao:String,
     descricaoEquipamento:String
@@ -15,26 +16,6 @@ export interface SolicitacaoRequest{
 
 }
 
-export interface Cliente{
-    ativo: Boolean,
-    nome: String,
-    dataCriacao: String,
-    email: String
-    endereco: Endereco,
-    senha: String,
-    tipoPerfil: tipoPerfil
-}
-
-export interface Endereco{
-    cep: String,
-    bairro: String,
-    cidade: String,
-    complemento: String,
-    estado: String,
-    id: Number,
-    lagradouro: String,
-    numero: Number
-}
 export interface estadoSolicitacao{
     descricao: String,
     id: Number,
@@ -43,10 +24,5 @@ export interface estadoSolicitacao{
 
 export interface CategoriaEquipamento {
     id: String,
-    descricao: String
-}
-
-export interface tipoPerfil {
-    id: number,
     descricao: String
 }

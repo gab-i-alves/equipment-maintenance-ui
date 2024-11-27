@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Registration } from '../../models/registration/registration';
+import { Customer } from '../../models/customer/customer';
 import { Observable, catchError, map, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 
@@ -18,11 +18,11 @@ export class RegistrationService {
 
   constructor(private http: HttpClient) { }
 
-  insert(user: Registration): Observable<Registration | null>  {
-    return this.http.post<Registration>(this.BASE_URL,
+  insert(user: Customer): Observable<Customer | null>  {
+    return this.http.post<Customer>(this.BASE_URL,
       JSON.stringify(user),
       this.httpOptions).pipe(
-        map((resp: HttpResponse<Registration> ) => {
+        map((resp: HttpResponse<Customer> ) => {
         if (resp != null){
           console.log(resp.body);
           return resp.body;

@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ViacepService } from '../../../../services/viacep/viacep.service';
 import { Endereco } from '../../../../models/viacepResult';
-import { Registration } from '../../../../models/registration/registration';
+import { Customer } from '../../../../models/customer/customer';
 import { RegistrationService } from '../../../../services/registration/registration.service';
 
 @Component({
@@ -54,7 +54,8 @@ export class RegistrationComponent {
   onSubmit() {
     this.submiting = true;
     if (this.isFormValid()){
-      const registro = new Registration(
+      const registro = new Customer(
+        "",
         this.name,
         this.phone,
         this.email,
@@ -71,9 +72,9 @@ export class RegistrationComponent {
           numero: this.number
         }
       );
-      console.log("INSERT");
+
       this.registrationService.insert(registro).subscribe(
-        (response: Registration | null) => {
+        (response: Customer | null) => {
           console.log('Registro inserido com sucesso:', response);
           this.submiting = false;
         },

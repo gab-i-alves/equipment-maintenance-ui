@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { LoginService } from '../../../../services/login/login.service';
-import { Login } from '../../../../models/login/login';
-import { AuthService } from '../../../../services/auth/auth.service';
+import { LoginService } from '../../services/login/login.service';
+import { Login } from '../../models/login/login';
+import { AuthService } from '../../services/auth/auth.service';
+import { Customer } from '../../models/customer/customer';
 
 @Component({
   selector: 'app-login',
@@ -44,12 +45,17 @@ export class LoginComponent {
     }
 
     const perfil = response.tipoPerfil.descricao;
-    this.authService.login(response.id, perfil);
+    
     this.loginConditions[1] = false;
     
     if (perfil === 'Cliente') {
+      const cliente : Customer = response;
+      console.log(perfil);
+      this.authService.login(cliente);
       this.router.navigate(['/home']);
     } else {
+      //const funcionario : Employee = response;
+      //this.authService.login(funcionario);
       this.router.navigate(['/employee-home']);
     }
   }

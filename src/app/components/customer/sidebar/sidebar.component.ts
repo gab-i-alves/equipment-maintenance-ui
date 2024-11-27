@@ -21,8 +21,12 @@ export class SidebarComponent {
   faHouse = faHouse;
   faBars = faBars;
   faBell = faBell;
-
+  userName = "";
   constructor(private router: Router, private authService: AuthService){}
+
+  ngOnInit(): void{
+    this.userName = this.authService.getCurrentCustomer().nome;
+  }
 
   outAction(){
     this.authService.logout();

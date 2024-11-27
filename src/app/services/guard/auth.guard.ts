@@ -7,9 +7,9 @@ export const authGuard: CanActivateFn = (route, state) => {
 
   const localData = JSON.parse(localStorage.getItem('currentUser') || '{}');
 
-  const role : string = route.data['role'];
+  const userRole : string = localData.tipoPerfil.descricao;
   
-  if(localData.tipoPerfil == role){
+  if(userRole == route.data['role']){
     return true;
   }
 
