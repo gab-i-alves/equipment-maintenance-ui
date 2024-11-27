@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './components/customer/sidebar/sidebar.component';
 import { authGuard } from './services/guard/auth.guard';
-import { LoginComponent } from './components/customer/pages/login/login.component';
+import { LoginComponent } from './components/login/login.component';
 import { BudgetComponent } from './components/customer/budget/budget.component';
 import { NewRequestComponent } from './components/customer/pages/new-request/new-request.component';
 import { RegistrationComponent } from './components/customer/pages/registration/registration.component';

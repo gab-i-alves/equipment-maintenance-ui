@@ -32,7 +32,7 @@ export class ViewRequestsComponent {
   constructor(private router : Router, private requestService: RequestsService){ }
 
   ngOnInit(){
-    this.requests = this.requestService.getRequests();
+    
   }
 
   ngAfterViewInit(): void {

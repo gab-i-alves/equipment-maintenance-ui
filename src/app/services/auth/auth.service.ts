@@ -1,25 +1,33 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Login } from '../../models/login/login';
+import { Customer } from '../../models/customer/customer';
+import { Employee } from '../../models/employee/employee';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  public currentUser: { userId: string; tipoPerfil: string; } | null;
+  public currentUser: Customer | Employee | null;
 
   constructor() {
-    this.currentUser = { userId: '', tipoPerfil: '' };
+    this.currentUser = null;
   }
 
-  public get currentUserValue(){
-    return this.currentUser;
+  public getCurrentCustomer(){
+    const user: Customer = JSON.parse(localStorage.getItem('currentUser') || '{}')
+    return user;
   }
 
-  login(userId:string, tipoPerfil:string) {
-    this.currentUser = {userId, tipoPerfil};
-    localStorage.setItem('currentUser', JSON.stringify({userId, tipoPerfil}));
+  public getCurrentEmployee(){
+    const user: Employee = JSON.parse(localStorage.getItem('currentUser') || '{}')
+    return user;
+  }
+
+  login(user: Customer | Employee ) {
+    this.currentUser = user;
+    localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
   }
 
   logout() {
