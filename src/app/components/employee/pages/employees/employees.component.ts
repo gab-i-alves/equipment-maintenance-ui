@@ -19,14 +19,14 @@ import 'datatables.net-responsive';
 })
 export class EmployeesComponent implements OnInit {
 
-  Funcionarios : Employee[] = [];
+  Employees : Employee[] = [];
 
   selectedId! : number
 
   constructor(private employeeService : EmployeeService) {}
 
   ngOnInit(): void {
-    this.Funcionarios = this.employeeService.listarTodos();
+    this.listarTodos();
   }
 
   ngAfterViewInit(): void {
@@ -49,15 +49,33 @@ export class EmployeesComponent implements OnInit {
           }
         });
       }
-    }, 0);
+    }, 100);
   }
 
   removerFuncionario() {
-    this.employeeService.remover(this.selectedId);
-    this.Funcionarios = this.employeeService.listarTodos();
+    this.employeeService.remover(this.selectedId).subscribe({
+      complete: () => { this.listarTodos(); },
+      error: (err) =>{
+        console.log(err.status + " // " + err.message);
+      }
+    });
   }
 
   openRemoveModal(id: number) {
     this.selectedId = id;
   }
+
+  listarTodos() {
+    this.employeeService.listarTodos().subscribe({
+      next: (data: Employee[] | null) => {
+        if(data != null){
+          this.Employees = data.filter(e => e.ativo == true);
+        }
+      },
+      error: (err) => {
+        console.log(err.status + " // " + err.message);
+      }
+    })
+  }
+
 }

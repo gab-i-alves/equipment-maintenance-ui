@@ -16,14 +16,14 @@
                 </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let func of Funcionarios">
-                <td>{{ func.id }}</td>
-                <td>{{ func.name }}</td>
-                <td>{{ func.email }}</td>
-                <td>{{func.birthDate}}</td>
+            <tr *ngFor="let emp of Employees">
+                <td>{{ emp.id }}</td>
+                <td>{{ emp.nome }}</td>
+                <td>{{ emp.email }}</td>
+                <td>{{emp.dataNascimento}}</td>
                 <td>
-                    <button class="btn btn-info" [routerLink]="['/employees/new', func.id]">Editar</button>
-                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#removeEmployee" (click)="openRemoveModal(func.id)">Remover</button>
+                    <button class="btn btn-info" [routerLink]="['/employees/new', emp.id]">Editar</button>
+                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#removeEmployee" (click)="openRemoveModal(emp.id)">Remover</button>
                 </td>
                 </tr>
           </tbody>

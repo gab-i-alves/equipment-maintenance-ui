@@ -10,43 +10,56 @@ import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask'
 @Component({
   selector: 'app-new-edit-employee',
   standalone: true,
-  imports: [EmployeeSidebarComponent, FormsModule, RouterModule, CommonModule, NgxMaskPipe, NgxMaskDirective],
+  imports: [EmployeeSidebarComponent, FormsModule, RouterModule, CommonModule, NgxMaskDirective],
   templateUrl: './new-edit-employee.component.html',
   styleUrl: './new-edit-employee.component.css'
 })
 export class NewEditEmployeeComponent implements OnInit {
 
-  employee: Employee = new Employee(0, "", "", "", "");
+  employee: Employee = new Employee(0, "", "", "", "", true);
   edit = false;
   errorEmpty = false;
   errorDate = false;
+  errorMessage = "";
 
   constructor(private route : ActivatedRoute, private employeeService : EmployeeService, private router : Router){}
 
   ngOnInit(): void {
     let id = +this.route.snapshot.params['id'];
-   
+    console.log(id);
     if(!isNaN(id)){
-
       this.edit = true;
-      let resultadoDaBusca = this.employeeService.buscarPorId(id);
-
-      if(resultadoDaBusca != undefined){
-        this.employee = resultadoDaBusca;
-        console.log(this.employee);
+      const employee = this.buscarPorId(id);
+      console.log(" e " + employee);
+      if (employee != null) {
+        this.employee = employee;
       }
     }
   }
 
   save(){
-    
     if(!this.hasErrors()){
+      console.log(this.employee);
       if(this.edit){
-        this.employeeService.atualizar(this.employee);
-      }else{
-        let total = this.employeeService.listarTodos().length;
-        this.employee.id = total + 1;
-        this.employeeService.inserir(this.employee);        
+        this.employeeService.atualizar(this.employee).subscribe({
+          next: () => {
+            this.router.navigate(['/employees']);
+          },
+          error: (err) => {
+            console.log(err.status + " // " + err.error);
+            this.errorMessage = err.error;
+          }
+        });
+            } else {
+        this.employeeService.inserir(this.employee).subscribe({
+          next: () => {
+            this.router.navigate(['/employees']);
+          },
+          error: (err) => {
+            console.log(err.status + " // " + err.error);
+            this.errorMessage = err.error;
+          }
+        });
       }
       this.router.navigate(['/employees']);
     }
@@ -59,7 +72,7 @@ export class NewEditEmployeeComponent implements OnInit {
       return true;
     }
     this.errorEmpty = false;
-    if(this.dateErrors(this.employee.birthDate)){
+    if(this.dateErrors(this.employee.dataNascimento)){
       this.errorDate = true;
       return true;
     }
@@ -102,5 +115,18 @@ export class NewEditEmployeeComponent implements OnInit {
     }
 
     return false;
+  }
+
+  buscarPorId(id: number): void {
+    this.employeeService.buscarPorId(id).subscribe({
+      next: (data: Employee | null) => {
+        if (data != null) {
+          this.employee = data;
+        }
+      },
+      error: (err) => {
+        console.log(err.status + " // " + err.message);
+      }
+    });
   }
 }

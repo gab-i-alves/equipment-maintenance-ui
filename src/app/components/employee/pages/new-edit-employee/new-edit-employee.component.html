@@ -8,7 +8,7 @@
             id="name"
             type="text"
             class="form-control"
-            [(ngModel)]="employee.name"
+            [(ngModel)]="employee.nome"
             name="name"
             required
           />
@@ -28,16 +28,26 @@
             class="form-control"
             mask="00/00/0000" 
             [dropSpecialCharacters]="false"
-            [(ngModel)]="employee.birthDate"
+            [(ngModel)]="employee.dataNascimento"
             name="date"
             required
           />
+          <div *ngIf="!edit"><label for="password">Senha</label>
+            <input
+              id="password"
+              type="password"
+              class="form-control" 
+              [(ngModel)]="employee.senha"
+              name="password"
+              required
+            />
+          </div>
         </div>
         <div class="text-danger">
           <div *ngIf="errorDate">A data informada não é valida! </div>
           <div *ngIf="errorEmpty">Preencha todos os campos corretamente! </div>
       </div>
-        <button type="submit" class="btn btn-success" (click)="save()">Salvar</button>
+        <button type="submit" class="btn btn-success mt-4" (click)="save()">Salvar</button>
         <a [routerLink]="['/employees']" class="btn btn-secondary mt-2">Cancelar</a>
   </div>
 </div>

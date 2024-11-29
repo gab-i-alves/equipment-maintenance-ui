@@ -7,6 +7,7 @@ import { LoginService } from '../../services/login/login.service';
 import { Login } from '../../models/login/login';
 import { AuthService } from '../../services/auth/auth.service';
 import { Customer } from '../../models/customer/customer';
+import { Employee } from '../../models/employee/employee';
 
 @Component({
   selector: 'app-login',
@@ -45,17 +46,15 @@ export class LoginComponent {
     }
 
     const perfil = response.tipoPerfil.descricao;
-    
     this.loginConditions[1] = false;
     
     if (perfil === 'Cliente') {
       const cliente : Customer = response;
-      console.log(perfil);
       this.authService.login(cliente);
       this.router.navigate(['/home']);
     } else {
-      //const funcionario : Employee = response;
-      //this.authService.login(funcionario);
+      const funcionario : Employee = response;
+      this.authService.login(funcionario);
       this.router.navigate(['/employee-home']);
     }
   }
