@@ -35,7 +35,7 @@ export class EmployeeHomeComponent {
 
   ngOnInit() {
     const employee = this.authService.getCurrentEmployee();
-    this.requestsService.getSolicitacoesPorId(String(employee.id)).subscribe(
+    this.requestsService.getSolicitacoesAberta().subscribe(
       (data: SolicitacaoRequest[]) => {
         this.requestSolicitacao = data;
      

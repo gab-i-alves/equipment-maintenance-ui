@@ -39,4 +39,10 @@ export class RequestsService {
       JSON.stringify(request),
       this.httpOptions);
   };
+
+  updateSolicitacao(request: SolicitacaoRequest): Observable<SolicitacaoRequest|null>{
+    return this.http.put<SolicitacaoRequest>(this.BASE_URL,
+      JSON.stringify(request),
+      this.httpOptions);
+  }
 }
