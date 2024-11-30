@@ -24,13 +24,21 @@ export class RequestsService {
   getSolicitacoes(): Observable<any> {
     return this.http.get<any>(`${this.BASE_URL}`, this.httpOptions);
   }
+
+  getSolicitacaoPorId(id: string): Observable<any> {
+    return this.http.get<any>(`${this.BASE_URL}/${id}`, this.httpOptions);
+  }
   
   getSolicitacoesAberta(): Observable<any> {
     return this.http.get<any>(`${this.BASE_URL_SOLICITACAO}`, this.httpOptions);
   }
 
-  getSolicitacoesPorId(id: string): Observable<any> {
+  getSolicitacoesPorIdCliente(id: string): Observable<any> {
     return this.http.get<any>(`${this.BASE_URL}/cliente/${id}`, this.httpOptions)
+  }
+
+  getSolicitacoesPorIdFuncionario(id: string): Observable<any> {
+    return this.http.get<any>(`${this.BASE_URL}/funcionario/${id}`, this.httpOptions)
   }
 
 

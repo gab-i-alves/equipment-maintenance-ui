@@ -44,6 +44,7 @@ export class MakeBudgetComponent implements OnInit {
 
     if (this.request) {
       this.request.estadoSolicitacao = {id: 2, descricao: 'ORÇADA'}
+      this.request.funcionarioManutencao = user;
 
       this.RequestsService.updateSolicitacao(this.request).subscribe();
 
