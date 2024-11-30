@@ -31,11 +31,10 @@ export class EmployeeHomeComponent {
   openRequests: SolicitacaoRequest[] = [];
   dataTable: any;
   
-  constructor(private router : Router, private requestsService: RequestsService, private authService: AuthService){ }
+  constructor(private router : Router, private requestsService: RequestsService){ }
 
   ngOnInit() {
-    const employee = this.authService.getCurrentEmployee();
-    this.requestsService.getSolicitacoesPorId(String(employee.id)).subscribe(
+    this.requestsService.getSolicitacoesAberta().subscribe(
       (data: SolicitacaoRequest[]) => {
         this.requestSolicitacao = data;
      

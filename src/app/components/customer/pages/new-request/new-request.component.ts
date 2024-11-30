@@ -50,7 +50,8 @@ export class NewRequestComponent {
       descricaoDefeito: this.defeito,
       motivoRejeicao: '',
       descricaoEquipamento: this.descEquipamento,
-      categoriaEquipamento: categoriaEq
+      categoriaEquipamento: categoriaEq,
+      funcionarioManutencao: null
     };
 
     this.RequestsService.insert(novaRequisicao).subscribe();

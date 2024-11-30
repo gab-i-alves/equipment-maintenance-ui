@@ -24,19 +24,25 @@ export class BudgetService {
 
   constructor(private http: HttpClient) { }
 
- getOrcamentoBySolicitacaoId(idSolic: number): Observable<BudgetRequest> {
+  getOrcamentoBySolicitacaoId(idSolic: number): Observable<BudgetRequest> {
   return this.http.get<any>(`${this.BASE_URL_ORCAMENTO_BY_SOLICTACAO_ID}/${idSolic}`, this.httpOptions);
-}
+  }
+
+  insert(budget: BudgetRequest): Observable<BudgetRequest|null> {
+    return this.http.post<BudgetRequest>(this.BASE_URL,
+      JSON.stringify(budget),
+      this.httpOptions);
+  };
 
 
-aprovarOrcamento(id : Number): Observable<any>{
-  return this.http.put<any>(`${this.BASE_URL_APROVAR}/${id}`, {});
-  
-}
-rejeitarOrcamento(id : Number , rejectReason: string): Observable<any>{
-  return this.http.put<any>(`${this.BASE_URL_REJEITAR}/${id}`, {motivoRejeicao : rejectReason});
-  
-}
+  aprovarOrcamento(id : Number): Observable<any>{
+    return this.http.put<any>(`${this.BASE_URL_APROVAR}/${id}`, {});
+    
+  }
+  rejeitarOrcamento(id : Number , rejectReason: string): Observable<any>{
+    return this.http.put<any>(`${this.BASE_URL_REJEITAR}/${id}`, {motivoRejeicao : rejectReason});
+    
+  }
 
 
 }

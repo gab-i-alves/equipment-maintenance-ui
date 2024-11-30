@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RequestsService } from '../../../../services/requests/requests.service';
 import { SolicitacaoRequest } from '../../../../models/solicitacaoRequest';
+import { AuthService } from '../../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-view-requests',
@@ -23,59 +24,93 @@ import { SolicitacaoRequest } from '../../../../models/solicitacaoRequest';
 })
 export class ViewRequestsComponent {
 
-  requests: MaintenceRequest[] = [];
- 
-  selectedRequest: MaintenceRequest | null = null;
+  requests: SolicitacaoRequest[] = [];
+  dataTable: any;
+
+  selectedRequest: SolicitacaoRequest | null = null;
   finalDate: any;
   initialDate: any;
 
-  constructor(private router : Router, private requestService: RequestsService){ }
+  constructor(private router : Router, private requestService: RequestsService, private authService: AuthService){ }
 
   ngOnInit(){
-    
+    const employee = this.authService.getCurrentEmployee();
+    this.requestService.getSolicitacoesPorIdFuncionario(String(employee.id)).subscribe(
+      (data: SolicitacaoRequest[]) => {
+        this.requests = data;
+     
+        console.log("Solicitações abertas:", this.requests);
+        setTimeout(() => this.initializeDataTable(), 100);
+      
+      },
+      (error) => {
+        console.error('Erro ao buscar solicitação:', error);
+      }
+    );
   }
 
   ngAfterViewInit(): void {
-    setTimeout(() => {
-      if (!$.fn.dataTable.isDataTable('#tableSolic')) {
-        new DataTable('#tableSolic', {
-          responsive: true,
-          paging: true,
-          pageLength: 8,
-          lengthChange: false,
-          searching: false,
-          info: false,
-          language: {
-            processing: "Processando...",
-            zeroRecords: "Nenhum registro encontrado",
-            info: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-            infoEmpty: "Mostrando 0 até 0 de 0 registros",
-            infoFiltered: "(filtrado de _MAX_ registros no total)",
-            search: "Buscar:",
-          }
-        });
-      }
-    }, 0);
+    // setTimeout(() => {
+    //   if (!$.fn.dataTable.isDataTable('#tableSolic')) {
+    //     new DataTable('#tableSolic', {
+    //       responsive: true,
+    //       paging: true,
+    //       pageLength: 8,
+    //       lengthChange: false,
+    //       searching: false,
+    //       info: false,
+    //       language: {
+    //         processing: "Processando...",
+    //         zeroRecords: "Nenhum registro encontrado",
+    //         info: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+    //         infoEmpty: "Mostrando 0 até 0 de 0 registros",
+    //         infoFiltered: "(filtrado de _MAX_ registros no total)",
+    //         search: "Buscar:",
+    //       }
+    //     });
+    //   }
+    // }, 0);
   }
 
-  doBudget(request: MaintenceRequest) {
+  initializeDataTable() {
+
+  
+    this.dataTable = new DataTable('#tableSolic', {
+      responsive: true,
+      paging: true,
+      pageLength: 8,
+      lengthChange: false,
+      searching: false,
+      info: false,
+      language: {
+        processing: "Processando...",
+        zeroRecords: "Nenhum registro encontrado",
+        info: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+        infoEmpty: "Mostrando 0 até 0 de 0 registros",
+        infoFiltered: "(filtrado de _MAX_ registros no total)",
+        search: "Buscar:",
+      }
+    });
+  }
+
+  doBudget(request: SolicitacaoRequest) {
     this.router.navigate(['/make-budget'], { state: { request: request} });
   }
 
-  doMaintence(request: MaintenceRequest){
+  doMaintence(request: SolicitacaoRequest){
     this.router.navigate(['/do-maintence'], { state: { request: request} });
   }
 
-  openFinalizationModal(request: MaintenceRequest) {
+  openFinalizationModal(request: SolicitacaoRequest) {
     this.selectedRequest = request;
   }
 
   endMaintence() {
     if (this.selectedRequest) {
-      this.selectedRequest.status = RequestStatus.Finished;
-      this.selectedRequest.finalizationDate = new Date().toISOString();
-      this.selectedRequest.finalizedBy = 'Nome do Funcionário';
-      this.selectedRequest = null;
+      // this.selectedRequest.status = RequestStatus.Finished;
+      // this.selectedRequest.finalizationDate = new Date().toISOString();
+      // this.selectedRequest.finalizedBy = 'Nome do Funcionário';
+      // this.selectedRequest = null;
     }
   }
 

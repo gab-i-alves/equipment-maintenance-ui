@@ -1,3 +1,4 @@
+import { Employee } from "./employee/employee";
 import { SolicitacaoRequest } from "./solicitacaoRequest";
 
 export interface BudgetRequest{
@@ -6,10 +7,9 @@ export interface BudgetRequest{
   aprovado: boolean,
   rejeitado: boolean,
   motivoRejeicao: String,
-  dataHoraRejeicao: Date,
+  dataHoraRejeicao: Date|null,
   dataHoraCriacao: Date,
-  dataHoraAprovacao: Date,
-  idFuncionario: Number,
-  nomeFuncionario: String,
+  dataHoraAprovacao: Date|null,
+  funcionario: Employee
   solicitacao: SolicitacaoRequest
 }

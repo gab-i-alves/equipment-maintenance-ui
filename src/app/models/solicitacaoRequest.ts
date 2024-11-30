@@ -1,4 +1,5 @@
 import { Customer } from "./customer/customer";
+import { Employee } from "./employee/employee";
 import { RequestStatus } from "./enums/requestStatus";
 
 export interface SolicitacaoRequest{
@@ -11,8 +12,8 @@ export interface SolicitacaoRequest{
     descricaoDefeito: string,
     motivoRejeicao:String,
     descricaoEquipamento:String
-    categoriaEquipamento:CategoriaEquipamento
-  
+    categoriaEquipamento:CategoriaEquipamento,
+    funcionarioManutencao: Employee|null
 
 }
 
