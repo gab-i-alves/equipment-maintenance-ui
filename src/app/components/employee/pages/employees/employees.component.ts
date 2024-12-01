@@ -3,12 +3,13 @@ import { EmployeeSidebarComponent } from "../../employee-sidebar/employee-sideba
 import { Employee } from '../../../../models/employee/employee';
 import { EmployeeService } from '../../../../services/employee/employee.service';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import DataTable from 'datatables.net-dt';
 import * as $ from 'jquery';
 import 'datatables.net';
 import 'datatables.net-dt';
 import 'datatables.net-responsive';
+import { Modal } from 'bootstrap';
 
 @Component({
   selector: 'app-view-employees',
@@ -20,13 +21,15 @@ import 'datatables.net-responsive';
 export class EmployeesComponent implements OnInit {
 
   Employees : Employee[] = [];
+  errorMessage : string = "";
+  selectedId! : number;
 
-  selectedId! : number
-
-  constructor(private employeeService : EmployeeService) {}
+  constructor(private employeeService : EmployeeService, private router: Router) {}
 
   ngOnInit(): void {
     this.listarTodos();
+    
+
   }
 
   ngAfterViewInit(): void {
@@ -54,15 +57,26 @@ export class EmployeesComponent implements OnInit {
 
   removerFuncionario() {
     this.employeeService.remover(this.selectedId).subscribe({
-      complete: () => { this.listarTodos(); },
-      error: (err) =>{
-        console.log(err.status + " // " + err.message);
+      complete: () => { 
+        window.location.reload();
+      },
+      error: (err) => {
+        this.errorMessage = err.error;
+        this.openErrorModal();
       }
     });
   }
 
   openRemoveModal(id: number) {
     this.selectedId = id;
+  }
+
+  openErrorModal() {
+    const errorModalElement = document.getElementById('errorModal');
+    if (errorModalElement) {
+      const errorModal = new Modal(errorModalElement);
+      errorModal.show();
+    }
   }
 
   listarTodos() {
@@ -73,9 +87,9 @@ export class EmployeesComponent implements OnInit {
         }
       },
       error: (err) => {
-        console.log(err.status + " // " + err.message);
+        this.errorMessage = err.error;
+        this.openErrorModal();
       }
     })
   }
-
 }

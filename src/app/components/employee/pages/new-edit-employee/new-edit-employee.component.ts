@@ -6,6 +6,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { EmployeeService } from '../../../../services/employee/employee.service';
 import { CommonModule } from '@angular/common';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask'
+import { Modal } from 'bootstrap';
 
 @Component({
   selector: 'app-new-edit-employee',
@@ -30,7 +31,6 @@ export class NewEditEmployeeComponent implements OnInit {
     if(!isNaN(id)){
       this.edit = true;
       const employee = this.buscarPorId(id);
-      console.log(" e " + employee);
       if (employee != null) {
         this.employee = employee;
       }
@@ -48,6 +48,7 @@ export class NewEditEmployeeComponent implements OnInit {
           error: (err) => {
             console.log(err.status + " // " + err.error);
             this.errorMessage = err.error;
+            this.openErrorModal();
           }
         });
             } else {
@@ -58,10 +59,10 @@ export class NewEditEmployeeComponent implements OnInit {
           error: (err) => {
             console.log(err.status + " // " + err.error);
             this.errorMessage = err.error;
+            this.openErrorModal();
           }
         });
       }
-      this.router.navigate(['/employees']);
     }
 
   }
@@ -129,4 +130,15 @@ export class NewEditEmployeeComponent implements OnInit {
       }
     });
   }
+
+  openErrorModal() {
+    const errorModalElement = document.getElementById('errorModal');
+    if (errorModalElement) {
+      const errorModal = new Modal(errorModalElement);
+      errorModal.show();
+    }
+  }
+
 }
+
+
