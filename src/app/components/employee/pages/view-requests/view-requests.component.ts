@@ -23,19 +23,29 @@ import { SolicitacaoRequest } from '../../../../models/solicitacaoRequest';
 })
 export class ViewRequestsComponent {
 
-  requests: MaintenceRequest[] = [];
- 
-  selectedRequest: MaintenceRequest | null = null;
+  requests: SolicitacaoRequest[] = [];
+
+  selectedRequest: SolicitacaoRequest | null = null;
   finalDate: any;
   initialDate: any;
 
   constructor(private router : Router, private requestService: RequestsService){ }
 
   ngOnInit(){
-    this.requests = this.requestService.getRequests();
+   console.log('ngOnInit Chaman')
+   this.requestService.getSolicitacoes().subscribe(
+    (data: SolicitacaoRequest[]) => {
+      this.requests = data;
+      console.log('Todas as Solicitações: ',this.requests)
+      setTimeout(() => this.initializeTable(),100)
+    },
+    (error)=>{
+      console.error("erro ao busca dados", error)
+    }
+   )
   }
 
-  ngAfterViewInit(): void {
+  initializeTable(){
     setTimeout(() => {
       if (!$.fn.dataTable.isDataTable('#tableSolic')) {
         new DataTable('#tableSolic', {
@@ -58,21 +68,21 @@ export class ViewRequestsComponent {
     }, 0);
   }
 
-  doBudget(request: MaintenceRequest) {
+  doBudget(request: SolicitacaoRequest) {
     this.router.navigate(['/make-budget'], { state: { request: request} });
   }
 
-  doMaintence(request: MaintenceRequest){
+  doMaintence(request: SolicitacaoRequest){
     this.router.navigate(['/do-maintence'], { state: { request: request} });
   }
 
-  openFinalizationModal(request: MaintenceRequest) {
+  openFinalizationModal(request: SolicitacaoRequest) {
     this.selectedRequest = request;
   }
 
   endMaintence() {
     if (this.selectedRequest) {
-      this.selectedRequest.status = RequestStatus.Finished;
+      this.selectedRequest.estadoSolicitacao.descricao = RequestStatus.Finished;
       this.selectedRequest.finalizationDate = new Date().toISOString();
       this.selectedRequest.finalizedBy = 'Nome do Funcionário';
       this.selectedRequest = null;

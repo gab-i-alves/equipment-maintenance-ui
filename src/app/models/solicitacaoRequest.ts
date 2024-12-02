@@ -10,7 +10,10 @@ export interface SolicitacaoRequest{
     descricaoDefeito: string,
     motivoRejeicao:String,
     descricaoEquipamento:String
-    categoriaEquipamento:CategoriaEquipamento
+    categoriaEquipamento:CategoriaEquipamento,
+    finalizationDate?: string;
+    finalizedBy?: string;
+
   
 
 }
