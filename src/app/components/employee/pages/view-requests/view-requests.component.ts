@@ -26,7 +26,10 @@ export class ViewRequestsComponent {
 
   requests: SolicitacaoRequest[] = [];
 
+
   dataTable: any;
+
+
   selectedRequest: SolicitacaoRequest | null = null;
   finalDate: any;
   initialDate: any;
@@ -48,7 +51,7 @@ export class ViewRequestsComponent {
    )
   }
 
-  initializeTable() {
+  initializeTable(){
     setTimeout(() => {
       if (!$.fn.dataTable.isDataTable('#tableSolic')) {
         new DataTable('#tableSolic', {
@@ -67,9 +70,6 @@ export class ViewRequestsComponent {
             search: "Buscar:",
           }
         });
-      }
-    }, 0); // Certifique-se de fechar todos os blocos.
-  } 
 
    
 
@@ -110,4 +110,3 @@ export class ViewRequestsComponent {
   removeFilters() {
   }
 }
-    
