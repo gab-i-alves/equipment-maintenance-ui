@@ -2,8 +2,8 @@
 
 <div class="page-container d-flex flex-column justify-content-center align-items-center vh-100">
     <section class="sectionTable container">
-      <div id="tableAll" class="tableBox p-3 rounded ">
-        <div class="container">
+      <div class="tableBox p-3 rounded">
+        <div class="container ">
           <div class="dropdown dropdownContainer d-flex">
             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownFilterRequest" data-bs-toggle="dropdown" aria-expanded="false">Filtros
             </button>
@@ -19,8 +19,7 @@
             </ul>
           </div>
         </div>
-        
-        <table id="tableSolic" class="display ">
+        <table id="tableSolic" class="display">
           <thead>
             <tr>
               <th>Data/Hora</th>
@@ -32,19 +31,17 @@
             </tr>
           </thead>
           <tbody>
-
-            <tr *ngFor="let request of requests">
-              <td>{{ request.dataHoraCriacao | date: 'dd/MM/yyyy HH:mm'}}</td>
-              <td>{{ request.id }}</td>
+            <tr *ngFor="let request of  requests">
+              <td>{{ request.dataHoraCriacao}}</td>
+              <td>Solicitação {{ request.id }}</td>
               <td>{{ request.cliente.nome}}</td>
               <td class="td-descricao">{{ request.descricaoEquipamento}}</td>
-              <td class="td-estado-{{request.descricaoDefeito}}">{{ request.descricaoDefeito }}</td>
-
+              <td class="td-estado-{{request.estadoSolicitacao.descricao}}">{{ request.estadoSolicitacao.descricao }}</td>
               <td [ngSwitch]="request.estadoSolicitacao.descricao">
                  <button *ngSwitchCase="'ABERTA'" class="btn btn-acao btn-orcar" (click)="doBudget(request)">Realizar Orçamento</button>
                 <button *ngSwitchCase="'APROVADA'" class="btn btn-acao btn-manutencao" (click)="doMaintence(request)">Realizar Manutenção</button>
                 <button *ngSwitchCase="'REDIRECIONADA'" class="btn btn-acao btn-manutencao" (click)="doMaintence(request)">Realizar Manutenção</button>
-                <button *ngSwitchCase="'PAGA'" class="btn btn-acao btn-finalizar" data-bs-toggle="modal" data-bs-target="#endMaintence" (click)="openFinalizationModal(request)">Finalizar Manutenção</button> 
+                <button *ngSwitchCase="'PAGA'" class="btn btn-acao btn-finalizar" data-bs-toggle="modal" data-bs-target="#endMaintence" (click)="openFinalizationModal(request)">Finalizar Manutenção</button> -->
               </td> 
             </tr>
           </tbody>

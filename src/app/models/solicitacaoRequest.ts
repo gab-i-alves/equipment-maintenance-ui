@@ -13,14 +13,7 @@ export interface SolicitacaoRequest{
     motivoRejeicao:String,
     descricaoEquipamento:String
     categoriaEquipamento:CategoriaEquipamento,
-
-    finalizationDate?: string;
-    finalizedBy?: string;
-
-  
-
     funcionarioManutencao: Employee|null
-
 
 }
 
