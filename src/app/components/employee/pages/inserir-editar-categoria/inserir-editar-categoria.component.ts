@@ -33,9 +33,9 @@ export class InserirEditarCategoriaComponent implements OnInit {
 
   salvarCategoria(): void {
     if (this.editMode) {
-      this.categoriaService.atualizar(this.categoria);
+      this.categoriaService.update(this.categoria).subscribe();
     } else {
-      this.categoriaService.inserir(this.categoria);
+      this.categoriaService.insert(this.categoria).subscribe();
     }
     this.router.navigate(['/categories']);
   }

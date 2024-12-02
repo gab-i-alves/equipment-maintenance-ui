@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RequestsService } from '../../../../services/requests/requests.service';
 import { SolicitacaoRequest } from '../../../../models/solicitacaoRequest';
+import { AuthService } from '../../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-view-requests',
@@ -25,13 +26,18 @@ export class ViewRequestsComponent {
 
   requests: SolicitacaoRequest[] = [];
 
+
+  dataTable: any;
+
+
   selectedRequest: SolicitacaoRequest | null = null;
   finalDate: any;
   initialDate: any;
 
-  constructor(private router : Router, private requestService: RequestsService){ }
+  constructor(private router : Router, private requestService: RequestsService, private authService: AuthService){ }
 
   ngOnInit(){
+
    console.log('ngOnInit Chaman')
    this.requestService.getSolicitacoes().subscribe(
     (data: SolicitacaoRequest[]) => {
@@ -64,9 +70,8 @@ export class ViewRequestsComponent {
             search: "Buscar:",
           }
         });
-      }
-    }, 0);
-  }
+
+   
 
   doBudget(request: SolicitacaoRequest) {
     this.router.navigate(['/make-budget'], { state: { request: request} });
@@ -82,10 +87,12 @@ export class ViewRequestsComponent {
 
   endMaintence() {
     if (this.selectedRequest) {
+
       this.selectedRequest.estadoSolicitacao.descricao = RequestStatus.Finished;
       this.selectedRequest.finalizationDate = new Date().toISOString();
       this.selectedRequest.finalizedBy = 'Nome do Funcionário';
       this.selectedRequest = null;
+
     }
   }
 

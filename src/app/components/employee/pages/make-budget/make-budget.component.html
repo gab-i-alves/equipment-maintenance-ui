@@ -8,21 +8,21 @@
       <div class="row">
         <div class="details-item col-4 d-flex gap-3">
           <p class="">Cliente:</p>
-          <span>{{ request.userName }}</span>
+          <span>{{ request.cliente.nome }}</span>
         </div>
         <div class="details-item col-4 d-flex gap-3">
           <p>Data / Hora da Solicitação</p>
-          <span> {{ request.date }} </span>
+          <span> {{ request.dataHoraCriacao }} </span>
         </div>
       </div>
       <div class="row">
         <div class="details-item col-4 d-flex gap-3">
           <p class="">Descrição do Equipamento:</p>
-          <span>{{ request.description }} </span>
+          <span>{{ request.descricaoEquipamento }} </span>
         </div>
         <div class="details-item col d-flex gap-3">
           <p>Estado Atual:</p>
-          <span class="estado aprovada"> {{ request.status }} </span>
+          <span class="estado aprovada"> {{ request.estadoSolicitacao.descricao }} </span>
         </div>
       </div>
       <div class="row">

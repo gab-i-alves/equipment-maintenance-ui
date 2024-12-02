@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { SolicitacaoRequest } from '../../../../models/solicitacaoRequest';
 import { RequestsService } from './../../../../services/requests/requests.service';
 import { NgxMaskPipe } from 'ngx-mask';
+import { AuthService } from '../../../../services/auth/auth.service';
 
 
 @Component({
@@ -33,7 +34,6 @@ export class EmployeeHomeComponent {
   constructor(private router : Router, private requestsService: RequestsService){ }
 
   ngOnInit() {
-    console.log('ngOnInit chamado');
     this.requestsService.getSolicitacoesAberta().subscribe(
       (data: SolicitacaoRequest[]) => {
         this.requestSolicitacao = data;

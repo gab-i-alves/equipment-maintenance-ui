@@ -5,6 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { MaintenceRequest } from '../../../../models/mainteceRequest';
 import { RequestsService } from '../../../../services/requests/requests.service';
 import { RequestStatus } from '../../../../models/enums/requestStatus';
+import { CategoriaEquipamento, estadoSolicitacao, SolicitacaoRequest } from '../../../../models/solicitacaoRequest';
+import { AuthService } from '../../../../services/auth/auth.service';
+import { Customer } from '../../../../models/customer/customer';
 
 @Component({
   selector: 'app-new-request',
@@ -20,17 +23,38 @@ export class NewRequestComponent {
   data:Date = new Date
   request: MaintenceRequest | null = null;
 
-  constructor(private router: Router, private RequestsService: RequestsService) {}
+  constructor(private router: Router, private RequestsService: RequestsService, private authService: AuthService) {}
 
   newRequestAction(){
-    var novaRequisicao: MaintenceRequest =
+    const estado:estadoSolicitacao = {
+      descricao: '',
+      id: this.categoria,
+    }
+
+    const user = this.authService.getCurrentCustomer();
+
+    console.log(user);
+
+    const categoriaEq:CategoriaEquipamento = {
+      id: '1',
+      descricao: 'String'
+    }
+
+    const novaRequisicao: SolicitacaoRequest =
     {
-      status: RequestStatus.Open,
-      date: this.data.toLocaleString('pt-BR', {dateStyle: 'short', timeStyle: 'short'}),
-      id: 9,
-      userName: 'Thiago Cezar',
-      description: this.descEquipamento
+      estadoSolicitacao: estado,
+      dataHoraCriacao: this.data,
+      id: 0,
+      descricao: '',
+      cliente: user,
+      descricaoDefeito: this.defeito,
+      motivoRejeicao: '',
+      descricaoEquipamento: this.descEquipamento,
+      categoriaEquipamento: categoriaEq,
+      funcionarioManutencao: null
     };
+
+    this.RequestsService.insert(novaRequisicao).subscribe();
 
     console.log(this.RequestsService.insert(novaRequisicao))
   }

@@ -14,6 +14,8 @@ import { RequestsService } from '../../../../services/requests/requests.service'
 import { FormsModule } from '@angular/forms';
 import { SolicitacaoRequest } from '../../../../models/solicitacaoRequest';
 import { NgxMaskPipe } from 'ngx-mask';
+import { AuthService } from '../../../../services/auth/auth.service';
+import { Customer } from '../../../../models/customer/customer';
 
 @Component({
   selector: 'app-home',
@@ -29,10 +31,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
   selectedRequest: MaintenceRequest | null = null;
   dataTable: any;
 
-  constructor(private router: Router, private requestService: RequestsService) {}
+  constructor(private router: Router, private requestService: RequestsService, private authService: AuthService) {}
 
   ngOnInit(){
-     this.requestService.getSolicitacoes().subscribe(
+    const customer: Customer = this.authService.getCurrentCustomer()
+     this.requestService.getSolicitacoesPorIdFuncionario(customer.id).subscribe(
       (data: SolicitacaoRequest[]) => {
         
         this.requestSolicitacao = data;

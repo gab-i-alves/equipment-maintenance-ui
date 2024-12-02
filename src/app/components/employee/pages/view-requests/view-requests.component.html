@@ -32,12 +32,14 @@
             </tr>
           </thead>
           <tbody>
+
             <tr *ngFor="let request of requests">
               <td>{{ request.dataHoraCriacao | date: 'dd/MM/yyyy HH:mm'}}</td>
               <td>{{ request.id }}</td>
               <td>{{ request.cliente.nome}}</td>
               <td class="td-descricao">{{ request.descricaoEquipamento}}</td>
               <td class="td-estado-{{request.descricaoDefeito}}">{{ request.descricaoDefeito }}</td>
+
               <td [ngSwitch]="request.estadoSolicitacao.descricao">
                  <button *ngSwitchCase="'ABERTA'" class="btn btn-acao btn-orcar" (click)="doBudget(request)">Realizar Orçamento</button>
                 <button *ngSwitchCase="'APROVADA'" class="btn btn-acao btn-manutencao" (click)="doMaintence(request)">Realizar Manutenção</button>

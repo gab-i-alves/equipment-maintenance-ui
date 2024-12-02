@@ -5,11 +5,11 @@ export const authGuard: CanActivateFn = (route, state) => {
   
   const router : Router = inject(Router);
 
-  const localData = localStorage.getItem('user');
+  const localData = JSON.parse(localStorage.getItem('currentUser') || '{}');
 
-  const role : string = route.data['role'];
+  const userRole : string = localData.tipoPerfil.descricao;
   
-  if(localData == role){
+  if(userRole == route.data['role']){
     return true;
   }
 

@@ -20,47 +20,81 @@ import 'datatables.net-responsive';
 })
 export class ListarCategoriaComponent implements OnInit {
   categorias: EquipmentCategory[] = [];
+  dataTable: any;
 
   constructor(private categoriaService: EquipmentCategoryService) {}
 
   ngOnInit(): void {
-    // this.categorias = this.categoriaService.listarTodos();
+    this.categoriaService.getCategorias().subscribe(
+      (data: EquipmentCategory[]) => {
+        this.categorias = data;
 
-    this.categorias = [
-      { id: 1, name: 'Notebook' },
-      { id: 2, name: 'Máquina de Lavar' },
-      { id: 3, name: 'Smartphone' }
-    ];
+        setTimeout(() => this.initializeDataTable(), 100);
+      },
+      (error) => {
+        console.error('Erro ao buscar categorias:', error);
+      }
+    );
   }
 
-  ngAfterViewInit(): void {
-    setTimeout(() => {
-      if (!$.fn.dataTable.isDataTable('#tableSolic')) {
-        new DataTable('#tableSolic', {
-          responsive: true,
-          paging: true,
-          pageLength: 7,
-          lengthChange: false,
-          searching: false,
-          info: false,
-          language: {
-            processing: "Processando...",
-            zeroRecords: "Nenhum registro encontrado",
-            info: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-            infoEmpty: "Mostrando 0 até 0 de 0 registros",
-            infoFiltered: "(filtrado de _MAX_ registros no total)",
-            search: "Buscar:",
-          }
-        });
+  // ngAfterViewInit(): void {
+  //   setTimeout(() => {
+  //     if (!$.fn.dataTable.isDataTable('#tableSolic')) {
+  //       new DataTable('#tableSolic', {
+  //         responsive: true,
+  //         paging: true,
+  //         pageLength: 7,
+  //         lengthChange: false,
+  //         searching: false,
+  //         info: false,
+  //         language: {
+  //           processing: "Processando...",
+  //           zeroRecords: "Nenhum registro encontrado",
+  //           info: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+  //           infoEmpty: "Mostrando 0 até 0 de 0 registros",
+  //           infoFiltered: "(filtrado de _MAX_ registros no total)",
+  //           search: "Buscar:",
+  //         }
+  //       });
+  //     }
+  //   }, 0);
+  // }
+
+  initializeDataTable() {
+
+  
+    this.dataTable = new DataTable('#tableSolic', {
+      responsive: true,
+      paging: true,
+      pageLength: 8,
+      lengthChange: false,
+      searching: false,
+      info: false,
+      language: {
+        processing: "Processando...",
+        zeroRecords: "Nenhum registro encontrado",
+        info: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+        infoEmpty: "Mostrando 0 até 0 de 0 registros",
+        infoFiltered: "(filtrado de _MAX_ registros no total)",
+        search: "Buscar:",
       }
-    }, 0);
+    });
   }
 
   removerCategoria(id: number): void {
     if (confirm('Deseja realmente remover esta categoria?')) {
-      this.categoriaService.remover(id);
-      // this.categorias = this.categoriaService.listarTodos();
-      this.categorias = this.categorias.filter(categoria => categoria.id !== id);
+      this.categoriaService.delete(String(id));
+
+      this.categoriaService.getCategorias().subscribe(
+        (data: EquipmentCategory[]) => {
+          this.categorias = data;
+        },
+        (error) => {
+          console.error('Erro ao buscar categorias:', error);
+        }
+      );
+
+      // this.categorias = this.categorias.filter(categoria => categoria.id !== id);
   }
 }
 }

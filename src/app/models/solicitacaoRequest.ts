@@ -1,3 +1,5 @@
+import { Customer } from "./customer/customer";
+import { Employee } from "./employee/employee";
 import { RequestStatus } from "./enums/requestStatus";
 
 export interface SolicitacaoRequest{
@@ -6,45 +8,29 @@ export interface SolicitacaoRequest{
     dataHoraCriacao: Date,
     id: number,
     descricao:String,
-    cliente: Cliente,
+    cliente: Customer,
     descricaoDefeito: string,
     motivoRejeicao:String,
     descricaoEquipamento:String
     categoriaEquipamento:CategoriaEquipamento,
+
     finalizationDate?: string;
     finalizedBy?: string;
 
   
 
+    funcionarioManutencao: Employee|null
+
+
 }
 
-interface Cliente{
-    ativo: Boolean,
-    nome: String,
-    dataCriacao: String,
-    email: String
-    endereco: Endereco,
-    senha: String,
-    tipoPerfil: String
-}
-
-interface Endereco{
-    cep: String,
-    bairro: String,
-    cidade: String,
-    complemento: String,
-    estado: String,
-    id: Number,
-    lagradouro: String,
-    numero: Number
-}
-interface estadoSolicitacao{
+export interface estadoSolicitacao{
     descricao: String,
     id: Number,
 
 }
 
-interface CategoriaEquipamento {
+export interface CategoriaEquipamento {
     id: String,
     descricao: String
 }

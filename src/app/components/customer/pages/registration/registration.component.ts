@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ViacepService } from '../../../../services/viacep/viacep.service';
 import { Endereco } from '../../../../models/viacepResult';
+import { Customer } from '../../../../models/customer/customer';
+import { RegistrationService } from '../../../../services/registration/registration.service';
 
 @Component({
   selector: 'app-registration',
@@ -25,9 +27,10 @@ export class RegistrationComponent {
   number: string = '';
   complement: string = '';
   submiting: boolean = false;
+  bairro: string = '';
   estados: string[] = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'];
 
-  constructor(private viacepService: ViacepService, private router : Router) {}
+  constructor(private viacepService: ViacepService, private router : Router, private registrationService: RegistrationService) {}
 
   buscarEndereco(): void {
     if(this.cep) {
@@ -51,22 +54,43 @@ export class RegistrationComponent {
   onSubmit() {
     this.submiting = true;
     if (this.isFormValid()){
-      console.log('Formulário submetido com dados: ', {
-        nome: this.name,
-        email: this.email,
-        cpf:this.cpf,
-        telefone: this.phone,
-        cep: this.cep,
-        estado: this.state,
-        cidade: this.city,
-        logradouro: this.logradouro,
-        numero: this.number,
-        complemento: this.complement
-      });
+      const registro = new Customer(
+        "",
+        this.name,
+        this.phone,
+        this.email,
+        this.cpf,
+        true,
+        { id: "1", descricao: "Cliente" },
+        {
+          estado: this.state,
+          cidade: this.city,
+          bairro: this.bairro,
+          logradouro: this.logradouro,
+          complemento: this.complement,
+          cep: this.cep,
+          numero: this.number
+        }
+      );
+
+      this.registrationService.insert(registro).subscribe(
+        (response: Customer | null) => {
+          console.log('Registro inserido com sucesso:', response);
+          this.submiting = false;
+        },
+        (error) => {
+          console.error('Erro ao inserir registro:', error);
+          this.submiting = false;
+        }
+      );
+
+      alert("Registro realizado com sucesso. A senha de acesso foi enviada ao e-mail cadastrado!")
+      this.router.navigate(["/login"]);
+
     } else {
       console.log('Formulário com erros');
+      this.submiting = false;
     }
-    this.submiting = false;
   }
 
   onCpfInput(event: Event): void {

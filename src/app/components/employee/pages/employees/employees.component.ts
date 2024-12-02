@@ -3,12 +3,13 @@ import { EmployeeSidebarComponent } from "../../employee-sidebar/employee-sideba
 import { Employee } from '../../../../models/employee/employee';
 import { EmployeeService } from '../../../../services/employee/employee.service';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import DataTable from 'datatables.net-dt';
 import * as $ from 'jquery';
 import 'datatables.net';
 import 'datatables.net-dt';
 import 'datatables.net-responsive';
+import { Modal } from 'bootstrap';
 
 @Component({
   selector: 'app-view-employees',
@@ -19,14 +20,16 @@ import 'datatables.net-responsive';
 })
 export class EmployeesComponent implements OnInit {
 
-  Funcionarios : Employee[] = [];
+  Employees : Employee[] = [];
+  errorMessage : string = "";
+  selectedId! : number;
 
-  selectedId! : number
-
-  constructor(private employeeService : EmployeeService) {}
+  constructor(private employeeService : EmployeeService, private router: Router) {}
 
   ngOnInit(): void {
-    this.Funcionarios = this.employeeService.listarTodos();
+    this.listarTodos();
+    
+
   }
 
   ngAfterViewInit(): void {
@@ -49,15 +52,44 @@ export class EmployeesComponent implements OnInit {
           }
         });
       }
-    }, 0);
+    }, 100);
   }
 
   removerFuncionario() {
-    this.employeeService.remover(this.selectedId);
-    this.Funcionarios = this.employeeService.listarTodos();
+    this.employeeService.remover(this.selectedId).subscribe({
+      complete: () => { 
+        window.location.reload();
+      },
+      error: (err) => {
+        this.errorMessage = err.error;
+        this.openErrorModal();
+      }
+    });
   }
 
   openRemoveModal(id: number) {
     this.selectedId = id;
+  }
+
+  openErrorModal() {
+    const errorModalElement = document.getElementById('errorModal');
+    if (errorModalElement) {
+      const errorModal = new Modal(errorModalElement);
+      errorModal.show();
+    }
+  }
+
+  listarTodos() {
+    this.employeeService.listarTodos().subscribe({
+      next: (data: Employee[] | null) => {
+        if(data != null){
+          this.Employees = data.filter(e => e.ativo == true);
+        }
+      },
+      error: (err) => {
+        this.errorMessage = err.error;
+        this.openErrorModal();
+      }
+    })
   }
 }
