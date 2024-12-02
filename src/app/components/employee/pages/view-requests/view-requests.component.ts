@@ -35,11 +35,12 @@ export class ViewRequestsComponent {
 
   ngOnInit(){
     const employee = this.authService.getCurrentEmployee();
-    this.requestService.getSolicitacoesPorIdFuncionario(String(employee.id)).subscribe(
+    
+    this.requestService.getSolicitacoes().subscribe(
       (data: SolicitacaoRequest[]) => {
         this.requests = data;
      
-        console.log("Solicitações abertas:", this.requests);
+        console.log("Solicitações:", this.requests);
         setTimeout(() => this.initializeDataTable(), 100);
       
       },
@@ -49,28 +50,7 @@ export class ViewRequestsComponent {
     );
   }
 
-  ngAfterViewInit(): void {
-    // setTimeout(() => {
-    //   if (!$.fn.dataTable.isDataTable('#tableSolic')) {
-    //     new DataTable('#tableSolic', {
-    //       responsive: true,
-    //       paging: true,
-    //       pageLength: 8,
-    //       lengthChange: false,
-    //       searching: false,
-    //       info: false,
-    //       language: {
-    //         processing: "Processando...",
-    //         zeroRecords: "Nenhum registro encontrado",
-    //         info: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-    //         infoEmpty: "Mostrando 0 até 0 de 0 registros",
-    //         infoFiltered: "(filtrado de _MAX_ registros no total)",
-    //         search: "Buscar:",
-    //       }
-    //     });
-    //   }
-    // }, 0);
-  }
+ 
 
   initializeDataTable() {
 
