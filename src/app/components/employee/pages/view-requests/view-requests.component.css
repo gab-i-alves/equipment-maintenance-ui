@@ -12,12 +12,16 @@
    color: #005A9B;
    margin-top: 25px;
  }
-
+#tableAll{
+margin-top: 100px;
+}
  #tableSolic thead {
    background-color: #4682B4;
    color: white;
+   
  }
-
+#tableSolic{
+}
  .td-descricao {
    white-space: nowrap;
    overflow: hidden;
