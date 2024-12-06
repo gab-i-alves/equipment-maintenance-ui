@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { SidebarComponent } from "../sidebar/sidebar.component"
+import { SidebarComponent } from "../../sidebar/sidebar.component"
 import { Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';; 
-
-
 
 @Component({
   selector: 'app-view-service',

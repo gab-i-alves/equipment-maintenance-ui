@@ -21,6 +21,7 @@ export class NewEditEmployeeComponent implements OnInit {
   edit = false;
   errorEmpty = false;
   errorDate = false;
+  errorEmail = false;
   errorMessage = "";
 
   constructor(private route : ActivatedRoute, private employeeService : EmployeeService, private router : Router){}
@@ -78,12 +79,17 @@ export class NewEditEmployeeComponent implements OnInit {
       return true;
     }
     this.errorDate = false;
+    if(this.emailErrors(this.employee.email)){
+      this.errorEmail = true;
+      return true;
+    }
+    this.errorEmail = false;
     return false;
   }
 
   isEmpty(emp: Employee) : boolean{
     for (const atr in emp) {
-      if (emp.hasOwnProperty(atr) && atr !== '_password' && atr !== 'id') {
+      if (emp.hasOwnProperty(atr)) {
           if ((emp as any)[atr] === '') {
               return true;
           }
@@ -92,7 +98,7 @@ export class NewEditEmployeeComponent implements OnInit {
     return false;
   }
 
-  dateErrors(date : string){
+  dateErrors(date : string) : boolean{
     const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
     console.log(date);
     if(!dateRegex.test(date)){
@@ -115,6 +121,13 @@ export class NewEditEmployeeComponent implements OnInit {
       return true;
     }
 
+    return false;
+  }
+
+  emailErrors(email : string) : boolean{
+    if(email.search('@') === -1){
+      return true;
+    }
     return false;
   }
 

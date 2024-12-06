@@ -1,9 +1,9 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { SidebarComponent } from "../sidebar/sidebar.component";
-import { MaintenceRequest } from '../../../models/mainteceRequest';
+import { SidebarComponent } from "../../sidebar/sidebar.component";
+import { MaintenceRequest } from '../../../../models/mainteceRequest';
 import { CommonModule } from '@angular/common';
-import { RequestStatus } from '../../../models/enums/requestStatus';
+import { RequestStatus } from '../../../../models/enums/requestStatus';
 
 @Component({
   selector: 'app-rescue-service',

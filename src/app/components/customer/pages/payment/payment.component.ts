@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { SidebarComponent } from '../sidebar/sidebar.component';
+import { SidebarComponent } from '../../sidebar/sidebar.component';
 import { Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';;
-import { MaintenceRequest } from '../../../models/mainteceRequest';
+import { MaintenceRequest } from '../../../../models/mainteceRequest';
 import { CommonModule } from '@angular/common';
-import { RequestStatus } from '../../../models/enums/requestStatus';
+import { RequestStatus } from '../../../../models/enums/requestStatus';
 
 @Component({
   selector: 'app-payment',

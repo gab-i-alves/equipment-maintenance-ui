@@ -12,7 +12,7 @@
             name="name"
             required
           />
-          <label for="email">Email</label>
+          <label for="email">E-mail</label>
           <input
             id="email"
             type="text"
@@ -46,6 +46,7 @@
         <div class="text-danger">
           <div *ngIf="errorDate">A data informada não é valida! </div>
           <div *ngIf="errorEmpty">Preencha todos os campos corretamente! </div>
+          <div *ngIf="errorEmail">O e-mail informado não é valido! </div>
       </div>
         <button type="submit" class="btn btn-success mt-4" (click)="save()">Salvar</button>
         <a [routerLink]="['/employees']" class="btn btn-secondary mt-2">Cancelar</a>
