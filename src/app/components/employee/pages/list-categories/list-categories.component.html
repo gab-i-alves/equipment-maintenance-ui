@@ -19,11 +19,45 @@
                 <td>{{ categoria.descricao }}</td>
                 <td>
                     <button class="btn btn-info" [routerLink]="['/categories/edit', categoria.id]">Editar</button>
-                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#removeCategory" (click)="removerCategoria(categoria.id)">Remover</button>
+                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#removeCategory" (click)="openRemoveModal(categoria.id)">Remover</button>
                 </td>
                 </tr>
           </tbody>
         </table>
       </div>
     </section>
+  </div>
+
+  <div class="modal fade" id="removeCategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header custom-modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">ATENÇÃO</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Você realmente deseja remover essa categoria?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="removerCategoria()">Confirmar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header custom-modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">ERRO</h5>
+        </div>
+        <div class="modal-body">
+          <p>{{errorMessage}}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
   </div>

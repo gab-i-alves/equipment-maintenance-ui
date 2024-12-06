@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { EquipmentCategory } from '../../models/equipment-category/equipment-category.model';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { CategoriaDeEquipamento } from '../../models/categoriaDeEquipamento/categoriaDeEquipamento.model';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { catchError, map, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EquipmentCategoryService {
-  private readonly STORAGE_KEY = 'equipment_categories';
   BASE_URL = 'http://localhost:8080/api/categorias-equipamento';
 
   httpOptions = {
+    observe: "response" as "response",
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
@@ -18,60 +18,94 @@ export class EquipmentCategoryService {
 
   constructor(private http: HttpClient) {}
 
-  getCategorias(){
-    return this.http.get<any>(`${this.BASE_URL}`, this.httpOptions);
+  listarTodos(): Observable<CategoriaDeEquipamento[] | null> {
+    return this.http.get<CategoriaDeEquipamento[]>(
+      this.BASE_URL,
+      this.httpOptions).pipe(
+        map((resp: HttpResponse<CategoriaDeEquipamento[]>) => {
+          if(resp.status==200){
+            return resp.body;
+          }else{
+            return [];
+          }
+        }),
+        catchError((err) => {
+          return throwError(() => err);
+        })
+      );
   }
+
+  buscarPorId(id: number): Observable<CategoriaDeEquipamento | null> {
+    return this.http.get<CategoriaDeEquipamento>(
+      this.BASE_URL + "/" + id,
+      this.httpOptions).pipe(
+        map((resp: HttpResponse<CategoriaDeEquipamento>) => {
+          if(resp.status==200){
+            return resp.body;
+          }else{
+            return null;
+          }
+        }),
+        catchError((err) => {
+          return throwError(() => err);
+        })
+      );
+  }
+
+  inserir(categoriaDeEquipamento: CategoriaDeEquipamento): Observable<CategoriaDeEquipamento | null> {
+    return this.http.post<CategoriaDeEquipamento>(
+      this.BASE_URL,
+      JSON.stringify(categoriaDeEquipamento),
+      this.httpOptions).pipe(
+        map((resp: HttpResponse<CategoriaDeEquipamento>) => {
+          if(resp.status==201){
+            return resp.body;
+          }else{
+            return null;
+          }
+        }),
+        catchError((err) => {
+          return throwError(() => err);
+        })
+      );
+  }
+
   
-  getCategoriaPorId(id: string){
-    return this.http.get<any>(`${this.BASE_URL}/${id}`, this.httpOptions);
+
+  atualizar(categoriaDeEquipamento: CategoriaDeEquipamento): Observable<CategoriaDeEquipamento | null> {
+    return this.http.put<CategoriaDeEquipamento>(
+      this.BASE_URL + "/" + categoriaDeEquipamento.id,
+      JSON.stringify(categoriaDeEquipamento),
+      this.httpOptions).pipe(
+        map((resp: HttpResponse<CategoriaDeEquipamento>) => {
+          if(resp.status==201){
+            return resp.body;
+          }else{
+            return null;
+          }
+        }),
+        catchError((err) => {
+          return throwError(() => err);
+        })
+      );
   }
 
-  delete(id: string){
-    return this.http.get<any>(`${this.BASE_URL}/delete/${id}`, this.httpOptions);
-  }
-
-  insert(category: EquipmentCategory): Observable<EquipmentCategory|null> {
-    return this.http.post<EquipmentCategory>(this.BASE_URL,
-      JSON.stringify(category),
-      this.httpOptions);
-  };
-  
-  update(category: EquipmentCategory): Observable<EquipmentCategory|null> {
-    return this.http.put<EquipmentCategory>(`${this.BASE_URL}/update/${category.id}`,
-      JSON.stringify(category),
-      this.httpOptions);
-  };
-
-
-  listarTodos(): EquipmentCategory[] {
-    const categorias = localStorage.getItem(this.STORAGE_KEY);
-    return categorias ? JSON.parse(categorias) : [];
-  }
-
-  inserir(categoria: EquipmentCategory): void {
-    const categorias = this.listarTodos();
-    categoria.id = new Date().getTime();
-    categorias.push(categoria);
-    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(categorias));
-  }
-
-  buscarPorId(id: number): EquipmentCategory | undefined {
-    const categorias = this.listarTodos();
-    return categorias.find(categoria => categoria.id === id);
-  }
-
-  atualizar(categoria: EquipmentCategory): void {
-    const categorias = this.listarTodos();
-    const index = categorias.findIndex(c => c.id === categoria.id);
-    if (index >= 0) {
-      categorias[index] = categoria;
-      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(categorias));
-    }
-  }
-
-  remover(id: number): void {
-    let categorias = this.listarTodos();
-    categorias = categorias.filter(categoria => categoria.id !== id);
-    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(categorias));
+  remover(id: number): Observable<CategoriaDeEquipamento | null> { //VERIFICAR SE A REMOÇÃO POR ID FUNCIONA DESSA FORMA! 
+    this.httpOptions.headers = this.httpOptions.headers.set('id', id.toString()); 
+    return this.http.delete<CategoriaDeEquipamento>(
+      this.BASE_URL + "/" + id,
+      this.httpOptions,).pipe(
+        map((resp: HttpResponse<CategoriaDeEquipamento>) => {
+          if(resp.status==200){
+            console.log(resp.body);
+            return resp.body;
+          }else{
+            return null;
+          }
+        }),
+        catchError((err) => {
+          return throwError(() => err);
+        })
+      );
   }
 }

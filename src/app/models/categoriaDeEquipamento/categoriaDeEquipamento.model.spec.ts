@@ -1,4 +1,4 @@
-import { EquipmentCategory } from './equipment-category.model';
+import { EquipmentCategory } from './categoriaDeEquipamento.model';
 
 describe('EquipmentCategory', () => {
   it('should create an instance', () => {

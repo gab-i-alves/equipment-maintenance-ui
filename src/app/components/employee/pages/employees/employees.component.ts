@@ -28,8 +28,6 @@ export class EmployeesComponent implements OnInit {
 
   ngOnInit(): void {
     this.listarTodos();
-    
-
   }
 
   ngAfterViewInit(): void {
