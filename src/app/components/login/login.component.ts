@@ -23,7 +23,6 @@ export class LoginComponent {
   submiting: boolean = false;
   errorMessage: string = '';
   hasError: boolean = false;
-  loginConditions: [boolean, boolean] = [false, false]; //[Campos não preenchidos, Login incorreto]
 
   constructor(
     private router: Router,
@@ -50,7 +49,6 @@ export class LoginComponent {
     }
 
     const perfil = response.tipoPerfil.descricao;
-    this.loginConditions[1] = false;
 
     if (perfil === 'Cliente') {
       const cliente: Customer = response;
