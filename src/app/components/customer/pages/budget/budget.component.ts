@@ -18,7 +18,7 @@ import { SolicitacaoRequest } from '../../../../models/solicitacaoRequest';
 })
 export class BudgetComponent implements OnInit {
   request: MaintenceRequest | null = null;
-  rejectReason: any;
+  rejectReason: string = '';
   budget: BudgetRequest | null = null
   requestSolicitacao: SolicitacaoRequest | null = null
   constructor(private router : Router, private route: ActivatedRoute, private budgetService: BudgetService) {}
@@ -34,14 +34,11 @@ export class BudgetComponent implements OnInit {
     )
   }
 
-
-  // Method to handle service rejection
   rejectService() {
     if (this.budget != null) {
       this.budgetService.rejeitarOrcamento(this.budget.idOrcamento, this.rejectReason).subscribe(
         () => {
           console.log("Orçamento rejeitado com sucesso!");
-      
         },
         (error) => {
           console.error("Erro ao rejeitar o orçamento:", error);
