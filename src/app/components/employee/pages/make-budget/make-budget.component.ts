@@ -60,7 +60,9 @@ export class MakeBudgetComponent implements OnInit {
         dataHoraCriacao: this.data,
         dataHoraAprovacao: null,
         funcionario: user,
-        solicitacao: this.request
+        solicitacao: this.request,
+        idFuncionario: user.id,
+        nomeFuncionario: user.nome
       }
 
       this.budgetService.insert(budget).subscribe();
