@@ -34,44 +34,47 @@ export class HomeComponent implements OnInit, AfterViewInit {
   constructor(private router: Router, private requestService: RequestsService, private authService: AuthService) {}
 
   ngOnInit(){
-    const customer: Customer = this.authService.getCurrentCustomer()
-     this.requestService.getSolicitacoesPorIdCliente(customer.id).subscribe(
-      (data: SolicitacaoRequest[]) => {
-        
-        this.requestSolicitacao = data;
-        console.log(this.requestSolicitacao)
-        setTimeout(() => {
-          this.initializeDataTable();
-        }, 100);
-      
-      },
-      (error) => {
-        console.error("Erro ao buscar solicitações:", error);
-      }
-    );
+
   }
 
   ngAfterViewInit(): void {
-  
+    const customer: Customer = this.authService.getCurrentCustomer()
+    this.requestService.getSolicitacoesPorIdCliente(customer.id).subscribe(
+     (data: SolicitacaoRequest[]) => {
+       
+       this.requestSolicitacao = data;
+       console.log(this.requestSolicitacao)
+       setTimeout(() => {
+         this.initializeDataTable();
+       }, 100);
+     
+     },
+     (error) => {
+       console.error("Erro ao buscar solicitações:", error);
+     }
+   );
   }
 
   initializeDataTable() {
-    this.dataTable = new DataTable('#tableSolic', {
-      responsive: true,
-      paging: true,
-      pageLength: 7,
-      lengthChange: false,
-      searching: false,
-      info: false,
-      language: {
-        processing: "Processando...",
-        zeroRecords: "Nenhum registro encontrado",
-        info: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-        infoEmpty: "Mostrando 0 até 0 de 0 registros",
-        infoFiltered: "(filtrado de _MAX_ registros no total)",
-        search: "Buscar:",
-      }
-    });
+
+    if (!$.fn.dataTable.isDataTable('#tableSolic')){
+      this.dataTable = new DataTable('#tableSolic', {
+        responsive: true,
+        paging: true,
+        pageLength: 7,
+        lengthChange: false,
+        searching: false,
+        info: false,
+        language: {
+          processing: "Processando...",
+          zeroRecords: "Nenhum registro encontrado",
+          info: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+          infoEmpty: "Mostrando 0 até 0 de 0 registros",
+          infoFiltered: "(filtrado de _MAX_ registros no total)",
+          search: "Buscar:",
+        }
+      });
+    }
   }
 
   viewBudget(request: SolicitacaoRequest) {
