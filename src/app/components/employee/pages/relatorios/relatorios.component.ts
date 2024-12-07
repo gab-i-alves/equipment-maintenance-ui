@@ -29,7 +29,7 @@ export class RelatoriosComponent {
   }
   
   gerarRelatorioReceitas() {
-       const formatDate = (date: Date) => {
+    const formatDate = (date: Date) => {
     if (!(date instanceof Date) || isNaN(date.getTime())) {
       throw new Error('Data inválida');
     }
