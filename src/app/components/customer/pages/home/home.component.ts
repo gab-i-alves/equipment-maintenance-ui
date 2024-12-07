@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngOnInit(){
     const customer: Customer = this.authService.getCurrentCustomer()
-     this.requestService.getSolicitacoesPorIdFuncionario(customer.id).subscribe(
+     this.requestService.getSolicitacoesPorIdCliente(customer.id).subscribe(
       (data: SolicitacaoRequest[]) => {
         
         this.requestSolicitacao = data;
