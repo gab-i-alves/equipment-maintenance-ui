@@ -56,6 +56,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   initializeDataTable() {
+   if (!$.fn.dataTable.isDataTable('#tableSolic')) {
     this.dataTable = new DataTable('#tableSolic', {
       responsive: true,
       paging: true,
@@ -72,6 +73,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         search: "Buscar:",
       }
     });
+   }
   }
 
   viewBudget(request: SolicitacaoRequest) {
