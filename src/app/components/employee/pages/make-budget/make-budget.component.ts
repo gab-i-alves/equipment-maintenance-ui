@@ -9,6 +9,7 @@ import { SolicitacaoRequest } from '../../../../models/solicitacaoRequest';
 import { BudgetRequest } from '../../../../models/budgetRequest';
 import { AuthService } from '../../../../services/auth/auth.service';
 import { BudgetService } from '../../../../services/budget/budget.service';
+import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-make-budget',
@@ -70,7 +71,26 @@ export class MakeBudgetComponent implements OnInit {
   }
 
 
-    returnHome(){
-      this.router.navigate(['/view-requests'], { state: { updatedRequest: this.request}});
+  returnHome(){
+    const modals = document.querySelectorAll('.modal.show');
+    modals.forEach((modal) => {
+      const bsModal = bootstrap.Modal.getInstance(modal) || new bootstrap.Modal(modal);
+      bsModal.hide();
+    });
+    this.closeAllModals();
+    this.router.navigate(['/view-requests'], { state: { updatedRequest: this.request}});
   }
+
+  closeAllModals() {
+    const modals = document.querySelectorAll('.modal.show');
+    modals.forEach((modal) => {
+      const bsModal = bootstrap.Modal.getInstance(modal) || new bootstrap.Modal(modal);
+      bsModal.hide(); 
+    });
+
+    const backdrops = document.querySelectorAll('.modal-backdrop');
+    backdrops.forEach((backdrop) => backdrop.remove());
+
+    document.body.classList.remove('modal-open');
+  } 
 }

@@ -8,6 +8,8 @@ import { RequestStatus } from '../../../../models/enums/requestStatus';
 import { BudgetRequest } from '../../../../models/budgetRequest';
 import { BudgetService } from '../../../../services/budget/budget.service';
 import { SolicitacaoRequest } from '../../../../models/solicitacaoRequest';
+import * as bootstrap from 'bootstrap';
+
 
 @Component({
   selector: 'app-budget',
@@ -39,6 +41,7 @@ export class BudgetComponent implements OnInit {
       this.budgetService.rejeitarOrcamento(this.budget.idOrcamento, this.rejectReason).subscribe(
         () => {
           console.log("Orçamento rejeitado com sucesso!");
+
         },
         (error) => {
           console.error("Erro ao rejeitar o orçamento:", error);
@@ -52,7 +55,6 @@ export class BudgetComponent implements OnInit {
       this.budgetService.aprovarOrcamento(this.budget?.idOrcamento).subscribe(
         (responce) => {
           console.log("Orçamento Aprovado com Sucesso");
-        
         },
         (error) => {
           console.error("Erro ao aprovar o orçamento:", error);
@@ -62,6 +64,25 @@ export class BudgetComponent implements OnInit {
   }
 
   returnHome(){
+    const modals = document.querySelectorAll('.modal.show');
+    modals.forEach((modal) => {
+      const bsModal = bootstrap.Modal.getInstance(modal) || new bootstrap.Modal(modal);
+      bsModal.hide();
+    });
+    this.closeAllModals();
     this.router.navigate(['/home']);
   }
+
+  closeAllModals() {
+    const modals = document.querySelectorAll('.modal.show');
+    modals.forEach((modal) => {
+      const bsModal = bootstrap.Modal.getInstance(modal) || new bootstrap.Modal(modal);
+      bsModal.hide(); 
+    });
+
+    const backdrops = document.querySelectorAll('.modal-backdrop');
+    backdrops.forEach((backdrop) => backdrop.remove());
+
+    document.body.classList.remove('modal-open');
+  } 
 }
