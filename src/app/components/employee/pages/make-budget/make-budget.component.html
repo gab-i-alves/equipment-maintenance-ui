@@ -12,7 +12,7 @@
         </div>
         <div class="details-item col-4 d-flex gap-3">
           <p>Data / Hora da Solicitação</p>
-          <span> {{ request.dataHoraCriacao }} </span>
+          <span> {{ request.dataHoraCriacao |  date: 'dd/MM/yyyy HH:mm' }} </span>
         </div>
       </div>
       <div class="row">
