@@ -74,27 +74,8 @@ export class EmployeeHomeComponent {
     } 
   }
 
-    // ngOnInit() {
-    //   this.requests = this.requestsService.getRequests();
-    //   this.openRequests = this.requests.filter(request => request.status === 'ABERTA');
-    // }
-
-    doBudget(request: SolicitacaoRequest) {
-      this.router.navigate(['/make-budget'], { state: { request: request} });
-    }
-
-    filterInitialDate() {
-
-    }
-
-    filterFinalDate() {
-
-    }
-
-    filterToday() {
-    }
-
-    removeFilters() {
-    }
+  doBudget(request: SolicitacaoRequest) {
+    this.router.navigate(['/make-budget'], { state: { request: request} });
+  }
 }
 
