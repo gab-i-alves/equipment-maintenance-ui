@@ -19,10 +19,12 @@
 .btn-success {
   background-color: #168E03;
 }
+
 .price{
-  margin-left: 70px;
   color: #4682B4;
+  font-size: 2.1rem;
 }
+
 #line{
   width: 100%;
 }
@@ -46,6 +48,59 @@
 
 .modal-header-reject {
     background-color:  #DC3545;
+}
+
+.box-actions {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 !important;
+}
+
+.div-value, .div-buttons-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.div-value {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.div-value p {
+  font-size: 1.5rem;
+}
+
+.div-buttons-actions {
+  margin-top: 3rem;
+  gap: 2rem;
+}
+
+.button-action  {
+  padding: 0.6rem 2rem;
+  font-size: 1.2rem;
+  color: white;
+  font-weight: 700;
+  border: none;
+  border-radius: 9px;
+}
+
+.button-action:hover {
+  filter: brightness(1.1);
+}
+
+.button-action.reject {
+  background-color: #DC3545;
+}
+
+.button-action.approve {
+  background-color: #168E03;
 }
 
 /*

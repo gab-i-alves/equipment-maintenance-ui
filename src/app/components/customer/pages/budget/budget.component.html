@@ -1,6 +1,6 @@
 <app-sidebar [title]="'Orçamento do Serviço'"></app-sidebar>
 
-<div *ngIf="budget" class="page-container d-flex flex-column justify-content-center align-items-center vh-100">
+<div *ngIf="budget" class="page-container d-flex flex-column align-items-center vh-100">
   <h2 class="title-page mt-5 fw-bold">Detalhes da Solicitação {{ budget.idOrcamento }}</h2>
     <div class="container-fluid mt-4">
       <ul class="  d-flex flex-row gap-1">
@@ -53,15 +53,20 @@
      
       <hr id="line">
 
-      <ul class="d-flex flex-row mt-4 ">
-        <p class="fw-bold ">Valor a Pagar:</p>
-            <h3 class=" price fw-bold ">{{budget.valorOrcamento}}</h3>
-          <button class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#rejectReasonModal">
+      <ul class="box-actions">
+        <div class="div-value">
+            <p class="fw-bold ">Valor Orçado:</p>
+            <h3 class="price fw-bold ">R$ {{budget.valorOrcamento}}</h3>
+        </div>
+        <div class="div-buttons-actions">
+          <button class="button-action approve" data-bs-toggle="modal" data-bs-target="#rejectReasonModal">
             Rejeitar Serviço
           </button>
-          <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#confirmServiceModal">
+          <button class="button-action reject" data-bs-toggle="modal" data-bs-target="#confirmServiceModal">
             Aprovar Serviço
           </button>
+        </div>
+      
       </ul>
 
         <!-- Modal de Aprovação -->
