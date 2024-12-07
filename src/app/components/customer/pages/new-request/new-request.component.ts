@@ -36,7 +36,7 @@ export class NewRequestComponent {
     console.log(user);
 
     const categoriaEq:CategoriaEquipamento = {
-      id: '1',
+      id: '3',
       descricao: 'String'
     }
 
