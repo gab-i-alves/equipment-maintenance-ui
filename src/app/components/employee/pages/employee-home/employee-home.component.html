@@ -4,23 +4,6 @@
     <h2 class="title-page mb-4 fw-bold">Solicitações Abertas</h2>
     <section class="sectionTable container">
       <div class="tableBox p-3 rounded">
-
-        <div class="container ">
-          <div class="dropdown dropdownContainer d-flex">
-            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownFilterRequest" data-bs-toggle="dropdown" aria-expanded="false">Filtros
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownFilterRequest">
-              <li><a class="dropdown-item" (click)="filterInitialDate()">Data Inicial
-                <input type="date" name="dateInitialFilter" class="form-control" required [(ngModel)]="initialDate">
-              </a></li>
-              <li><a class="dropdown-item" (click)="filterFinalDate()">Data Final
-                <input type="date" name="dateInitialFilter" class="form-control" required [(ngModel)]="finalDate">
-              </a></li>
-              <li><a class="dropdown-item" (click)="filterToday()">Hoje</a></li>
-              <li><a class="dropdown-item" (click)="removeFilters()">Todas</a></li>
-            </ul>
-          </div>
-        </div>
         <table id="tableSolic" class="display">
           <thead>
             <tr>

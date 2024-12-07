@@ -34,6 +34,9 @@ export class EmployeeHomeComponent {
   constructor(private router : Router, private requestsService: RequestsService){ }
 
   ngOnInit() {
+
+  }
+  ngAfterViewInit(): void {
     this.requestsService.getSolicitacoesAberta().subscribe(
       (data: SolicitacaoRequest[]) => {
         this.requestSolicitacao = data;
@@ -46,9 +49,6 @@ export class EmployeeHomeComponent {
         console.error('Erro ao buscar solicitação:', error);
       }
     );
-  }
-  ngAfterViewInit(): void {
-  
   }
   
   initializeDataTable() {
@@ -68,35 +68,14 @@ export class EmployeeHomeComponent {
           infoEmpty: "Mostrando 0 até 0 de 0 registros",
           infoFiltered: "(filtrado de _MAX_ registros no total)",
           search: "Buscar:",
+          emptyTable: "Nenhuma solicitação aberta, bom trabalho 👍"
         }
-      });
-    }
-    
+      });        
+    } 
   }
 
-
-
-    // ngOnInit() {
-    //   this.requests = this.requestsService.getRequests();
-    //   this.openRequests = this.requests.filter(request => request.status === 'ABERTA');
-    // }
-
-    doBudget(request: SolicitacaoRequest) {
-      this.router.navigate(['/make-budget'], { state: { request: request} });
-    }
-
-    filterInitialDate() {
-
-    }
-
-    filterFinalDate() {
-
-    }
-
-    filterToday() {
-    }
-
-    removeFilters() {
-    }
+  doBudget(request: SolicitacaoRequest) {
+    this.router.navigate(['/make-budget'], { state: { request: request} });
+  }
 }
 

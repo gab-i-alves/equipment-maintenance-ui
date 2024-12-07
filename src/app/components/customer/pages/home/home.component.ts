@@ -34,25 +34,25 @@ export class HomeComponent implements OnInit, AfterViewInit {
   constructor(private router: Router, private requestService: RequestsService, private authService: AuthService) {}
 
   ngOnInit(){
-    const customer: Customer = this.authService.getCurrentCustomer()
-     this.requestService.getSolicitacoesPorIdCliente(customer.id).subscribe(
-      (data: SolicitacaoRequest[]) => {
-        
-        this.requestSolicitacao = data;
-        console.log(this.requestSolicitacao)
-        setTimeout(() => {
-          this.initializeDataTable();
-        }, 100);
-      
-      },
-      (error) => {
-        console.error("Erro ao buscar solicitações:", error);
-      }
-    );
+
   }
 
   ngAfterViewInit(): void {
-  
+    const customer: Customer = this.authService.getCurrentCustomer()
+    this.requestService.getSolicitacoesPorIdCliente(customer.id).subscribe(
+     (data: SolicitacaoRequest[]) => {
+       
+       this.requestSolicitacao = data;
+       console.log(this.requestSolicitacao)
+       setTimeout(() => {
+         this.initializeDataTable();
+       }, 100);
+     
+     },
+     (error) => {
+       console.error("Erro ao buscar solicitações:", error);
+     }
+   );
   }
 
   initializeDataTable() {
@@ -71,6 +71,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         infoEmpty: "Mostrando 0 até 0 de 0 registros",
         infoFiltered: "(filtrado de _MAX_ registros no total)",
         search: "Buscar:",
+        emptyTable: "Sem Solicitações"
       }
     });
    }
