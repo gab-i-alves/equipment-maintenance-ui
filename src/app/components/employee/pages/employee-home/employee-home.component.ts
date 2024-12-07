@@ -53,7 +53,7 @@ export class EmployeeHomeComponent {
   
   initializeDataTable() {
 
-    if (!$.fn.dataTable.isDataTable('#tableSolic')){
+    if (!$.fn.dataTable.isDataTable('#tableSolic')) {
       this.dataTable = new DataTable('#tableSolic', {
         responsive: true,
         paging: true,

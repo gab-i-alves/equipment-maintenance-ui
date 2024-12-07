@@ -40,7 +40,9 @@ export class BudgetService {
     
   }
   rejeitarOrcamento(id : Number , rejectReason: string): Observable<any>{
-    return this.http.put<any>(`${this.BASE_URL_REJEITAR}/${id}`, {motivoRejeicao : rejectReason});
+    return this.http.put<any>(`${this.BASE_URL_REJEITAR}/${id}`, rejectReason, {
+      headers: { 'Content-Type': 'text/plain' },
+    });
     
   }
 
