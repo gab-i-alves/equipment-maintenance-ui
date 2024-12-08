@@ -15,11 +15,10 @@
                 <div class="row">
                     <label for="categoria" class="form-label fstyle"><b>Categoria do Equipamento :</b></label>
                     <select name="categoria" id= "categoriaSelect" class="form-control" required [(ngModel)]="categoria" size="1">
-                        <option value="1">Notebook</option>
-                        <option value="2">Desktop</option>
-                        <option value="3">Impressora</option>
-                        <option value="4">Mouse</option>
-                        <option value="5">Teclado</option>
+                        <option *ngFor="let categoria of categorias" 
+                            [value]="categoria.id">
+                          {{categoria.descricao}}
+                        </option>
                     </select>
                 </div>
                 
