@@ -1,9 +1,14 @@
-import { Router } from '@angular/router';
+import { RescueService } from './../../../../services/rescue/rescue.service';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { SidebarComponent } from "../../sidebar/sidebar.component";
 import { MaintenceRequest } from '../../../../models/mainteceRequest';
 import { CommonModule } from '@angular/common';
 import { RequestStatus } from '../../../../models/enums/requestStatus';
+import { SolicitacaoRequest } from '../../../../models/solicitacaoRequest';
+import { BudgetRequest } from '../../../../models/budgetRequest';
+import { BudgetService } from '../../../../services/budget/budget.service';
+
 
 @Component({
   selector: 'app-rescue-service',
@@ -13,9 +18,13 @@ import { RequestStatus } from '../../../../models/enums/requestStatus';
   styleUrl: './rescue-service.component.css'
 })
 export class RescueServiceComponent implements OnInit {
-  request: MaintenceRequest | null = null;
+  request: SolicitacaoRequest | null = null;
+  rescueService: RescueService;
+  budget: BudgetRequest | null = null;
+  motivoRejeicao: String | null = null;
+  valorOrcamento: Number | null = null;
 
-  constructor(private router : Router) {}
+  constructor(private router : Router, rescueService: RescueService, private budgetService: BudgetService, private route: ActivatedRoute) {this.rescueService = rescueService;}
 
   ngOnInit(): void {
     const navigation = this.router.lastSuccessfulNavigation;
@@ -26,12 +35,31 @@ export class RescueServiceComponent implements OnInit {
     } else {
       console.error("Nenhuma solicitação recebida.");
     }
+    const idSolic = Number(this.route.snapshot.paramMap.get('idSolic'));
+    if (idSolic) {
+      this.budgetService.getOrcamentoBySolicitacaoId(idSolic).subscribe(
+        (data) => {
+          this.budget = data;
+          this.motivoRejeicao = data.rejeitado ? data.motivoRejeicao : null;
+          this.valorOrcamento = data.valorOrcamento;
+        },
+        (error) => {
+          console.error('Erro ao obter orçamento:', error);
+        }
+      );
+    }
   }
 
-  reapproveService(){
+  reapproveService(): void{
     if (this.request) {
-      let reapproveDate = new Date();
-      this.request.status = RequestStatus.Approved;
+      this.rescueService.reapproveService(this.request.id, 'APROVADA').subscribe(
+        (responce) => {
+          console.log("Solicitação resgatada com sucesso");
+        },
+        (error) => {
+          console.error("Erro ao resgatar a solicitação:", error);
+        }
+      );
     }
   }
 
