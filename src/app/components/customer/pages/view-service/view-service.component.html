@@ -1,128 +1,81 @@
 <app-sidebar [title]="'Visualizar Serviço'"></app-sidebar>
-
 <div class="container-view-service">
-
-  <div class="details-container p-5 py-4 d-flex flex-column">
-    <h2>Detalhes da Solicitação - Solicitação 1</h2>
+  <div class="details-container p-5 py-4 d-flex flex-column" *ngIf="request">
+    <h2 class="text-2xl text-blue-800 mb-4">Detalhes da Solicitação - {{ request.id }}</h2>
+    
     <div class="details-infos d-flex flex-column gap-3 mt-4">
       <div class="row">
         <div class="details-item col-4 d-flex gap-3">
-          <p class="">Descrição do Equipamento:</p>
-          <span>Notebook Lenovo</span>
+          <p>Cliente:</p>
+          <span>{{ request.cliente?.nome }}</span>
         </div>
-        <div class="details-item col d-flex gap-3">
-          <p>Categoria do equipamento:</p>
-          <span>Notebook</span>
+        <div class="details-item col-4 d-flex gap-3">
+          <p>Data / Hora da Solicitação:</p>
+          <span>{{ request.dataHoraCriacao | date:'dd/MM/yyyy HH:mm' }}</span>
         </div>
       </div>
+
+      <div class="row">
+        <div class="details-item col d-flex gap-3">
+          <p>Descrição do Equipamento:</p>
+          <span>{{ request.descricaoEquipamento }}</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="details-item col d-flex gap-3">
+          <p>Categoria do equipamento:</p>
+          <span>{{ request.categoriaEquipamento?.descricao }}</span>
+        </div>
+      </div>
+
       <div class="row">
         <div class="details-item col d-flex gap-3">
           <p>Descrição do Defeito:</p>
-          <span>Notebook não está ligando</span>
+          <span>{{ request.descricaoDefeito }}</span>
         </div>
       </div>
+
       <div class="row">
-        <div class="details-item col-4 d-flex gap-3">
-          <p>Data / Hora da Solicitação</p>
-          <span>12/09/2024 14:36</span>
-        </div>
         <div class="details-item col d-flex gap-3">
           <p>Estado Atual:</p>
-          <span class="estado aprovada">APROVADA</span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="details-item col d-flex gap-3">
-          <p>Orçamento Aprovado:</p>
-          <span>R$450,00</span>
+          <span [ngClass]="getStatusClass()">{{ request.estadoSolicitacao?.descricao }}</span>
         </div>
       </div>
     </div>
   </div>
+
+
   <div class="history-container p-5 py-4">
     <h2>Histórico da Solicitação</h2>
-
     <div class="timeline mt-5">
-      <div class="timeline-box">
+      <div class="timeline-box" *ngFor="let item of timelineStates">
         <div class="timeline-item">
-          <div class="timeline-icon check">
-            <span class="material-symbols-outlined">order_approve</span>
+          <div class="timeline-icon" [ngClass]="getStateStatus(item.state)">
+            <span class="material-symbols-outlined">{{ item.icon }}</span>
           </div>
           <div class="timeline-description">
-            <p class="etapa-name">Solicitacção Confirmada</p>
-            <p>Data: 01/01/2024</p>
+            <p class="etapa-name">{{ item.label }}</p>
+            <p *ngIf="getStateDate(item.state)">
+              Data: {{ getStateDate(item.state) | date:'dd/MM/yyyy' }}
+            </p>
+            <p *ngIf="item.state === 'ORCADA' && budget?.funcionario">
+              Funcionario: {{ budget?.nomeFuncionario }}
+            </p>
           </div>
         </div>
-        <div class="timeline-line check"></div>
-      </div>
-
-      <div class="timeline-box">
-        <div class="timeline-item">
-          <div class="timeline-icon check">
-            <span class="material-symbols-outlined">request_quote</span>
-          </div>
-          <div class="timeline-description">
-            <p class="etapa-name">ORÇADA</p>
-            <p>Data: 02/01/2024</p>
-            <p>Funcionario: Diego Alves</p>
-          </div>
-        </div>
-        <div class="timeline-line check"></div>
-      </div>
-
-      <div class="timeline-box">
-        <div class="timeline-item">
-          <div class="timeline-icon check">
-            <span class="material-symbols-outlined">task</span>
-          </div>
-          <div class="timeline-description">
-            <p class="etapa-name">APROVADA</p>
-            <p>Data: 03/01/2024</p>
-          </div>
-        </div>
-        <div class="timeline-line check"></div>
-      </div>
-
-      <div class="timeline-box">
-        <div class="timeline-item">
-          <div class="timeline-icon">
-            <span class="material-symbols-outlined">handyman</span>
-          </div>
-          <div class="timeline-description">
-            <p class="etapa-name">ARRUMADA</p>
-
-          </div>
-        </div>
-        <div class="timeline-line"></div>
-      </div>
-
-      <div class="timeline-box">
-        <div class="timeline-item">
-          <div class="timeline-icon">
-            <span class="material-symbols-outlined">paid</span>
-          </div>
-          <div class="timeline-description">
-            <p class="etapa-name">PAGA</p>
-          </div>
-        </div>
-        <div class="timeline-line"></div>
-      </div>
-
-      <div class="timeline-box">
-        <div class="timeline-item">
-          <div class="timeline-icon">
-            <span class="material-symbols-outlined">quick_reorder</span>
-          </div>
-          <div class="timeline-description">
-            <p class="etapa-name">ENTREGUE</p>
-          </div>
-          <div class="timeline-line"></div>
-        </div>
+        <div class="timeline-line" [ngClass]="getStateStatus(item.state)"></div>
       </div>
     </div>
   </div>
+
   <div class="btn-return-box">
     <button (click)="returnHome()">Voltar</button>
   </div>
 
+  <div class="action-buttons mt-4 d-flex justify-content-center" *ngIf="getActionButton()">
+    <button class="btn" [ngClass]="getButtonClass()" (click)="executeAction()">
+      {{ getActionButton() }}
+    </button>
+  </div>
 </div>

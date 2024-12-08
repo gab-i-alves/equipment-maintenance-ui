@@ -20,7 +20,7 @@ import { Customer } from '../../../../models/customer/customer';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [SidebarComponent, RouterModule, CommonModule, FormsModule, NgxMaskPipe],
+  imports: [SidebarComponent, RouterModule, CommonModule, FormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -78,11 +78,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   viewBudget(request: SolicitacaoRequest) {
-    this.router.navigate(['/budget', request.id], { state: { request: request} });
+    this.router.navigate(['/budget', request.id], { state: { request: request} });
   }
 
-  viewService() {
-    this.router.navigate(['/viewservice']);
+  viewService(request: SolicitacaoRequest) {
+    this.router.navigate(['/viewservice'], { state: { request: request } });
   }
 
   rescueService(request: SolicitacaoRequest) {
