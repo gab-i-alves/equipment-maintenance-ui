@@ -6,29 +6,29 @@
     <div class="container-fluid mt-4">
         <ul class="  d-flex flex-row gap-3">
              <p class=" fw-bold ">Data  Hora da Solicitação :</p>
-             <p>{{ request.date }}</p>
+             <p>{{ request.dataHoraCriacao | date:'dd/MM/yyyy HH:mm' }}</p>
         </ul>
         <ul class="  d-flex flex-row gap-3">
             <p class="fw-bold">Descrição do Equipamento :</p>
-            <p>Máquina de Lavar</p>
+            <p>{{ request.descricaoEquipamento }}</p>
        </ul>
        <ul class="  d-flex flex-row gap-3">
             <p class="fw-bold">Categoria do equipamento :</p>
-            <p>Eletrodoméstico</p>
+            <p>{{ request.categoriaEquipamento?.descricao }}</p>
        </ul>
         <ul class="  d-flex flex-row gap-3">
             <p class="fw-bold">Descrição do Defeito :</p>
-            <p>{{ request.description }}</p>
+            <p>{{ request.descricaoDefeito }}</p>
         </ul>
         <ul class="  d-flex flex-row gap-3">
             <p class="fw-bold">Estado Atual:</p>
-            <p id="status">{{ request.status }}</p>
+            <p id="status">{{ request.estadoSolicitacao?.descricao }}</p>
         </ul>
         <hr id="line">
 
         <ul class="d-flex flex-row mt-4 ">
             <p class="fw-bold ">Valor a Pagar:</p>
-            <h3 class=" price fw-bold ">R$450,00</h3>
+            <h3 class=" price fw-bold ">{{budget?.valorOrcamento}}</h3>
             <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"class="btn" (click)="confirmPayment()">CONFIRMA PAGAMENTO</button>
         </ul>
         <p class="mt-4 ms-4"> Ao confirmar o pagamento, você receberá uma notificação de confirmação do serviço.</p>
