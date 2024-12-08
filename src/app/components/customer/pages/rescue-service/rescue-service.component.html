@@ -8,29 +8,29 @@
             <div class="col-sm-6">
                 <ul class="  d-flex flex-row gap-3">
                     <p class=" fw-bold ">Data  Hora da Solicitação :</p>
-                    <p>{{ request.date }}</p>
+                    <p>{{ request.dataHoraCriacao | date:'dd/MM/yyyy HH:mm' }}</p>
                </ul>
                <ul class="  d-flex flex-row gap-3">
                    <p class="fw-bold">Descrição do Equipamento :</p>
-                   <p>Máquina de Lavar</p>
+                   <p>{{ request.descricaoEquipamento }}</p>
               </ul>
               <ul class="  d-flex flex-row gap-3">
                    <p class="fw-bold">Categoria do equipamento :</p>
-                   <p>Eletrodoméstico</p>
+                   <p>{{ request.categoriaEquipamento?.descricao }}</p>
               </ul>
                <ul class="  d-flex flex-row gap-3">
                    <p class="fw-bold">Descrição do Defeito :</p>
-                   <p>{{ request.description }}</p>
+                   <p>{{ request.descricaoDefeito }}</p>
                </ul>
                <ul class="  d-flex flex-row gap-3">
                    <p class="fw-bold">Estado Atual:</p>
-                   <p id="status">{{ request.status }}</p>
+                   <p id="status">{{ request.estadoSolicitacao?.descricao }}</p>
                </ul>
             </div>
 
             <div class="card col-sm-5 bg-light">
                 <div class="card-title fw-bold">Motivo da rejeição: </div>
-                <div class="card-body">Texto do motivo da rejeição do serviço....</div>
+                <div class="card-body">{{budget?.motivoRejeicao}}</div>
             </div>
 
         </div>
@@ -39,7 +39,7 @@
 
         <ul class="d-flex flex-row mt-4 ms-3">
             <p class="fw-bold ">Valor a Pagar:</p>
-            <h3 class="price fw-bold ">R$450,00</h3>
+            <h3 class="price fw-bold ">{{budget?.valorOrcamento}}</h3>
             <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn" (click)="reapproveService()">Reaprovar Serviço</button>
         </ul>
         <button (click)="returnHome()" class="btn-return-box ms-4 mt-2">VOLTAR</button>
