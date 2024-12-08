@@ -4,6 +4,7 @@ import { RequestStatus } from '../../models/enums/requestStatus';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { catchError, map, Observable, throwError } from 'rxjs';
 import { SolicitacaoRequest } from '../../models/solicitacaoRequest';
+import { SolicitacaoHistorico } from '../../models/solicitacaoHistorico';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +42,9 @@ export class RequestsService {
     return this.http.get<any>(`${this.BASE_URL}/funcionario/${id}`, this.httpOptions)
   }
 
+  getHistoricoBySolicitacao(id: number): Observable<SolicitacaoHistorico[]> {
+    return this.http.get<SolicitacaoHistorico[]>(`${this.BASE_URL}/${id}/historico`);
+  }
 
   insert(request: SolicitacaoRequest): Observable<SolicitacaoRequest|null> {
     return this.http.post<SolicitacaoRequest>(this.BASE_URL,

@@ -10,7 +10,7 @@ export interface BudgetRequest{
   dataHoraRejeicao: Date|null,
   dataHoraCriacao: Date,
   dataHoraAprovacao: Date|null,
-  funcionario: Employee
+  funcionario: Employee,
   solicitacao: SolicitacaoRequest,
   idFuncionario: Number,
   nomeFuncionario: String,
