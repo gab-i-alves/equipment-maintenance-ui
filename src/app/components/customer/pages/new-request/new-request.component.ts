@@ -8,11 +8,14 @@ import { RequestStatus } from '../../../../models/enums/requestStatus';
 import { CategoriaEquipamento, estadoSolicitacao, SolicitacaoRequest } from '../../../../models/solicitacaoRequest';
 import { AuthService } from '../../../../services/auth/auth.service';
 import { Customer } from '../../../../models/customer/customer';
+import { CategoriaDeEquipamento } from '../../../../models/categoriaDeEquipamento/categoriaDeEquipamento.model';
+import { EquipmentCategoryService } from '../../../../services/equipment-category/equipment-category.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-new-request',
   standalone: true,
-  imports: [SidebarComponent, FormsModule],
+  imports: [SidebarComponent, FormsModule, CommonModule],
   templateUrl: './new-request.component.html',
   styleUrl: './new-request.component.css'
 })
@@ -22,13 +25,29 @@ export class NewRequestComponent {
   defeito:string = '';
   data:Date = new Date
   request: MaintenceRequest | null = null;
+  categorias: CategoriaDeEquipamento[] = [];
 
-  constructor(private router: Router, private RequestsService: RequestsService, private authService: AuthService) {}
+  constructor(private router: Router, private RequestsService: RequestsService,private categoriaService: EquipmentCategoryService, private authService: AuthService) {}
+
+  ngOnInit(){
+    this.listarTodos()
+    console.log(this.categorias)
+  }
+
+  listarTodos() {
+    this.categoriaService.listarTodos().subscribe({
+      next: (dados: CategoriaDeEquipamento[] | null) => {
+        if(dados != null){
+          this.categorias = dados;
+        }
+      }
+    })
+  }
 
   newRequestAction(){
     const estado:estadoSolicitacao = {
       descricao: '',
-      id: this.categoria,
+      id: 1,
     }
 
     const user = this.authService.getCurrentCustomer();
@@ -36,7 +55,7 @@ export class NewRequestComponent {
     console.log(user);
 
     const categoriaEq:CategoriaEquipamento = {
-      id: '1',
+      id: String(this.categoria),
       descricao: 'String'
     }
 
