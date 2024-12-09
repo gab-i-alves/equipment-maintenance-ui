@@ -38,36 +38,44 @@
    font-weight: 700;
 }
 
-.td-estado-aberta {
+.td-estado-ABERTA {
   color: #5e5e5e;
+  font-weight: 700;
 }
 
-.td-estado-orçada {
+.td-estado-ORÇADA {
   color: #683513;
+  font-weight: 700;
 }
 
-.td-estado-rejeitada {
+.td-estado-REJEITADA {
   color: #FF0E0E;
+  font-weight: 700;
 }
 
-.td-estado-aprovada {
+.td-estado-APROVADA {
    color: #e4d22f;
+   font-weight: 700;
  }
 
- .td-estado-redirecionada {
+ .td-estado-REDIRECIONADA {
    color: #510981;
+   font-weight: 700;
  }
 
- .td-estado-arrumada, .td-estado-aguardando_pagamento {
+ .td-estado-ARRUMADA, .td-estado-aguardando_pagamento {
    color: #1956fd;
+   font-weight: 700;
  }
 
- .td-estado-paga {
+ .td-estado-PAGA {
    color: #ff9113;
+   font-weight: 700;
  }
 
- .td-estado-finalizada {
+ .td-estado-FINALIZADA {
    color: #078f02;
+   font-weight: 700;
  }
 
 .btn-acao {
