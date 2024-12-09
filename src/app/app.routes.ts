@@ -64,7 +64,7 @@ export const routes: Routes = [
         canActivate: [authGuard], data: {role: 'Cliente'}
     },
     {
-        path: 'rescue-service',
+        path: 'rescue-service/:id',
         component:RescueServiceComponent,
         canActivate: [authGuard], data: {role: 'Cliente'}
     },

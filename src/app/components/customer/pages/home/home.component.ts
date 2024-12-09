@@ -41,13 +41,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
     const customer: Customer = this.authService.getCurrentCustomer()
     this.requestService.getSolicitacoesPorIdCliente(customer.id).subscribe(
      (data: SolicitacaoRequest[]) => {
-       
+
        this.requestSolicitacao = data;
        console.log(this.requestSolicitacao)
        setTimeout(() => {
          this.initializeDataTable();
        }, 100);
-     
+
      },
      (error) => {
        console.error("Erro ao buscar solicitações:", error);
@@ -86,7 +86,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   rescueService(request: SolicitacaoRequest) {
-    this.router.navigate(['/rescue-service'], { state: { request: request} });
+    this.router.navigate(['/rescue-service', request.id], { state: { request: request} });
   }
 
   payService(request: SolicitacaoRequest) {

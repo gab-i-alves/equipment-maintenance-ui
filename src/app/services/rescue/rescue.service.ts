@@ -16,7 +16,7 @@ export class RescueService {
 
   constructor(private http: HttpClient) {}
 
-  reapproveService(requestId: number, status: string): Observable<void> {
+  reapproveService(requestId: Number, status: string): Observable<void> {
     return this.http.put<void>(`${this.BASE_URL}/${requestId}`, {status});
   }
 }
