@@ -90,6 +90,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   payService(request: SolicitacaoRequest) {
-    this.router.navigate(['/payment'], { state: { request: request} });
+    this.router.navigate(['/payment', request.id], { state: { request: request} });
   }
 }

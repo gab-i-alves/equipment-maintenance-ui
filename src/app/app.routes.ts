@@ -59,7 +59,7 @@ export const routes: Routes = [
         canActivate: [authGuard], data: {role: 'Cliente'}
     },
     {
-        path: 'payment',
+        path: 'payment/:id',
         component:PaymentComponent,
         canActivate: [authGuard], data: {role: 'Cliente'}
     },

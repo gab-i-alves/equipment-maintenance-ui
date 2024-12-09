@@ -85,7 +85,7 @@ export class ViewServiceComponent implements OnInit {
   private routeMap = new Map<SolicitacaoState, string[]>([
     ['ORÇADA', ['/budget']],
     ['REJEITADA', ['/rescue-service/:id']],
-    ['ARRUMADA', ['/payment']]
+    ['ARRUMADA', ['/payment/:id']]
   ]);
 
   timelineStates = [
@@ -152,7 +152,7 @@ export class ViewServiceComponent implements OnInit {
     const route = this.routeMap.get(state);
 
     if (route) {
-      if (state === 'REJEITADA' && this.request.id) {
+      if ((state === 'REJEITADA' || state === 'ARRUMADA') && this.request.id) {
         // Para a rota com o ID no caminho
         this.router.navigate([route[0].replace(':id', this.request.id.toString())]);
       } else if (state === 'ORÇADA') {
