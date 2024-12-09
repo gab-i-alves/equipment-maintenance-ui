@@ -28,13 +28,13 @@
       <div class="row">
         <div class="details-item col d-flex gap-3">
           <p>Categoria do equipamento:</p>
-          <span>Notebook</span>
+          <span>{{ request.categoriaEquipamento?.descricao }}</span>
         </div>
       </div>
       <div class="row">
         <div class="details-item col d-flex gap-3">
           <p>Descrição do Defeito:</p>
-          <span>Notebook não está ligando</span>
+          <span>{{ request.descricaoDefeito }}</span>
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@ import { RequestsService } from '../../../../services/requests/requests.service'
 import { BudgetRequest } from '../../../../models/budgetRequest';
 import { BudgetService } from '../../../../services/budget/budget.service';
 
-type SolicitacaoState = 'ORCADA' | 'REJEITADA' | 'ARRUMADA' | 'ABERTA' | 'PAGA' | 'FINALIZADA';
+type SolicitacaoState = 'ORÇADA' | 'REJEITADA' | 'ARRUMADA' | 'ABERTA' | 'PAGA' | 'FINALIZADA';
 
 @Component({
   selector: 'app-view-service',
@@ -66,31 +66,31 @@ export class ViewServiceComponent implements OnInit {
 
   getStatusClass(): string {
     if (!this.request?.estadoSolicitacao?.descricao) return '';
-    
+
     return `td-estado-${this.request.estadoSolicitacao.descricao.toLowerCase()}`;
   }
 
   private actionMap = new Map<SolicitacaoState, string>([
-    ['ORCADA', 'Aprovar/Rejeitar Serviço'],
+    ['ORÇADA', 'Aprovar/Rejeitar Serviço'],
     ['REJEITADA', 'Resgatar Serviço'],
     ['ARRUMADA', 'Pagar Serviço']
   ]);
 
   private classMap = new Map<SolicitacaoState, string>([
-    ['ORCADA', 'btn-primary'],
+    ['ORÇADA', 'btn-primary'],
     ['REJEITADA', 'btn-warning'],
     ['ARRUMADA', 'btn-success']
   ]);
 
   private routeMap = new Map<SolicitacaoState, string[]>([
-    ['ORCADA', ['/budget']],
-    ['REJEITADA', ['/rescue-service']],
+    ['ORÇADA', ['/budget']],
+    ['REJEITADA', ['/rescue-service/:id']],
     ['ARRUMADA', ['/payment']]
   ]);
 
   timelineStates = [
     { state: 'ABERTA', icon: 'note_add', label: 'Solicitação Confirmada' },
-    { state: 'ORCADA', icon: 'request_quote', label: 'Orçada' },
+    { state: 'ORÇADA', icon: 'request_quote', label: 'Orçada' },
     { state: 'APROVADA', icon: 'task', label: 'Aprovada' },
     { state: 'ARRUMADA', icon: 'handyman', label: 'Arrumada' },
     { state: 'PAGA', icon: 'paid', label: 'Paga' },
@@ -99,22 +99,22 @@ export class ViewServiceComponent implements OnInit {
 
   getStateStatus(state: string): 'check' | 'cancel' | '' {
     const currentStatus = this.request?.estadoSolicitacao?.descricao || '';
-    const statusOrder = ['ABERTA', 'ORCADA', 'APROVADA', 'ARRUMADA', 'PAGA', 'FINALIZADA'];
-    
+    const statusOrder = ['ABERTA', 'ORÇADA', 'APROVADA', 'ARRUMADA', 'PAGA', 'FINALIZADA'];
+
     const currentIndex = statusOrder.indexOf(currentStatus);
     const stateIndex = statusOrder.indexOf(state);
-    
+
     if (currentIndex >= stateIndex) return 'check';
     return '';
   }
 
   getStateDate(state: string): Date | null {
     if (!this.request) return null;
-    
+
     switch (state) {
       case 'ABERTA':
         return new Date(this.request.dataHoraCriacao);
-      case 'ORCADA': {
+      case 'ORÇADA': {
         const date = this.request.budget?.dataHoraCriacao;
         return date ? new Date(date) : null;
       }
@@ -147,13 +147,20 @@ export class ViewServiceComponent implements OnInit {
 
   executeAction(): void {
     if (!this.request) return;
-    
-    const route = this.routeMap.get(this.request.estadoSolicitacao.descricao as SolicitacaoState);
+
+    const state = this.request.estadoSolicitacao.descricao as SolicitacaoState;
+    const route = this.routeMap.get(state);
+
     if (route) {
-      if (this.request.estadoSolicitacao.descricao === 'ORCADA') {
+      if (state === 'REJEITADA' && this.request.id) {
+        // Para a rota com o ID no caminho
+        this.router.navigate([route[0].replace(':id', this.request.id.toString())]);
+      } else if (state === 'ORÇADA') {
+        // Para rotas que precisam de parâmetros adicionais
         this.router.navigate([...route, this.request.id.toString()]);
       } else {
-        this.router.navigate(route, { state: { request: this.request }});
+        // Rotas normais
+        this.router.navigate(route, { state: { request: this.request } });
       }
     }
   }
