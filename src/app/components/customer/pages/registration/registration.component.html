@@ -125,6 +125,38 @@
                 </div>
               </div>
 
+              <div class="modal fade" id="modalRegistration" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header custom-modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Registro cadastrado!</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Registro realizado com sucesso. A senha de acesso foi enviada ao e-mail cadastrado!</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="navigateToLogin()">Confirmar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header custom-modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">ERRO</h5>
+                    </div>
+                    <div class="modal-body">
+                      <p>{{errorMessage}}</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
             </form>
           </div>
