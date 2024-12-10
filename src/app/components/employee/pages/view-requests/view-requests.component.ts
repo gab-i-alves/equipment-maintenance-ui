@@ -22,7 +22,7 @@ import { AfterViewInit } from '@angular/core';
   styleUrl: './view-requests.component.css'
 })
 export class ViewRequestsComponent implements OnInit, AfterViewInit {
-
+  allRequests: SolicitacaoRequest[] = [];
   requests: SolicitacaoRequest[] = [];
   dataTable: any;
 
@@ -38,6 +38,7 @@ export class ViewRequestsComponent implements OnInit, AfterViewInit {
     this.requestService.getSolicitacoes().subscribe(
       (data: SolicitacaoRequest[]) => {
         this.requests = data;
+        this.allRequests = data;
 
         console.log("Solicitações:", this.requests);
         setTimeout(() => this.initializeDataTable(), 100);
@@ -63,6 +64,29 @@ export class ViewRequestsComponent implements OnInit, AfterViewInit {
   }
 
   initializeDataTable() {
+    let minDate = new Date(this.initialDate)
+    let maxDate = new Date(this.finalDate)
+
+    DataTable.ext.search.push(function (settings: any, data: (string | number | Date)[], dataIndex: any) {
+      let min = minDate;
+      let max = maxDate;
+      let date = new Date(data[1]);
+   
+      if (
+          (min === null && max === null) ||
+          (min === null && date <= max) ||
+          (min <= date && max === null) ||
+          (min <= date && date <= max)
+      ) {
+          return true;
+      }
+      return false;
+    });
+
+    document.querySelectorAll('#min, #max').forEach((el) => {
+      el.addEventListener('change', () => this.dataTable.draw());
+    });
+
     if (!$.fn.dataTable.isDataTable('#tableSolic')) {
       this.dataTable = new DataTable('#tableSolic', {
         responsive: true,
@@ -120,17 +144,32 @@ export class ViewRequestsComponent implements OnInit, AfterViewInit {
   }
 
 
-  filterInitialDate() {
-
-  }
-
-  filterFinalDate() {
-
+  filterDate() {
+    this.requests = this.allRequests.filter(this.filtroData(this.initialDate, this.finalDate))
   }
 
   filterToday() {
+    this.requests = this.allRequests.filter(this.filtroData(new Date, this.addDays(new Date, 1)))
   }
 
   removeFilters() {
+    this.refreshPage()
   }
+
+  filtroData(dtInicial: any, dtFinal: any){
+    return function (request: SolicitacaoRequest) {
+      let dataCriacao = (new Date(request.dataHoraCriacao)).toISOString()
+      let dataInicial = (new Date(dtInicial)).toISOString()
+      let dataFinal = (new Date(dtFinal)).toISOString()
+
+      return  dataCriacao > dataInicial && dataCriacao < dataFinal;
+    }
+  }
+
+  addDays(date: string | number | Date, days: number) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+  }
+
 }
