@@ -12,7 +12,9 @@ import { AuthService } from '../../../services/auth/auth.service';
   styleUrl: './employee-sidebar.component.css'
 })
 export class EmployeeSidebarComponent {
-  @Input() title: string = 'Bem-Vindo, User X';
+  userName = '';
+  // @Input() title: string = 'Bem-Vindo, ' + this.userName;
+  title: string = '';
   faUser = faUser;
   faHistory = faHistory;
   faSignOutAlt = faSignOutAlt;
@@ -22,9 +24,14 @@ export class EmployeeSidebarComponent {
   faBell = faBell;
   faBook = faBook;
   faFilePdf = faFilePdf;
-
-  constructor(private router: Router, private authService: AuthService){ }
-
+  
+  constructor(private router: Router, private authService: AuthService){}
+  
+  ngOnInit(): void {
+    this.userName = this.authService.getCurrentEmployee().nome;
+    this.title = 'Bem-Vindo, ' + this.userName;
+  }
+  
   homeAction(){
     this.router.navigate(['/employee-home']);
   }

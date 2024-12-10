@@ -13,7 +13,7 @@ import { AuthService } from '../../../services/auth/auth.service';
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
-   @Input() title: string = 'Bem-Vindo, User X';  // Tí
+  @Input() title: string = 'Bem-Vindo, User X';
   faUser = faUser;
   faHistory = faHistory;
   faSignOutAlt = faSignOutAlt;
