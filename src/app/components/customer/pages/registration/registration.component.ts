@@ -6,6 +6,7 @@ import { ViacepService } from '../../../../services/viacep/viacep.service';
 import { Endereco } from '../../../../models/viacepResult';
 import { Customer } from '../../../../models/customer/customer';
 import { RegistrationService } from '../../../../services/registration/registration.service';
+import { Modal } from 'bootstrap';
 
 @Component({
   selector: 'app-registration',
@@ -30,7 +31,17 @@ export class RegistrationComponent {
   bairro: string = '';
   estados: string[] = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'];
 
+  errorMessage : string = "";
+  modalElement : Modal | null = null 
   constructor(private viacepService: ViacepService, private router : Router, private registrationService: RegistrationService) {}
+
+  ngOnInit(){
+    const modalElement = document.getElementById('modalRegistration');
+    console.log(modalElement);
+    if (modalElement) {
+      this.modalElement = new Modal(modalElement);
+    }
+  }
 
   buscarEndereco(): void {
     if(this.cep) {
@@ -77,15 +88,15 @@ export class RegistrationComponent {
         (response: Customer | null) => {
           console.log('Registro inserido com sucesso:', response);
           this.submiting = false;
+          // Abrir modal ao invés de alert
+          this.modalElement?.show()
         },
         (error) => {
-          console.error('Erro ao inserir registro:', error);
+          this.errorMessage = error.error;
+          this.openErrorModal();
           this.submiting = false;
         }
       );
-
-      alert("Registro realizado com sucesso. A senha de acesso foi enviada ao e-mail cadastrado!")
-      this.router.navigate(["/login"]);
 
     } else {
       console.log('Formulário com erros');
@@ -166,5 +177,17 @@ export class RegistrationComponent {
 
   returnHome(){
     this.router.navigate(['/login']);
+  }
+
+  navigateToLogin() {
+    this.router.navigate(['/login']);
+  }
+
+  openErrorModal() {
+    const errorModalElement = document.getElementById('errorModal');
+    if (errorModalElement) {
+      const errorModal = new Modal(errorModalElement);
+      errorModal.show();
+    }
   }
 }
