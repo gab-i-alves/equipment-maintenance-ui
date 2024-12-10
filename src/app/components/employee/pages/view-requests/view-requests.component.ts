@@ -134,7 +134,3 @@ export class ViewRequestsComponent implements OnInit, AfterViewInit {
   removeFilters() {
   }
 }
-function refreshPage() {
-  throw new Error('Function not implemented.');
-}
-
