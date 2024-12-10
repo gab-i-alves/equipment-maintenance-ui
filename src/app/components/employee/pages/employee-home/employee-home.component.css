@@ -68,7 +68,7 @@
 
  .btn-acao {
    width: 60%;
-   padding: 0 !important;
+   padding: 0 ;
    color: white;
    font-size: 0.8rem;
  }
@@ -83,8 +83,4 @@
 
  .btn-finalizar {
    background-color: #078f02;
- }
-
- .dropdownContainer {
-  justify-content: flex-end;
  }
