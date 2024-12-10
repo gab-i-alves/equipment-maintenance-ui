@@ -78,7 +78,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                  Você realmente deseja aprovar o serviço no valor de {{budget.valorOrcamento}}?
+                  Você realmente deseja aprovar o serviço no valor de R${{budget.valorOrcamento}}?
               </div>
               <div class="modal-footer d-flex justify-content-between">
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#approveServiceModal" (click)="approveService()">
@@ -100,7 +100,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="returnHome()"></button>
               </div>
               <div class="modal-body">
-                Serviço aprovado
+                Serviço aprovado.
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-success" (click)="returnHome()" data-bs-dismiss="modal">Ok</button>
