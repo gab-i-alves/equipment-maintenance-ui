@@ -41,8 +41,8 @@
                  <button *ngSwitchCase="'ABERTA'" class="btn btn-acao btn-orcar" (click)="doBudget(request)">Realizar Orçamento</button>
                 <button *ngSwitchCase="'APROVADA'" class="btn btn-acao btn-manutencao" (click)="doMaintence(request)">Realizar Manutenção</button>
                 <button *ngSwitchCase="'REDIRECIONADA'" class="btn btn-acao btn-manutencao" (click)="doMaintence(request)">Realizar Manutenção</button>
-                <button *ngSwitchCase="'PAGA'" class="btn btn-acao btn-finalizar" data-bs-toggle="modal" data-bs-target="#endMaintence" (click)="openFinalizationModal(request)">Finalizar Manutenção</button> 
-              </td> 
+                <button *ngSwitchCase="'PAGA'" class="btn btn-acao btn-finalizar" data-bs-toggle="modal" data-bs-target="#endMaintence" (click)="openFinalizationModal(request)">Finalizar Manutenção</button>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -58,11 +58,11 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p>Você realmente deseja finalizar essa solicitação?</p>
+          <p>Você realmente deseja finalizar a solicitação {{ selectedRequest?.id }}?</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-success" data-bs-toggle="modal" (click)="endMaintence()">Finalizar</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="endMaintence()">Finalizar</button>
         </div>
       </div>
     </div>
