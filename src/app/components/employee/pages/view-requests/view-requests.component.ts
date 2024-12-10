@@ -1,7 +1,5 @@
-import { MaintenceRequest } from './../../../../models/mainteceRequest';
-import { RequestStatus } from './../../../../models/enums/requestStatus';
-import { Component } from '@angular/core';
-import { SidebarComponent } from "../../../customer/sidebar/sidebar.component";
+import { endMaintenceService } from './../../../../services/endMaintence/end-maintence.service';
+import { Component, OnInit } from '@angular/core';
 import { EmployeeSidebarComponent } from "../../employee-sidebar/employee-sidebar.component";
 import { Router } from '@angular/router';
 import DataTable from 'datatables.net-dt';
@@ -14,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { RequestsService } from '../../../../services/requests/requests.service';
 import { SolicitacaoRequest } from '../../../../models/solicitacaoRequest';
 import { AuthService } from '../../../../services/auth/auth.service';
+import { AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-view-requests',
@@ -22,7 +21,7 @@ import { AuthService } from '../../../../services/auth/auth.service';
   templateUrl: './view-requests.component.html',
   styleUrl: './view-requests.component.css'
 })
-export class ViewRequestsComponent {
+export class ViewRequestsComponent implements OnInit, AfterViewInit {
 
   requests: SolicitacaoRequest[] = [];
   dataTable: any;
@@ -31,18 +30,18 @@ export class ViewRequestsComponent {
   finalDate: any;
   initialDate: any;
 
-  constructor(private router : Router, private requestService: RequestsService, private authService: AuthService){ }
+  constructor(private router : Router, private requestService: RequestsService, private authService: AuthService, private endMaintenceService: endMaintenceService){this.endMaintenceService = endMaintenceService;}
 
   ngOnInit(){
     const employee = this.authService.getCurrentEmployee();
-    
+
     this.requestService.getSolicitacoes().subscribe(
       (data: SolicitacaoRequest[]) => {
         this.requests = data;
-     
+
         console.log("Solicitações:", this.requests);
         setTimeout(() => this.initializeDataTable(), 100);
-      
+
       },
       (error) => {
         console.error('Erro ao buscar solicitação:', error);
@@ -50,10 +49,20 @@ export class ViewRequestsComponent {
     );
   }
 
- 
+  ngAfterViewInit(): void {
+    const modalElement = document.getElementById('endMaintence');
+    if (modalElement) {
+      modalElement.addEventListener('hidden.bs.modal', () => {
+        this.refreshPage();
+      });
+    }
+  }
+
+  refreshPage(): void {
+    window.location.reload();
+  }
 
   initializeDataTable() {
-
     if (!$.fn.dataTable.isDataTable('#tableSolic')) {
       this.dataTable = new DataTable('#tableSolic', {
         responsive: true,
@@ -86,14 +95,30 @@ export class ViewRequestsComponent {
     this.selectedRequest = request;
   }
 
-  endMaintence() {
+  endMaintence(): void {
     if (this.selectedRequest) {
-      // this.selectedRequest.status = RequestStatus.Finished;
-      // this.selectedRequest.finalizationDate = new Date().toISOString();
-      // this.selectedRequest.finalizedBy = 'Nome do Funcionário';
-      // this.selectedRequest = null;
+      const employee = this.authService.getCurrentEmployee();
+      const idFuncionario = employee ? employee.id : null;
+
+      if (idFuncionario) {
+        this.endMaintenceService.endMaintence(this.selectedRequest.id, idFuncionario).subscribe(
+          () => {
+            console.log('Solicitação finalizada com sucesso.');
+            this.requests = this.requests.filter(req => req.id !== this.selectedRequest!.id);
+            this.selectedRequest = null;
+          },
+          (error) => {
+            console.error('Erro ao finalizar a solicitação:', error);
+          }
+        );
+      } else {
+        console.error('ID do funcionário não encontrado.');
+      }
+    } else {
+      console.error('Nenhuma solicitação selecionada.');
     }
   }
+
 
   filterInitialDate() {
 
@@ -109,3 +134,7 @@ export class ViewRequestsComponent {
   removeFilters() {
   }
 }
+function refreshPage() {
+  throw new Error('Function not implemented.');
+}
+
