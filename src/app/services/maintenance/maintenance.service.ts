@@ -6,49 +6,45 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MaintenanceService {
-  private BASE_URL = 'http://localhost:8080/api/solicitacoes';
+  private readonly BASE_URL = 'http://localhost:8080/api';
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     })
   };
 
   constructor(private http: HttpClient) { }
 
-  efetuarManutencao(
-    solicitacaoId: number, 
-    descricaoManutencao: string, 
-    orientacoesCliente: string,
-    funcionarioId: number
-  ): Observable<any> {
-    const url = `${this.BASE_URL}/${solicitacaoId}/manutencao`;
+  listarFuncionarios(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.BASE_URL}/funcionarios`, this.httpOptions);
+  }
+
+  efetuarManutencao(idSolicitacao: number, descricaoManutencao: string, orientacoesCliente: string, idFuncionario: number): Observable<any> {
     const body = {
       descricaoManutencao,
       orientacoesCliente
     };
 
-    return this.http.post(url, body, {
-      ...this.httpOptions,
-      headers: this.httpOptions.headers.set('idFuncionario', funcionarioId.toString())
-    });
+    this.httpOptions.headers = this.httpOptions.headers.set('idFuncionario', idFuncionario.toString());
+    
+    return this.http.post(
+      `${this.BASE_URL}/solicitacoes/${idSolicitacao}/manutencao`,
+      body,
+      this.httpOptions
+    );
   }
 
-  redirecionarManutencao(
-    solicitacaoId: number,
-    funcionarioOrigemId: number,
-    funcionarioDestinoId: number
-  ): Observable<any> {
-    const url = `${this.BASE_URL}/${solicitacaoId}/redirecionamento`;
+  redirecionarManutencao(idSolicitacao: number, idFuncionarioOrigem: number, idFuncionarioDestino: number): Observable<any> {
     const body = {
-      idFuncionarioOrigem: funcionarioOrigemId,
-      idFuncionarioDestino: funcionarioDestinoId
+      idFuncionarioOrigem,
+      idFuncionarioDestino
     };
 
-    return this.http.post(url, body, this.httpOptions);
-  }
-
-  listarFuncionarios(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.BASE_URL}/funcionarios`, this.httpOptions);
+    return this.http.post(
+      `${this.BASE_URL}/solicitacoes/${idSolicitacao}/redirecionamento`,
+      body,
+      this.httpOptions
+    );
   }
 }

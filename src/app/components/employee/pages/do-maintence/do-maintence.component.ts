@@ -7,11 +7,13 @@ import { SolicitacaoRequest } from '../../../../models/solicitacaoRequest';
 import { AuthService } from '../../../../services/auth/auth.service';
 import * as bootstrap from 'bootstrap';
 import { MaintenanceService } from '../../../../services/maintenance/maintenance.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-do-maintence',
   standalone: true,
-  imports: [EmployeeSidebarComponent, FormsModule, CommonModule],
+  imports: [EmployeeSidebarComponent, FormsModule, CommonModule, HttpClientModule],
+  providers: [MaintenanceService],
   templateUrl: './do-maintence.component.html',
   styleUrl: './do-maintence.component.css'
 })
@@ -37,11 +39,15 @@ export class DoMaintenceComponent implements OnInit {
   }
 
   loadFuncionarios() {
-    this.maintenanceService.listarFuncionarios().subscribe(
-      (data) => {
+    this.maintenanceService.listarFuncionarios().subscribe({
+      next: (data) => {
+        console.log('Funcionários carregados:', data);
         this.funcionarios = data;
+      },
+      error: (error) => {
+        console.error('Erro ao carregar funcionários:', error);
       }
-    );
+    });
   }
 
   efetuarManutencao() {
@@ -56,14 +62,15 @@ export class DoMaintenceComponent implements OnInit {
       this.descricaoManutencao,
       this.orientacoesCliente,
       currentEmployee.id
-    ).subscribe(
-      (response) => {
+    ).subscribe({
+      next: (response) => {
+        console.log('Manutenção efetuada com sucesso:', response);
         this.returnHome();
       },
-      (error) => {
+      error: (error) => {
         console.error('Erro ao efetuar manutenção:', error);
       }
-    );
+    });
   }
 
   redirecionarManutencao() {
@@ -77,14 +84,15 @@ export class DoMaintenceComponent implements OnInit {
       this.request.id,
       currentEmployee.id,
       this.selectedFuncionario
-    ).subscribe(
-      (response) => {
+    ).subscribe({
+      next: (response) => {
+        console.log('Redirecionamento efetuado com sucesso:', response);
         this.returnHome();
       },
-      (error) => {
+      error: (error) => {
         console.error('Erro ao redirecionar manutenção:', error);
       }
-    );
+    });
   }
 
   returnHome() {

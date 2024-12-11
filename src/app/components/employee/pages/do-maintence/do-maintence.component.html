@@ -99,8 +99,8 @@
             Redirecionar para:
             <select class="form-control" [(ngModel)]="selectedFuncionario">
               <option [value]="null">Selecione um funcionário</option>
-              <option *ngFor="let func of funcionarios" [value]="func.id">
-                {{func.nome}}
+              <option *ngFor="let funcionario of funcionarios" [value]="funcionario.id">
+                {{funcionario.nome}}
               </option>
             </select>
           </div>
